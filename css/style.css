@@ -1,0 +1,240 @@
+/* ==========================================================================
+   BELKERN GMBH — GLOBAL STYLESHEET (css/style.css)
+   Direct Origin B2B Agricultural Commodity Export Hub (Frankfurt am Main)
+   Complies 100% with Tailwind CSS utility architecture
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. BASE SMOOTH SCROLLING & DEFAULT SELECTION
+   -------------------------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   2. COMMODITY TICKER & MARQUEE ANIMATION
+   -------------------------------------------------------------------------- */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: marquee 32s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* --------------------------------------------------------------------------
+   3. HERO PARALLAX FLOATING PARTICLE KEYFRAMES
+   -------------------------------------------------------------------------- */
+@keyframes floatParticleSlow {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  50% {
+    transform: translateY(-10px) translateX(6px);
+  }
+}
+
+@keyframes floatParticleFast {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  50% {
+    transform: translateY(-16px) translateX(-8px);
+  }
+}
+
+.animate-float-slow {
+  animation: floatParticleSlow 7s ease-in-out infinite;
+}
+
+.animate-float-fast {
+  animation: floatParticleFast 4.5s ease-in-out infinite;
+}
+
+@keyframes fieldShake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  20%, 60% {
+    transform: translateX(-5px);
+  }
+  40%, 80% {
+    transform: translateX(5px);
+  }
+}
+
+.animate-shake {
+  animation: fieldShake 0.35s ease-in-out;
+}
+
+/* --------------------------------------------------------------------------
+   4. LAPTOP & SHORT VIEWPORT HEIGHT ADAPTATION (<= 850px height)
+   Prevents vertical cramping on standard 1366x768, 1440x900 & 1536x864 screens
+   -------------------------------------------------------------------------- */
+@media (min-width: 1024px) and (max-height: 850px) {
+  .hero-heading-laptop {
+    font-size: 3.25rem !important; /* ~52px */
+    line-height: 1.05 !important;
+  }
+  .hero-content-laptop {
+    padding-top: 0.25rem !important;
+    padding-bottom: 0.25rem !important;
+  }
+  .hero-spacer-laptop {
+    height: 4.5rem !important; /* 72px */
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. INVISIBLE SMOOTH SCROLLBAR FOR FULL-SCREEN OVERLAYS
+   Hides the native browser scrollbar completely on full-screen modals while
+   retaining 100% smooth mousewheel, touchpad, and touch scrollability.
+   -------------------------------------------------------------------------- */
+.no-scrollbar::-webkit-scrollbar,
+#fullScreenMenu::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.no-scrollbar,
+#fullScreenMenu {
+  -ms-overflow-style: none !important; /* IE and Edge */
+  scrollbar-width: none !important; /* Firefox */
+}
+
+/* --------------------------------------------------------------------------
+   6. EDITORIAL VERTICAL SCROLL INDICATOR KEYFRAMES
+   -------------------------------------------------------------------------- */
+@keyframes scrollPulse {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(220%);
+    opacity: 0;
+  }
+}
+
+.animate-scroll-pulse {
+  animation: scrollPulse 2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+/* --------------------------------------------------------------------------
+   7. OFFICIAL B2B TECHNICAL DATA SHEET (TDS) PRINT & PDF STYLESHEET
+   Produces institutional, single-page A4 corporate specification documents
+   -------------------------------------------------------------------------- */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 10mm 12mm 10mm 12mm;
+  }
+
+  *,
+  *::before,
+  *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    box-shadow: none !important;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    font-size: 9.5pt !important;
+    line-height: 1.35 !important;
+  }
+
+  /* Hide all interactive website chrome & screens */
+  body > *:not(#printableTdsDocument) {
+    display: none !important;
+  }
+
+  /* Show ONLY the official printable document container */
+  #printableTdsDocument {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    color: #0f172a !important;
+  }
+
+  /* Page break rules for pristine single-page fit */
+  .print-page {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+
+  table {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  tr {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* High-Contrast Print Grid & Typography Enforcement */
+  #printableTdsDocument table {
+    border: 1.5pt solid #334155 !important;
+    border-collapse: collapse !important;
+  }
+
+  #printableTdsDocument thead {
+    background-color: #e2e8f0 !important;
+    border-bottom: 2pt solid #0f172a !important;
+  }
+
+  #printableTdsDocument thead th {
+    color: #020617 !important;
+    font-weight: 800 !important;
+    border-right: 1pt solid #64748b !important;
+  }
+
+  #printableTdsDocument tbody td {
+    border-bottom: 1pt solid #94a3b8 !important;
+    border-right: 1pt solid #64748b !important;
+    color: #0f172a !important;
+  }
+
+  #printableTdsDocument tbody td:last-child {
+    border-right: none !important;
+  }
+}
+
+
+
