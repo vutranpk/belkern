@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /docs/
+Disallow: /scratch/
+
+# Sitemap location
+Sitemap: https://belkern.com/sitemap.xml

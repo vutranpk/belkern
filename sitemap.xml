@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://belkern.com/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://belkern.com/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://belkern.com/de/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://belkern.com/"/>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://belkern.com/about.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://belkern.com/about.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://belkern.com/de/about.html"/>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://belkern.com/products.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://belkern.com/products.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://belkern.com/de/products.html"/>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://belkern.com/sustainability.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://belkern.com/sustainability.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://belkern.com/de/sustainability.html"/>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://belkern.com/certifications.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://belkern.com/certifications.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://belkern.com/de/certifications.html"/>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://belkern.com/careers.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://belkern.com/careers.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://belkern.com/de/careers.html"/>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://belkern.com/contact.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://belkern.com/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://belkern.com/de/contact.html"/>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>

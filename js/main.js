@@ -114,6 +114,45 @@
   window.toggleMenuAccordion = toggleMenuAccordion;
 
   // ---------------------------------------------------------------------------
+  // 4.5. FOOTER MOBILE COLLAPSIBLE ACCORDION (< 1024px)
+  // ---------------------------------------------------------------------------
+  function toggleFooterAccordion(id) {
+    if (window.innerWidth >= 1024) return; // Desktop is always fully expanded
+
+    const target = document.getElementById(id);
+    const targetIcon = document.getElementById(id + 'Icon');
+    if (!target) return;
+
+    const isOpen = target.classList.contains('footer-accordion-open');
+    if (isOpen) {
+      target.classList.remove('footer-accordion-open');
+      target.style.maxHeight = '0px';
+      target.classList.remove('opacity-100');
+      target.classList.add('opacity-0');
+      if (targetIcon) targetIcon.classList.remove('rotate-180');
+    } else {
+      target.classList.add('footer-accordion-open');
+      target.classList.remove('opacity-0');
+      target.classList.add('opacity-100');
+      target.style.maxHeight = target.scrollHeight + 30 + 'px';
+      if (targetIcon) targetIcon.classList.add('rotate-180');
+    }
+  }
+  window.toggleFooterAccordion = toggleFooterAccordion;
+
+  // Reset footer accordion inline styles when resizing across 1024px desktop breakpoint
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 1024) {
+      document.querySelectorAll('.footer-accordion-content').forEach((el) => {
+        el.style.maxHeight = '';
+      });
+      document.querySelectorAll('#footerNavIcon, #footerCommoditiesIcon, #footerHeadquartersIcon').forEach((icon) => {
+        icon.classList.remove('rotate-180');
+      });
+    }
+  });
+
+  // ---------------------------------------------------------------------------
   // 5. ATTACH MENU EVENT LISTENERS (Buttons, Links & Escape Key)
   // ---------------------------------------------------------------------------
   function initMenuListeners() {
@@ -1601,8 +1640,13 @@
   }
   window.scrollCommodityTrack = scrollCommodityTrack;
 
-  // --- D. Staggered Delay Fade-in Reveal (Hiệu ứng hiện ra dần dần có delay) ---
+  // --- D. Staggered Delay Fade-in Reveal (Native Fallback when GSAP is not present) ---
   function initCommodityStaggerReveal() {
+    // If GSAP + ScrollTrigger is loaded, it handles the stagger reveal with hardware acceleration
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      return;
+    }
+
     const track = document.getElementById('commodityScrollTrack');
     if (!track) return;
     const cards = track.querySelectorAll('.commodity-showcase-card');
@@ -1892,10 +1936,10 @@
         videoContainer.style.boxShadow = expandProgress > 0.85 ? 'none' : '0 25px 50px -12px rgba(0, 0, 0, 0.15)';
       }
 
-      // 5. Full-Screen Interactive Controls & Caption
+      // 5. Full-Screen Interactive Controls & Caption (Synchronized fade-in at full expansion)
       if (videoControls) {
-        if (p >= 0.64) {
-          const ctrlOpacity = Math.min(1, (p - 0.64) / 0.08);
+        if (p >= 0.58) {
+          const ctrlOpacity = Math.min(1, (p - 0.58) / 0.10);
           videoControls.style.opacity = ctrlOpacity.toFixed(3);
           videoControls.style.pointerEvents = 'auto';
         } else {
@@ -1905,8 +1949,8 @@
       }
 
       if (videoCaption) {
-        if (p >= 0.60) {
-          const captionOpacity = Math.min(1, (p - 0.60) / 0.10);
+        if (p >= 0.58) {
+          const captionOpacity = Math.min(1, (p - 0.58) / 0.10);
           videoCaption.style.opacity = captionOpacity.toFixed(3);
         } else {
           videoCaption.style.opacity = '0';
@@ -2129,7 +2173,372 @@
   }
 
   // ---------------------------------------------------------------------------
-  // 13. BOOTSTRAP ALL MODULES ON DOM READY
+  // 13. FLOATING BACK TO TOP SCROLL BEHAVIOR
+  // ---------------------------------------------------------------------------
+  function initBackToTop() {
+    const backToTopBtn = document.getElementById('backToTopBtn');
+    if (!backToTopBtn) return;
+
+    function handleScroll() {
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-3');
+        backToTopBtn.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+      } else {
+        backToTopBtn.classList.add('opacity-0', 'pointer-events-none', 'translate-y-3');
+        backToTopBtn.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+  }
+
+  // ---------------------------------------------------------------------------
+  // 14. INERTIAL MOMENTUM SCROLL ENGINE (Pure Vanilla JS · Hardware Accelerated)
+  // Provides buttery-smooth, weighted inertial glide across all desktop wheels/trackpads
+  // ---------------------------------------------------------------------------
+  function initInertialScroll() {
+    // Leave pure mobile touch devices to native hardware compositor (iOS/Android momentum)
+    const isTouchOnly = window.matchMedia('(pointer: coarse)').matches && !window.matchMedia('(pointer: fine)').matches;
+    if (isTouchOnly) {
+      document.documentElement.style.scrollBehavior = 'smooth';
+      return;
+    }
+
+    let currentY = window.scrollY;
+    let targetY = window.scrollY;
+    let isMoving = false;
+    let rafId = null;
+
+    // Physics Tuning: Luxurious, weighted European Editorial Glide
+    const EASE = 0.082; // Friction/damping factor
+    const WHEEL_SPEED = 0.95; // Natural displacement multiplier
+
+    function getMaxScroll() {
+      return Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+    }
+
+    function isInnerScrollable(target) {
+      if (!target) return false;
+      // Modals & Menu Takeover
+      if (target.closest('#fullScreenMenu, #specSheetModal, #harvestModal, [role="dialog"], [data-no-smooth-scroll]')) {
+        return true;
+      }
+      // Vertically scrollable inner containers
+      let el = target;
+      while (el && el !== document.body && el !== document.documentElement) {
+        const style = window.getComputedStyle(el);
+        const overflowY = style.overflowY;
+        if ((overflowY === 'auto' || overflowY === 'scroll') && el.scrollHeight > el.clientHeight) {
+          return true;
+        }
+        el = el.parentElement;
+      }
+      return false;
+    }
+
+    function update() {
+      const diff = targetY - currentY;
+
+      if (Math.abs(diff) > 0.35) {
+        currentY += diff * EASE;
+        window.scrollTo(0, currentY);
+        rafId = requestAnimationFrame(update);
+      } else {
+        currentY = targetY;
+        window.scrollTo(0, targetY);
+        isMoving = false;
+        rafId = null;
+      }
+    }
+
+    function onWheel(e) {
+      // Respect inner scroll containers and full screen takeover states
+      if (isInnerScrollable(e.target)) return;
+      if (document.body.classList.contains('overflow-hidden')) return;
+
+      // Prevent jerky native browser scroll step
+      e.preventDefault();
+
+      let delta = e.deltaY;
+      if (e.deltaMode === 1) delta *= 24; // Lines mode
+      else if (e.deltaMode === 2) delta *= window.innerHeight; // Pages mode
+
+      // Dampen extreme trackpad/wheel flicks for natural weighted glide
+      const clampedDelta = Math.sign(delta) * Math.min(Math.abs(delta), 180);
+
+      const maxScroll = getMaxScroll();
+      targetY = Math.max(0, Math.min(maxScroll, targetY + clampedDelta * WHEEL_SPEED));
+
+      if (!isMoving) {
+        isMoving = true;
+        rafId = requestAnimationFrame(update);
+      }
+    }
+
+    // Keep state perfectly synchronized if user drags native scrollbar
+    function onNativeScroll() {
+      if (!isMoving) {
+        currentY = window.scrollY;
+        targetY = window.scrollY;
+      }
+    }
+
+    window.addEventListener('wheel', onWheel, { passive: false });
+    window.addEventListener('scroll', onNativeScroll, { passive: true });
+    window.addEventListener('resize', () => {
+      const maxScroll = getMaxScroll();
+      if (targetY > maxScroll) {
+        targetY = maxScroll;
+        currentY = maxScroll;
+      }
+    });
+
+    // Keyboard keys (ArrowUp, ArrowDown, PageUp, PageDown, Space)
+    window.addEventListener('keydown', (e) => {
+      if (isInnerScrollable(document.activeElement) || document.body.classList.contains('overflow-hidden')) return;
+      const tag = (document.activeElement.tagName || '').toLowerCase();
+      if (['input', 'textarea', 'select'].includes(tag) || document.activeElement.isContentEditable) return;
+
+      let step = 0;
+      if (e.key === 'ArrowDown') step = 90;
+      else if (e.key === 'ArrowUp') step = -90;
+      else if (e.key === 'PageDown' || (e.key === ' ' && !e.shiftKey)) step = window.innerHeight * 0.85;
+      else if (e.key === 'PageUp' || (e.key === ' ' && e.shiftKey)) step = -window.innerHeight * 0.85;
+
+      if (step !== 0) {
+        e.preventDefault();
+        const maxScroll = getMaxScroll();
+        targetY = Math.max(0, Math.min(maxScroll, targetY + step));
+        if (!isMoving) {
+          isMoving = true;
+          rafId = requestAnimationFrame(update);
+        }
+      }
+    });
+
+    // Global programmatic smooth scroll function
+    window.smoothScrollTo = function(destY) {
+      const maxScroll = getMaxScroll();
+      targetY = Math.max(0, Math.min(maxScroll, destY));
+      if (!isMoving) {
+        isMoving = true;
+        rafId = requestAnimationFrame(update);
+      }
+    };
+
+    // Smooth In-Page Anchor Links (#rfq, #commodities, #about, #certifications, etc.)
+    document.addEventListener('click', (e) => {
+      const anchor = e.target.closest('a[href^="#"]');
+      if (!anchor) return;
+      const href = anchor.getAttribute('href');
+      if (!href || href === '#' || href === '#!') return;
+
+      const targetEl = document.querySelector(href);
+      if (targetEl) {
+        e.preventDefault();
+        const headerOffset = 72; // Deduct compact sticky navbar height
+        const destY = targetEl.getBoundingClientRect().top + window.scrollY - headerOffset;
+        window.smoothScrollTo(destY);
+
+        if (history.pushState) {
+          history.pushState(null, '', href);
+        }
+      }
+    });
+  }
+
+  // ---------------------------------------------------------------------------
+  // 15. GSAP + SCROLLTRIGGER CHOREOGRAPHED ENTERPRISE MOTION SUITE
+  // ---------------------------------------------------------------------------
+  function initGsapScrollAnimations() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+      return;
+    }
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    // 1. Hero Section Cinematic Stagger Entrance (Runs immediately on page load)
+    const heroSection = document.getElementById('heroSection');
+    if (heroSection) {
+      const heroKicker = heroSection.querySelector('.text-brand-gold.uppercase');
+      const heroH1 = heroSection.querySelector('h1');
+      const heroDesc = heroSection.querySelector('p');
+      const heroCtas = heroSection.querySelectorAll('.flex.flex-wrap.items-center.gap-3 a');
+      const heroPillars = heroSection.querySelectorAll('a.group\\/pillar');
+
+      const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+      if (heroKicker) {
+        heroTl.fromTo(heroKicker, { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7 }, '+=0.1');
+      }
+      if (heroH1) {
+        heroTl.fromTo(heroH1, { y: 36, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, ease: 'power4.out' }, '-=0.45');
+      }
+      if (heroDesc) {
+        heroTl.fromTo(heroDesc, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.75 }, '-=0.6');
+      }
+      if (heroCtas && heroCtas.length) {
+        heroTl.fromTo(heroCtas, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.65, stagger: 0.1 }, '-=0.45');
+      }
+      if (heroPillars && heroPillars.length) {
+        heroTl.fromTo(heroPillars, { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, stagger: 0.08 }, '-=0.35');
+      }
+    }
+
+    // 2. Section Headings Stagger Reveal (Commodities, About, Certifications, RFQ)
+    const majorSections = ['#commodities', '#about', '#certifications', '#rfq'];
+    majorSections.forEach((sel) => {
+      const sec = document.querySelector(sel);
+      if (!sec) return;
+
+      const kicker = sec.querySelector('.text-brand-gold');
+      const heading = sec.querySelector('h2');
+      const desc = sec.querySelector('p');
+      const targets = [kicker, heading, desc].filter(Boolean);
+
+      if (targets.length) {
+        gsap.fromTo(targets, 
+          { y: 32, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: sec,
+              start: 'top 82%',
+              toggleActions: 'play none none none'
+            }
+          }
+        );
+      }
+    });
+
+    // 3. Commodity Showcase Track (Wave Stagger Reveal on scroll)
+    const commodityTrack = document.getElementById('commodityScrollTrack');
+    if (commodityTrack) {
+      const cards = commodityTrack.querySelectorAll('.commodity-showcase-card');
+      if (cards.length) {
+        gsap.fromTo(cards,
+          { y: 44, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.75,
+            stagger: 0.07,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: commodityTrack,
+              start: 'top 85%',
+              toggleActions: 'play none none none'
+            }
+          }
+        );
+      }
+    }
+
+    // 4. The Bilateral Model (Frankfurt am Main & Vietnam Origin Portals)
+    const aboutSection = document.getElementById('about');
+    if (aboutSection) {
+      const portals = aboutSection.querySelectorAll('.grid-cols-1.lg\\:grid-cols-2 > div');
+      if (portals.length >= 2) {
+        gsap.fromTo(portals[0],
+          { y: 36, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.9,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: aboutSection,
+              start: 'top 75%',
+              toggleActions: 'play none none none'
+            }
+          }
+        );
+        gsap.fromTo(portals[1],
+          { y: 36, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.9,
+            delay: 0.12,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: aboutSection,
+              start: 'top 75%',
+              toggleActions: 'play none none none'
+            }
+          }
+        );
+      }
+    }
+
+    // 5. Standards & Certifications 4 Metrics and Panorama Stage
+    const certSection = document.getElementById('certifications');
+    if (certSection) {
+      const metrics = certSection.querySelectorAll('.group\\/metric');
+      if (metrics.length) {
+        gsap.fromTo(metrics,
+          { y: 28, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.7,
+            stagger: 0.08,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: certSection,
+              start: 'top 80%',
+              toggleActions: 'play none none none'
+            }
+          }
+        );
+      }
+
+      const panorama = document.getElementById('certPanoramaShowcase');
+      if (panorama) {
+        gsap.fromTo(panorama,
+          { y: 36, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.9,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: panorama,
+              start: 'top 82%',
+              toggleActions: 'play none none none'
+            }
+          }
+        );
+      }
+    }
+
+    // 6. RFQ Procurement Form Card
+    const rfqFormCard = document.getElementById('inquiryFormContainer');
+    if (rfqFormCard) {
+      gsap.fromTo(rfqFormCard,
+        { y: 40, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.85,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: '#rfq',
+            start: 'top 75%',
+            toggleActions: 'play none none none'
+          }
+        }
+      );
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // 16. BOOTSTRAP ALL MODULES ON DOM READY
   // ---------------------------------------------------------------------------
   function initApp() {
     initIcons();
@@ -2142,6 +2551,9 @@
     initCommodityTrack();
     initCommodityStaggerReveal();
     initCertPanorama();
+    initBackToTop();
+    initInertialScroll();
+    initGsapScrollAnimations();
   }
 
   if (document.readyState === 'loading') {
