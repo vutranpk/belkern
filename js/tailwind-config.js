@@ -21,7 +21,6 @@ tailwind.config = {
       },
       fontFamily: {
         sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
-        mono: ['"JetBrains Mono"', 'monospace'],
       },
       animation: {
         'spin-slow': 'spin 35s linear infinite',

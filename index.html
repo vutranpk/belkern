@@ -179,10 +179,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   
-  <!-- Google Fonts: Plus Jakarta Sans (Unified Sans-Serif) & JetBrains Mono (Lab Specs) -->
+  <!-- Google Fonts: Plus Jakarta Sans (Unified Modern Sans-Serif) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Belkern Tailwind Theme Configuration & Global Stylesheet -->
   <script src="js/tailwind-config.js"></script>
@@ -198,21 +198,26 @@
 
       <!-- Tier 1: Utility Bar (Full-Width, Collapses smoothly on scroll, Desktop >= 1024px Only) -->
       <div id="headerTopBar" class="hidden lg:flex justify-between items-center text-xs text-slate-300 font-medium transition-all duration-300 overflow-hidden max-h-12 py-2.5 border-b border-white/15">
-        <!-- Trade Context & Location Indicator -->
-        <div class="flex items-center gap-3">
+        <!-- Trade Terms, POL & Corporate Coordinates -->
+        <div class="flex items-center gap-2.5 xl:gap-3 shrink-0">
           <span class="inline-flex items-center gap-1.5 text-white font-semibold">
-            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-brand-gold"></i>
-            Melsunger Str. 15, 60389 Frankfurt am Main
+            <i data-lucide="ship" class="w-3.5 h-3.5 text-brand-gold"></i>
+            <span>Incoterms® 2020: FOB · CIF · CFR</span>
           </span>
           <span class="text-white/30">|</span>
+          <span class="hidden xl:inline-flex items-center gap-1.5 text-slate-300">
+            <i data-lucide="anchor" class="w-3.5 h-3.5 text-brand-gold"></i>
+            <span>POL: Hai Phong / Cat Lai (Vietnam)</span>
+          </span>
+          <span class="hidden xl:inline text-white/30">|</span>
           <span class="inline-flex items-center gap-1.5 text-slate-300">
-            <i data-lucide="scale" class="w-3.5 h-3.5 text-brand-gold"></i>
-            HRB 99468 · German Jurisdiction (HGB)
+            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-brand-gold"></i>
+            <span>Frankfurt am Main (HRB 99468)</span>
           </span>
         </div>
 
         <!-- Contact & Language Switcher -->
-        <div class="flex items-center gap-6">
+        <div class="flex items-center gap-4 xl:gap-6 shrink-0">
           <a href="mailto:mail@belkern.com" class="inline-flex items-center gap-1.5 hover:text-brand-gold text-slate-300 transition-colors group">
             <i data-lucide="mail" class="w-3.5 h-3.5 text-slate-400 group-hover:text-brand-gold transition-colors"></i>
             <span>mail@belkern.com</span>
@@ -244,7 +249,88 @@
         <!-- Center: Desktop Navigation Links (>= 1024px / lg) -->
         <nav class="hidden lg:flex items-center gap-6 xl:gap-10 font-bold text-sm">
           <a href="about.html" class="header-nav-link text-white/90 hover:text-brand-gold transition-colors py-2">About Us</a>
-          <a href="products.html" class="header-nav-link text-white/90 hover:text-brand-gold transition-colors py-2">Products</a>
+          
+          <!-- Products with Rich Hover Dropdown Menu -->
+          <div class="relative group py-2">
+            <a href="products.html" class="header-nav-link text-white/90 hover:text-brand-gold transition-colors inline-flex items-center gap-1.5">
+              <span>Products</span>
+              <i data-lucide="chevron-down" class="w-3.5 h-3.5 opacity-70 group-hover:rotate-180 transition-transform duration-200"></i>
+            </a>
+
+            <!-- Floating Mega Dropdown Panel -->
+            <div class="absolute top-full left-1/2 -translate-x-1/2 pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none group-hover:pointer-events-auto z-50">
+              <div class="w-[580px] bg-white rounded-2xl shadow-xl border border-slate-200/90 p-5 text-left text-slate-800">
+                <div class="grid grid-cols-3 gap-5">
+                  <!-- Col 1: Coffee -->
+                  <div>
+                    <div class="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-gold mb-2.5">
+                      <i data-lucide="coffee" class="w-3.5 h-3.5 text-brand-gold"></i>
+                      <span>Coffee</span>
+                    </div>
+                    <ul class="space-y-1.5 text-xs">
+                      <li>
+                        <a href="product-arabica.html" class="text-slate-600 hover:text-brand-dark hover:font-bold transition-all block py-1 px-2 rounded-lg hover:bg-slate-50">Arabica</a>
+                      </li>
+                      <li>
+                        <a href="product-robusta.html" class="text-slate-600 hover:text-brand-dark hover:font-bold transition-all block py-1 px-2 rounded-lg hover:bg-slate-50">Robusta</a>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <!-- Col 2: Pepper & Spices -->
+                  <div>
+                    <div class="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-gold mb-2.5">
+                      <i data-lucide="sparkles" class="w-3.5 h-3.5 text-brand-gold"></i>
+                      <span>Spices</span>
+                    </div>
+                    <ul class="space-y-1.5 text-xs">
+                      <li>
+                        <a href="product-pepper.html" class="text-slate-600 hover:text-brand-dark hover:font-bold transition-all block py-1 px-2 rounded-lg hover:bg-slate-50">Black &amp; White Pepper</a>
+                      </li>
+                      <li>
+                        <a href="product-turmeric.html" class="text-slate-600 hover:text-brand-dark hover:font-bold transition-all block py-1 px-2 rounded-lg hover:bg-slate-50">Turmeric</a>
+                      </li>
+                      <li>
+                        <a href="product-chili.html" class="text-slate-600 hover:text-brand-dark hover:font-bold transition-all block py-1 px-2 rounded-lg hover:bg-slate-50">Chili</a>
+                      </li>
+                      <li>
+                        <a href="product-cinnamon.html" class="text-slate-600 hover:text-brand-dark hover:font-bold transition-all block py-1 px-2 rounded-lg hover:bg-slate-50">Cassia Cinnamon</a>
+                      </li>
+                      <li>
+                        <a href="product-star-anise.html" class="text-slate-600 hover:text-brand-dark hover:font-bold transition-all block py-1 px-2 rounded-lg hover:bg-slate-50">Star Anise</a>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <!-- Col 3: Commodities -->
+                  <div>
+                    <div class="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-gold mb-2.5">
+                      <i data-lucide="package" class="w-3.5 h-3.5 text-brand-gold"></i>
+                      <span>Commodities</span>
+                    </div>
+                    <ul class="space-y-1.5 text-xs">
+                      <li>
+                        <a href="product-cashews.html" class="text-slate-600 hover:text-brand-dark hover:font-bold transition-all block py-1 px-2 rounded-lg hover:bg-slate-50">Cashew Kernels</a>
+                      </li>
+                      <li>
+                        <a href="product-coconut.html" class="text-slate-600 hover:text-brand-dark hover:font-bold transition-all block py-1 px-2 rounded-lg hover:bg-slate-50">Desiccated Coconut</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <!-- Footer row in Dropdown -->
+                <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+                  <span class="text-slate-400 font-normal">German Standard Quality Sourcing</span>
+                  <a href="products.html" class="font-bold text-brand-gold hover:text-brand-goldDark inline-flex items-center gap-1 transition-colors">
+                    <span>All Products Portfolio</span>
+                    <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <a href="sustainability.html" class="header-nav-link text-white/90 hover:text-brand-gold transition-colors py-2">Sustainability & ESG</a>
           <a href="certificates.html" class="header-nav-link text-white/90 hover:text-brand-gold transition-colors py-2">Certifications</a>
           <a href="careers.html" class="header-nav-link text-white/90 hover:text-brand-gold transition-colors py-2">Careers</a>
@@ -261,8 +347,8 @@
             </span>
           </a>
 
-          <!-- Hamburger Toggle Icon -->
-          <button id="navigationToggle" onclick="toggleFullScreenMenu(true)" class="p-2 sm:p-2.5 rounded-xl hover:bg-white/10 transition-colors min-h-[44px] min-w-[44px] flex flex-col justify-center items-center gap-1.5 group focus:outline-none cursor-pointer" aria-label="Open full-screen navigation menu">
+          <!-- Hamburger Toggle Icon (Mobile & Tablet < 1024px only, Hidden on PC) -->
+          <button id="navigationToggle" onclick="toggleFullScreenMenu(true)" class="lg:hidden p-2 sm:p-2.5 rounded-xl hover:bg-white/10 transition-colors min-h-[44px] min-w-[44px] flex flex-col justify-center items-center gap-1.5 group focus:outline-none cursor-pointer" aria-label="Open full-screen navigation menu">
             <span class="header-hbg-bar w-6 h-0.5 bg-white group-hover:bg-brand-gold transition-colors rounded-full"></span>
             <span class="header-hbg-bar w-6 h-0.5 bg-white group-hover:bg-brand-gold transition-colors rounded-full"></span>
             <span class="header-hbg-bar w-6 h-0.5 bg-white group-hover:bg-brand-gold transition-colors rounded-full"></span>
@@ -307,11 +393,11 @@
         <!-- Left Column (7 Columns): Hierarchical Navigation Tree (Clean English, Refined Hierarchy) -->
         <div class="lg:col-span-7 space-y-1">
           
-          <!-- Item 0: Home -->
+          <!-- Item 0: Home (Active Page) -->
           <div class="border-b border-white/[0.07]">
-            <a href="index.html" class="menu-link w-full py-2.5 sm:py-3 text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-white/95 hover:text-brand-gold transition-colors flex items-center justify-between group">
+            <a href="index.html" class="menu-link w-full py-2.5 sm:py-3 text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-brand-gold transition-colors flex items-center justify-between group">
               <span>Home</span>
-              <i data-lucide="arrow-right" class="w-4 h-4 sm:w-5 sm:h-5 stroke-[1.75] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-brand-gold"></i>
+              <i data-lucide="arrow-right" class="w-4 h-4 sm:w-5 sm:h-5 stroke-[1.75] opacity-100 group-hover:translate-x-1 transition-all text-brand-gold"></i>
             </a>
           </div>
 
@@ -356,8 +442,8 @@
                     <span>Coffee</span>
                   </div>
                   <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1 pl-3 border-l border-white/10 text-xs sm:text-sm text-slate-200">
-                    <a href="products.html#arabica" class="menu-link hover:text-brand-gold transition-all block py-0.5 hover:translate-x-1 duration-200">Arabica</a>
-                    <a href="products.html#robusta" class="menu-link hover:text-brand-gold transition-all block py-0.5 hover:translate-x-1 duration-200">Robusta</a>
+                    <a href="product-arabica.html" class="menu-link hover:text-brand-gold transition-all block py-0.5 hover:translate-x-1 duration-200">Arabica</a>
+                    <a href="product-robusta.html" class="menu-link hover:text-brand-gold transition-all block py-0.5 hover:translate-x-1 duration-200">Robusta</a>
                   </div>
                 </div>
 
@@ -368,11 +454,11 @@
                     <span>Pepper & Spices</span>
                   </div>
                   <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1 pl-3 border-l border-white/10 text-xs sm:text-sm text-slate-200">
-                    <a href="products.html#pepper" class="menu-link hover:text-brand-gold transition-all block py-0.5 hover:translate-x-1 duration-200">Black & White Pepper</a>
-                    <a href="products.html#turmeric" class="menu-link hover:text-brand-gold transition-all block py-0.5 hover:translate-x-1 duration-200">Turmeric</a>
-                    <a href="products.html#chili" class="menu-link hover:text-brand-gold transition-all block py-0.5 hover:translate-x-1 duration-200">Chili</a>
-                    <a href="products.html#cinnamon" class="menu-link hover:text-brand-gold transition-all block py-0.5 hover:translate-x-1 duration-200">Cassia Cinnamon</a>
-                    <a href="products.html#star-anise" class="menu-link hover:text-brand-gold transition-all block py-0.5 hover:translate-x-1 duration-200">Star Anise</a>
+                    <a href="product-pepper.html" class="menu-link hover:text-brand-gold transition-all block py-0.5 hover:translate-x-1 duration-200">Black & White Pepper</a>
+                    <a href="product-turmeric.html" class="menu-link hover:text-brand-gold transition-all block py-0.5 hover:translate-x-1 duration-200">Turmeric</a>
+                    <a href="product-chili.html" class="menu-link hover:text-brand-gold transition-all block py-0.5 hover:translate-x-1 duration-200">Chili</a>
+                    <a href="product-cinnamon.html" class="menu-link hover:text-brand-gold transition-all block py-0.5 hover:translate-x-1 duration-200">Cassia Cinnamon</a>
+                    <a href="product-star-anise.html" class="menu-link hover:text-brand-gold transition-all block py-0.5 hover:translate-x-1 duration-200">Star Anise</a>
                   </div>
                 </div>
 
@@ -383,9 +469,17 @@
                     <span>Agricultural Commodities</span>
                   </div>
                   <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1 pl-3 border-l border-white/10 text-xs sm:text-sm text-slate-200">
-                    <a href="products.html#cashews" class="menu-link hover:text-brand-gold transition-all block py-0.5 hover:translate-x-1 duration-200">Cashew Kernels</a>
-                    <a href="products.html#coconut" class="menu-link hover:text-brand-gold transition-all block py-0.5 hover:translate-x-1 duration-200">Desiccated Coconut</a>
+                    <a href="product-cashews.html" class="menu-link hover:text-brand-gold transition-all block py-0.5 hover:translate-x-1 duration-200">Cashew Kernels</a>
+                    <a href="product-coconut.html" class="menu-link hover:text-brand-gold transition-all block py-0.5 hover:translate-x-1 duration-200">Desiccated Coconut</a>
                   </div>
+                </div>
+
+                <!-- Subgroup 2.4: All Products Link -->
+                <div class="pt-2 border-t border-white/10">
+                  <a href="products.html" class="menu-link text-[11px] sm:text-xs font-semibold text-brand-gold hover:text-white transition-colors inline-flex items-center gap-1.5 py-0.5">
+                    <span>View All Products Portfolio</span>
+                    <i data-lucide="arrow-right" class="w-3 h-3 stroke-[2]"></i>
+                  </a>
                 </div>
 
               </div>
@@ -576,9 +670,10 @@
     <div class="w-full px-5 sm:px-10 lg:px-14 xl:px-20 relative z-10 my-auto py-1 sm:py-2 lg:py-2.5 hero-content-laptop">
       <div class="max-w-3xl lg:max-w-4xl flex flex-col items-start">
         
-        <!-- Origin Kicker: Plain Text matching Section Kickers -->
-        <div class="text-brand-gold text-[11px] sm:text-xs font-sans font-bold uppercase tracking-[0.2em] mb-2">
-          DIRECT VIETNAM EXPORT
+        <!-- Origin Kicker: Canonical Eyebrow with Gold Dot -->
+        <div class="inline-flex items-center gap-2 text-brand-gold text-[11px] sm:text-xs font-sans font-bold uppercase tracking-[0.2em] mb-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-brand-gold"></span>
+          <span>DIRECT VIETNAM EXPORT</span>
         </div>
 
         <!-- Main H1 Headline: Scaled for Desktop & Laptop Airiness -->
@@ -740,7 +835,7 @@
 
         <!-- Full-Screen Hold Caption with Title & Subtitle (Bottom-Left · Never collides with right dock) -->
         <div id="whoWeAreVideoCaption" class="absolute bottom-6 sm:bottom-10 left-4 sm:left-10 right-20 sm:right-28 flex flex-col items-start gap-1 sm:gap-1.5 pointer-events-none opacity-0 transition-opacity duration-300 z-20">
-          <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-brand-gold/20 border border-brand-gold/40 backdrop-blur-md text-brand-gold text-[10px] sm:text-xs font-sans font-bold uppercase tracking-[0.16em]">
+          <div class="inline-flex items-center gap-2 text-brand-gold text-[10px] sm:text-xs font-sans font-bold uppercase tracking-[0.2em]">
             <span class="w-1.5 h-1.5 rounded-full bg-brand-gold animate-pulse"></span>
             <span>Direct Origin Transparency</span>
           </div>
@@ -763,7 +858,7 @@
             type="button" 
             aria-label="Pause or play video"
             title="Pause / Play"
-            class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-slate-900/70 hover:bg-brand-gold active:bg-brand-gold text-white backdrop-blur-md border border-white/20 shadow-md flex items-center justify-center transition-all duration-200 active:scale-95 cursor-pointer"
+            class="w-11 h-11 rounded-xl bg-slate-900/70 hover:bg-brand-gold active:bg-brand-gold text-white backdrop-blur-md border border-white/20 shadow-md flex items-center justify-center transition-all duration-200 active:scale-95 cursor-pointer"
           >
             <span id="whoWeAreIconPause" class="flex items-center justify-center">
               <i data-lucide="pause" class="w-4 h-4 sm:w-4.5 sm:h-4.5"></i>
@@ -779,7 +874,7 @@
             type="button" 
             aria-label="Toggle audio"
             title="Sound on / off"
-            class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-slate-900/70 hover:bg-brand-gold active:bg-brand-gold text-white backdrop-blur-md border border-white/20 shadow-md flex items-center justify-center transition-all duration-200 active:scale-95 cursor-pointer"
+            class="w-11 h-11 rounded-xl bg-slate-900/70 hover:bg-brand-gold active:bg-brand-gold text-white backdrop-blur-md border border-white/20 shadow-md flex items-center justify-center transition-all duration-200 active:scale-95 cursor-pointer"
           >
             <span id="whoWeAreIconMuted" class="flex items-center justify-center">
               <i data-lucide="volume-x" class="w-4 h-4 sm:w-4.5 sm:h-4.5"></i>
@@ -795,7 +890,7 @@
             type="button" 
             aria-label="Restart video"
             title="Replay from start"
-            class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-slate-900/70 hover:bg-brand-gold active:bg-brand-gold text-white backdrop-blur-md border border-white/20 shadow-md flex items-center justify-center transition-all duration-200 active:scale-95 cursor-pointer"
+            class="w-11 h-11 rounded-xl bg-slate-900/70 hover:bg-brand-gold active:bg-brand-gold text-white backdrop-blur-md border border-white/20 shadow-md flex items-center justify-center transition-all duration-200 active:scale-95 cursor-pointer"
           >
             <i data-lucide="rotate-ccw" class="w-4 h-4 sm:w-4.5 sm:h-4.5"></i>
           </button>
@@ -807,9 +902,10 @@
         id="whoWeAreHeader" 
         class="absolute top-0 inset-x-0 z-30 w-full max-w-3xl mx-auto text-center pt-16 sm:pt-20 lg:pt-24 px-4 sm:px-6 pointer-events-none will-change-transform"
       >
-        <!-- Kicker (Plain text, no background, no border, concise) -->
-        <div class="text-brand-gold text-[11px] sm:text-xs font-sans font-bold uppercase tracking-[0.2em] mb-2">
-          WHO WE ARE
+        <!-- Kicker (Canonical Eyebrow with Gold Dot) -->
+        <div class="inline-flex items-center justify-center gap-2 text-brand-gold text-[11px] sm:text-xs font-sans font-bold uppercase tracking-[0.2em] mb-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-brand-gold"></span>
+          <span>WHO WE ARE</span>
         </div>
 
         <!-- Headline: Synchronized text-3xl sm:text-4xl lg:text-5xl -->
@@ -870,8 +966,9 @@
         
         <!-- Left Column (lg:col-span-6): Kicker, Title, Subtitle & Dual CTA Buttons -->
         <div class="lg:col-span-6">
-          <div class="text-brand-gold text-[11px] sm:text-xs font-sans font-bold uppercase tracking-[0.2em] mb-2">
-            OUR COMMODITIES
+          <div class="inline-flex items-center gap-2 text-brand-gold text-[11px] sm:text-xs font-sans font-bold uppercase tracking-[0.2em] mb-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-brand-gold"></span>
+            <span>OUR COMMODITIES</span>
           </div>
           <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-brand-dark tracking-tight leading-[1.1] mb-3.5">
             Commodities &amp;<br>
@@ -962,11 +1059,11 @@
 
         <!-- Mobile & Tablet CTA Buttons (Positioned below the 4 metrics so user reads full context first) -->
         <div class="lg:hidden col-span-1 grid grid-cols-2 gap-2.5 pt-1">
-          <a href="products.html" class="h-10 inline-flex items-center justify-center gap-1.5 px-3 rounded-xl bg-brand-gold hover:bg-brand-goldDark text-white font-bold text-xs tracking-wide shadow-xs active:scale-[0.99] text-center">
+          <a href="products.html" class="h-11 inline-flex items-center justify-center gap-1.5 px-3 rounded-xl bg-brand-gold hover:bg-brand-goldDark text-white font-bold text-xs tracking-wide shadow-xs active:scale-[0.99] text-center">
             <span>View Products</span>
             <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
           </a>
-          <a href="#rfq" class="h-10 inline-flex items-center justify-center gap-1.5 px-3 rounded-xl border border-slate-300 hover:border-brand-green bg-white text-brand-dark font-bold text-xs tracking-wide active:scale-[0.99] text-center">
+          <a href="#rfq" class="h-11 inline-flex items-center justify-center gap-1.5 px-3 rounded-xl border border-slate-300 hover:border-brand-green bg-white text-brand-dark font-bold text-xs tracking-wide active:scale-[0.99] text-center">
             <span>FCL Quote</span>
             <i data-lucide="file-text" class="w-3.5 h-3.5 text-brand-green"></i>
           </a>
@@ -977,7 +1074,7 @@
 
     <!-- ========================================================================= -->
     <!-- FULL-WIDTH HORIZONTAL SHOWCASE TRACK (Peek Effect on All Screens)          -->
-    <!-- Mobile: 1.25 cards · Tablet: 2.25 cards · Desktop: 3.5 cards peeking       -->
+    <!-- Mobile: 2.15 cards · Tablet: 2.25 cards · Desktop: 3.5 cards peeking       -->
     <!-- ========================================================================= -->
     <div class="relative w-full group/slider overflow-hidden">
       
@@ -992,7 +1089,7 @@
       >
         
         <!-- CARD 1: Arabica (Specialty & Commercial) -->
-        <div data-category="coffee" class="commodity-showcase-card opacity-0 translate-y-8 w-[42vw] max-w-[175px] min-w-[145px] sm:w-[300px] sm:max-w-none sm:min-w-0 md:w-[320px] lg:w-[340px] xl:w-[360px] shrink-0 h-[260px] sm:h-[440px] lg:h-[480px] xl:h-[500px] group relative block rounded-xl sm:rounded-2xl overflow-hidden shadow-xs hover:shadow-2xl transition-all duration-700 ease-out border border-slate-200/90 hover:border-brand-gold/70 select-none">
+        <div data-category="coffee" class="commodity-showcase-card opacity-0 translate-y-8 w-[42vw] max-w-[175px] min-w-[145px] sm:w-[300px] sm:max-w-none sm:min-w-0 md:w-[320px] lg:w-[340px] xl:w-[360px] shrink-0 h-[270px] sm:h-[440px] lg:h-[480px] xl:h-[500px] group relative block rounded-xl sm:rounded-2xl overflow-hidden shadow-xs hover:shadow-2xl transition-all duration-700 ease-out border border-slate-200/90 hover:border-brand-gold/70 select-none">
           <img 
             src="images/product/arabica.jpg" 
             alt="Vietnamese Arabica Specialty Cau Dat" 
@@ -1000,7 +1097,7 @@
             loading="lazy"
             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out pointer-events-none select-none"
           >
-          <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-brand-dark/40 to-transparent pointer-events-none"></div>
+          <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none"></div>
 
           <!-- Top Floating Metadata Badges -->
           <div class="absolute top-2.5 inset-x-2.5 sm:top-4 sm:inset-x-4 z-10 flex items-center justify-between gap-1.5 pointer-events-none">
@@ -1018,7 +1115,7 @@
           <div class="absolute bottom-0 inset-x-0 p-3 sm:p-5 lg:p-6 z-10 flex flex-col justify-end">
             <!-- Title & CTAs Row (Stacked on Mobile, Row on Tablet/Desktop) -->
             <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-1.5 sm:gap-3">
-              <a href="products.html#arabica" class="min-w-0 group/title block cursor-pointer">
+              <a href="product-arabica.html" class="min-w-0 group/title block cursor-pointer">
                 <h3 class="text-sm sm:text-xl font-bold text-white group-hover/title:text-brand-gold transition-colors duration-200 tracking-tight leading-snug drop-shadow-md">
                   Arabica
                 </h3>
@@ -1027,7 +1124,7 @@
                 </p>
               </a>
 
-              <!-- Dual Action Controls (Right-aligned below text on mobile) -->
+              <!-- Dual Action Controls (Left-aligned below text on mobile) -->
               <div class="flex items-center justify-start sm:justify-start gap-1.5 shrink-0 pt-0.5 sm:pt-0">
                 <!-- 1-Click TDS Spec Modal Trigger -->
                 <button type="button" onclick="openSpecModal('arabica')" class="h-7 sm:h-auto px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-lg sm:rounded-xl bg-white/15 hover:bg-brand-gold border border-white/20 hover:border-brand-gold text-white text-[10px] sm:text-xs font-bold transition-all duration-200 flex items-center justify-center gap-1 cursor-pointer shadow-sm active:scale-95" title="View Technical Data Sheet">
@@ -1036,7 +1133,7 @@
                 </button>
 
                 <!-- Direct Product Link Arrow -->
-                <a href="products.html#arabica" aria-label="Arabica Details" class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-white/15 hover:bg-brand-gold border border-white/20 hover:border-brand-gold text-white flex items-center justify-center transition-all duration-200 hover:translate-x-0.5 shadow-sm active:scale-95">
+                <a href="product-arabica.html" aria-label="Arabica Details" class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-white/15 hover:bg-brand-gold border border-white/20 hover:border-brand-gold text-white flex items-center justify-center transition-all duration-200 hover:translate-x-0.5 shadow-sm active:scale-95">
                   <i data-lucide="arrow-right" class="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[1.75]"></i>
                 </a>
               </div>
@@ -1045,7 +1142,7 @@
         </div>
 
         <!-- CARD 2: Robusta (Screen 18/16 Wet Polished) -->
-        <div data-category="coffee" class="commodity-showcase-card opacity-0 translate-y-8 w-[42vw] max-w-[175px] min-w-[145px] sm:w-[300px] sm:max-w-none sm:min-w-0 md:w-[320px] lg:w-[340px] xl:w-[360px] shrink-0 h-[260px] sm:h-[440px] lg:h-[480px] xl:h-[500px] group relative block rounded-xl sm:rounded-2xl overflow-hidden shadow-xs hover:shadow-2xl transition-all duration-700 ease-out border border-slate-200/90 hover:border-brand-gold/70 select-none">
+        <div data-category="coffee" class="commodity-showcase-card opacity-0 translate-y-8 w-[42vw] max-w-[175px] min-w-[145px] sm:w-[300px] sm:max-w-none sm:min-w-0 md:w-[320px] lg:w-[340px] xl:w-[360px] shrink-0 h-[270px] sm:h-[440px] lg:h-[480px] xl:h-[500px] group relative block rounded-xl sm:rounded-2xl overflow-hidden shadow-xs hover:shadow-2xl transition-all duration-700 ease-out border border-slate-200/90 hover:border-brand-gold/70 select-none">
           <img 
             src="images/product/Robusta.jpg" 
             alt="Vietnamese Robusta Green Coffee Grade 1" 
@@ -1053,7 +1150,7 @@
             loading="lazy"
             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out pointer-events-none select-none"
           >
-          <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-brand-dark/40 to-transparent pointer-events-none"></div>
+          <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none"></div>
 
           <!-- Top Floating Metadata Badges -->
           <div class="absolute top-2.5 inset-x-2.5 sm:top-4 sm:inset-x-4 z-10 flex items-center justify-between gap-1.5 pointer-events-none">
@@ -1071,7 +1168,7 @@
           <div class="absolute bottom-0 inset-x-0 p-3 sm:p-5 lg:p-6 z-10 flex flex-col justify-end">
             <!-- Title & CTAs Row (Stacked on Mobile, Row on Tablet/Desktop) -->
             <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-1.5 sm:gap-3">
-              <a href="products.html#robusta" class="min-w-0 group/title block cursor-pointer">
+              <a href="product-robusta.html" class="min-w-0 group/title block cursor-pointer">
                 <h3 class="text-sm sm:text-xl font-bold text-white group-hover/title:text-brand-gold transition-colors duration-200 tracking-tight leading-snug drop-shadow-md">
                   Robusta
                 </h3>
@@ -1080,7 +1177,7 @@
                 </p>
               </a>
 
-              <!-- Dual Action Controls (Right-aligned below text on mobile) -->
+              <!-- Dual Action Controls (Left-aligned below text on mobile) -->
               <div class="flex items-center justify-start sm:justify-start gap-1.5 shrink-0 pt-0.5 sm:pt-0">
                 <!-- 1-Click TDS Spec Modal Trigger -->
                 <button type="button" onclick="openSpecModal('robusta')" class="h-7 sm:h-auto px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-lg sm:rounded-xl bg-white/15 hover:bg-brand-gold border border-white/20 hover:border-brand-gold text-white text-[10px] sm:text-xs font-bold transition-all duration-200 flex items-center justify-center gap-1 cursor-pointer shadow-sm active:scale-95" title="View Technical Data Sheet">
@@ -1089,7 +1186,7 @@
                 </button>
 
                 <!-- Direct Product Link Arrow -->
-                <a href="products.html#robusta" aria-label="Robusta Details" class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-white/15 hover:bg-brand-gold border border-white/20 hover:border-brand-gold text-white flex items-center justify-center transition-all duration-200 hover:translate-x-0.5 shadow-sm active:scale-95">
+                <a href="product-robusta.html" aria-label="Robusta Details" class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-white/15 hover:bg-brand-gold border border-white/20 hover:border-brand-gold text-white flex items-center justify-center transition-all duration-200 hover:translate-x-0.5 shadow-sm active:scale-95">
                   <i data-lucide="arrow-right" class="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[1.75]"></i>
                 </a>
               </div>
@@ -1098,7 +1195,7 @@
         </div>
 
         <!-- CARD 3: Black & White Pepper (Steam Sterilized) -->
-        <div data-category="pepper" class="commodity-showcase-card opacity-0 translate-y-8 w-[42vw] max-w-[175px] min-w-[145px] sm:w-[300px] sm:max-w-none sm:min-w-0 md:w-[320px] lg:w-[340px] xl:w-[360px] shrink-0 h-[260px] sm:h-[440px] lg:h-[480px] xl:h-[500px] group relative block rounded-xl sm:rounded-2xl overflow-hidden shadow-xs hover:shadow-2xl transition-all duration-700 ease-out border border-slate-200/90 hover:border-brand-gold/70 select-none">
+        <div data-category="pepper" class="commodity-showcase-card opacity-0 translate-y-8 w-[42vw] max-w-[175px] min-w-[145px] sm:w-[300px] sm:max-w-none sm:min-w-0 md:w-[320px] lg:w-[340px] xl:w-[360px] shrink-0 h-[270px] sm:h-[440px] lg:h-[480px] xl:h-[500px] group relative block rounded-xl sm:rounded-2xl overflow-hidden shadow-xs hover:shadow-2xl transition-all duration-700 ease-out border border-slate-200/90 hover:border-brand-gold/70 select-none">
           <img 
             src="images/product/pepper.jpg" 
             alt="Vietnamese Black & White Pepper Steam Sterilized" 
@@ -1106,7 +1203,7 @@
             loading="lazy"
             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out pointer-events-none select-none"
           >
-          <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-brand-dark/40 to-transparent pointer-events-none"></div>
+          <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none"></div>
 
           <!-- Top Floating Metadata Badges -->
           <div class="absolute top-2.5 inset-x-2.5 sm:top-4 sm:inset-x-4 z-10 flex items-center justify-between gap-1.5 pointer-events-none">
@@ -1124,7 +1221,7 @@
           <div class="absolute bottom-0 inset-x-0 p-3 sm:p-5 lg:p-6 z-10 flex flex-col justify-end">
             <!-- Title & CTAs Row (Stacked on Mobile, Row on Tablet/Desktop) -->
             <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-1.5 sm:gap-3">
-              <a href="products.html#pepper" class="min-w-0 group/title block cursor-pointer">
+              <a href="product-pepper.html" class="min-w-0 group/title block cursor-pointer">
                 <h3 class="text-sm sm:text-xl font-bold text-white group-hover/title:text-brand-gold transition-colors duration-200 tracking-tight leading-snug drop-shadow-md">
                   Black &amp; White Pepper
                 </h3>
@@ -1133,7 +1230,7 @@
                 </p>
               </a>
 
-              <!-- Dual Action Controls (Right-aligned below text on mobile) -->
+              <!-- Dual Action Controls (Left-aligned below text on mobile) -->
               <div class="flex items-center justify-start sm:justify-start gap-1.5 shrink-0 pt-0.5 sm:pt-0">
                 <!-- 1-Click TDS Spec Modal Trigger -->
                 <button type="button" onclick="openSpecModal('pepper')" class="h-7 sm:h-auto px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-lg sm:rounded-xl bg-white/15 hover:bg-brand-gold border border-white/20 hover:border-brand-gold text-white text-[10px] sm:text-xs font-bold transition-all duration-200 flex items-center justify-center gap-1 cursor-pointer shadow-sm active:scale-95" title="View Technical Data Sheet">
@@ -1142,7 +1239,7 @@
                 </button>
 
                 <!-- Direct Product Link Arrow -->
-                <a href="products.html#pepper" aria-label="Pepper Details" class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-white/15 hover:bg-brand-gold border border-white/20 hover:border-brand-gold text-white flex items-center justify-center transition-all duration-200 hover:translate-x-0.5 shadow-sm active:scale-95">
+                <a href="product-pepper.html" aria-label="Pepper Details" class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-white/15 hover:bg-brand-gold border border-white/20 hover:border-brand-gold text-white flex items-center justify-center transition-all duration-200 hover:translate-x-0.5 shadow-sm active:scale-95">
                   <i data-lucide="arrow-right" class="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[1.75]"></i>
                 </a>
               </div>
@@ -1151,7 +1248,7 @@
         </div>
 
         <!-- CARD 4: Chili (Whole Dried & Flakes) -->
-        <div data-category="spices" class="commodity-showcase-card opacity-0 translate-y-8 w-[42vw] max-w-[175px] min-w-[145px] sm:w-[300px] sm:max-w-none sm:min-w-0 md:w-[320px] lg:w-[340px] xl:w-[360px] shrink-0 h-[260px] sm:h-[440px] lg:h-[480px] xl:h-[500px] group relative block rounded-xl sm:rounded-2xl overflow-hidden shadow-xs hover:shadow-2xl transition-all duration-700 ease-out border border-slate-200/90 hover:border-brand-gold/70 select-none">
+        <div data-category="spices" class="commodity-showcase-card opacity-0 translate-y-8 w-[42vw] max-w-[175px] min-w-[145px] sm:w-[300px] sm:max-w-none sm:min-w-0 md:w-[320px] lg:w-[340px] xl:w-[360px] shrink-0 h-[270px] sm:h-[440px] lg:h-[480px] xl:h-[500px] group relative block rounded-xl sm:rounded-2xl overflow-hidden shadow-xs hover:shadow-2xl transition-all duration-700 ease-out border border-slate-200/90 hover:border-brand-gold/70 select-none">
           <img 
             src="images/product/chili.jpg" 
             alt="Vietnamese Dried Chili Whole and Flakes" 
@@ -1159,7 +1256,7 @@
             loading="lazy"
             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out pointer-events-none select-none"
           >
-          <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-brand-dark/40 to-transparent pointer-events-none"></div>
+          <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none"></div>
 
           <!-- Top Floating Metadata Badges -->
           <div class="absolute top-2.5 inset-x-2.5 sm:top-4 sm:inset-x-4 z-10 flex items-center justify-between gap-1.5 pointer-events-none">
@@ -1177,7 +1274,7 @@
           <div class="absolute bottom-0 inset-x-0 p-3 sm:p-5 lg:p-6 z-10 flex flex-col justify-end">
             <!-- Title & CTAs Row (Stacked on Mobile, Row on Tablet/Desktop) -->
             <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-1.5 sm:gap-3">
-              <a href="products.html#chili" class="min-w-0 group/title block cursor-pointer">
+              <a href="product-chili.html" class="min-w-0 group/title block cursor-pointer">
                 <h3 class="text-sm sm:text-xl font-bold text-white group-hover/title:text-brand-gold transition-colors duration-200 tracking-tight leading-snug drop-shadow-md">
                   Chili
                 </h3>
@@ -1186,7 +1283,7 @@
                 </p>
               </a>
 
-              <!-- Dual Action Controls (Right-aligned below text on mobile) -->
+              <!-- Dual Action Controls (Left-aligned below text on mobile) -->
               <div class="flex items-center justify-start sm:justify-start gap-1.5 shrink-0 pt-0.5 sm:pt-0">
                 <!-- 1-Click TDS Spec Modal Trigger -->
                 <button type="button" onclick="openSpecModal('chili')" class="h-7 sm:h-auto px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-lg sm:rounded-xl bg-white/15 hover:bg-brand-gold border border-white/20 hover:border-brand-gold text-white text-[10px] sm:text-xs font-bold transition-all duration-200 flex items-center justify-center gap-1 cursor-pointer shadow-sm active:scale-95" title="View Technical Data Sheet">
@@ -1195,7 +1292,7 @@
                 </button>
 
                 <!-- Direct Product Link Arrow -->
-                <a href="products.html#chili" aria-label="Chili Details" class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-white/15 hover:bg-brand-gold border border-white/20 hover:border-brand-gold text-white flex items-center justify-center transition-all duration-200 hover:translate-x-0.5 shadow-sm active:scale-95">
+                <a href="product-chili.html" aria-label="Chili Details" class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-white/15 hover:bg-brand-gold border border-white/20 hover:border-brand-gold text-white flex items-center justify-center transition-all duration-200 hover:translate-x-0.5 shadow-sm active:scale-95">
                   <i data-lucide="arrow-right" class="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[1.75]"></i>
                 </a>
               </div>
@@ -1204,7 +1301,7 @@
         </div>
 
         <!-- CARD 5: Star Anise (Whole Autumn Crop) -->
-        <div data-category="spices" class="commodity-showcase-card opacity-0 translate-y-8 w-[42vw] max-w-[175px] min-w-[145px] sm:w-[300px] sm:max-w-none sm:min-w-0 md:w-[320px] lg:w-[340px] xl:w-[360px] shrink-0 h-[260px] sm:h-[440px] lg:h-[480px] xl:h-[500px] group relative block rounded-xl sm:rounded-2xl overflow-hidden shadow-xs hover:shadow-2xl transition-all duration-700 ease-out border border-slate-200/90 hover:border-brand-gold/70 select-none">
+        <div data-category="spices" class="commodity-showcase-card opacity-0 translate-y-8 w-[42vw] max-w-[175px] min-w-[145px] sm:w-[300px] sm:max-w-none sm:min-w-0 md:w-[320px] lg:w-[340px] xl:w-[360px] shrink-0 h-[270px] sm:h-[440px] lg:h-[480px] xl:h-[500px] group relative block rounded-xl sm:rounded-2xl overflow-hidden shadow-xs hover:shadow-2xl transition-all duration-700 ease-out border border-slate-200/90 hover:border-brand-gold/70 select-none">
           <img 
             src="images/product/Star anise.jpg" 
             alt="Vietnamese Whole Star Anise Autumn Crop" 
@@ -1212,7 +1309,7 @@
             loading="lazy"
             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out pointer-events-none select-none"
           >
-          <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-brand-dark/40 to-transparent pointer-events-none"></div>
+          <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none"></div>
 
           <!-- Top Floating Metadata Badges -->
           <div class="absolute top-2.5 inset-x-2.5 sm:top-4 sm:inset-x-4 z-10 flex items-center justify-between gap-1.5 pointer-events-none">
@@ -1230,7 +1327,7 @@
           <div class="absolute bottom-0 inset-x-0 p-3 sm:p-5 lg:p-6 z-10 flex flex-col justify-end">
             <!-- Title & CTAs Row (Stacked on Mobile, Row on Tablet/Desktop) -->
             <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-1.5 sm:gap-3">
-              <a href="products.html#star-anise" class="min-w-0 group/title block cursor-pointer">
+              <a href="product-star-anise.html" class="min-w-0 group/title block cursor-pointer">
                 <h3 class="text-sm sm:text-xl font-bold text-white group-hover/title:text-brand-gold transition-colors duration-200 tracking-tight leading-snug drop-shadow-md">
                   Star Anise
                 </h3>
@@ -1239,7 +1336,7 @@
                 </p>
               </a>
 
-              <!-- Dual Action Controls (Right-aligned below text on mobile) -->
+              <!-- Dual Action Controls (Left-aligned below text on mobile) -->
               <div class="flex items-center justify-start sm:justify-start gap-1.5 shrink-0 pt-0.5 sm:pt-0">
                 <!-- 1-Click TDS Spec Modal Trigger -->
                 <button type="button" onclick="openSpecModal('star-anise')" class="h-7 sm:h-auto px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-lg sm:rounded-xl bg-white/15 hover:bg-brand-gold border border-white/20 hover:border-brand-gold text-white text-[10px] sm:text-xs font-bold transition-all duration-200 flex items-center justify-center gap-1 cursor-pointer shadow-sm active:scale-95" title="View Technical Data Sheet">
@@ -1248,7 +1345,7 @@
                 </button>
 
                 <!-- Direct Product Link Arrow -->
-                <a href="products.html#star-anise" aria-label="Star Anise Details" class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-white/15 hover:bg-brand-gold border border-white/20 hover:border-brand-gold text-white flex items-center justify-center transition-all duration-200 hover:translate-x-0.5 shadow-sm active:scale-95">
+                <a href="product-star-anise.html" aria-label="Star Anise Details" class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-white/15 hover:bg-brand-gold border border-white/20 hover:border-brand-gold text-white flex items-center justify-center transition-all duration-200 hover:translate-x-0.5 shadow-sm active:scale-95">
                   <i data-lucide="arrow-right" class="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[1.75]"></i>
                 </a>
               </div>
@@ -1257,7 +1354,7 @@
         </div>
 
         <!-- CARD 6: Turmeric (Curcumin ≥5%) -->
-        <div data-category="spices" class="commodity-showcase-card opacity-0 translate-y-8 w-[42vw] max-w-[175px] min-w-[145px] sm:w-[300px] sm:max-w-none sm:min-w-0 md:w-[320px] lg:w-[340px] xl:w-[360px] shrink-0 h-[260px] sm:h-[440px] lg:h-[480px] xl:h-[500px] group relative block rounded-xl sm:rounded-2xl overflow-hidden shadow-xs hover:shadow-2xl transition-all duration-700 ease-out border border-slate-200/90 hover:border-brand-gold/70 select-none">
+        <div data-category="spices" class="commodity-showcase-card opacity-0 translate-y-8 w-[42vw] max-w-[175px] min-w-[145px] sm:w-[300px] sm:max-w-none sm:min-w-0 md:w-[320px] lg:w-[340px] xl:w-[360px] shrink-0 h-[270px] sm:h-[440px] lg:h-[480px] xl:h-[500px] group relative block rounded-xl sm:rounded-2xl overflow-hidden shadow-xs hover:shadow-2xl transition-all duration-700 ease-out border border-slate-200/90 hover:border-brand-gold/70 select-none">
           <img 
             src="images/product/Turmeric.jpg" 
             alt="Vietnamese Turmeric Finger and Powder" 
@@ -1265,7 +1362,7 @@
             loading="lazy"
             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out pointer-events-none select-none"
           >
-          <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-brand-dark/40 to-transparent pointer-events-none"></div>
+          <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none"></div>
 
           <!-- Top Floating Metadata Badges -->
           <div class="absolute top-2.5 inset-x-2.5 sm:top-4 sm:inset-x-4 z-10 flex items-center justify-between gap-1.5 pointer-events-none">
@@ -1283,7 +1380,7 @@
           <div class="absolute bottom-0 inset-x-0 p-3 sm:p-5 lg:p-6 z-10 flex flex-col justify-end">
             <!-- Title & CTAs Row (Stacked on Mobile, Row on Tablet/Desktop) -->
             <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-1.5 sm:gap-3">
-              <a href="products.html#turmeric" class="min-w-0 group/title block cursor-pointer">
+              <a href="product-turmeric.html" class="min-w-0 group/title block cursor-pointer">
                 <h3 class="text-sm sm:text-xl font-bold text-white group-hover/title:text-brand-gold transition-colors duration-200 tracking-tight leading-snug drop-shadow-md">
                   Turmeric
                 </h3>
@@ -1292,7 +1389,7 @@
                 </p>
               </a>
 
-              <!-- Dual Action Controls (Right-aligned below text on mobile) -->
+              <!-- Dual Action Controls (Left-aligned below text on mobile) -->
               <div class="flex items-center justify-start sm:justify-start gap-1.5 shrink-0 pt-0.5 sm:pt-0">
                 <!-- 1-Click TDS Spec Modal Trigger -->
                 <button type="button" onclick="openSpecModal('turmeric')" class="h-7 sm:h-auto px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-lg sm:rounded-xl bg-white/15 hover:bg-brand-gold border border-white/20 hover:border-brand-gold text-white text-[10px] sm:text-xs font-bold transition-all duration-200 flex items-center justify-center gap-1 cursor-pointer shadow-sm active:scale-95" title="View Technical Data Sheet">
@@ -1301,7 +1398,7 @@
                 </button>
 
                 <!-- Direct Product Link Arrow -->
-                <a href="products.html#turmeric" aria-label="Turmeric Details" class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-white/15 hover:bg-brand-gold border border-white/20 hover:border-brand-gold text-white flex items-center justify-center transition-all duration-200 hover:translate-x-0.5 shadow-sm active:scale-95">
+                <a href="product-turmeric.html" aria-label="Turmeric Details" class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-white/15 hover:bg-brand-gold border border-white/20 hover:border-brand-gold text-white flex items-center justify-center transition-all duration-200 hover:translate-x-0.5 shadow-sm active:scale-95">
                   <i data-lucide="arrow-right" class="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[1.75]"></i>
                 </a>
               </div>
@@ -1310,7 +1407,7 @@
         </div>
 
         <!-- CARD 7: Cassia Cinnamon (Split & Tube) -->
-        <div data-category="spices" class="commodity-showcase-card opacity-0 translate-y-8 w-[42vw] max-w-[175px] min-w-[145px] sm:w-[300px] sm:max-w-none sm:min-w-0 md:w-[320px] lg:w-[340px] xl:w-[360px] shrink-0 h-[260px] sm:h-[440px] lg:h-[480px] xl:h-[500px] group relative block rounded-xl sm:rounded-2xl overflow-hidden shadow-xs hover:shadow-2xl transition-all duration-700 ease-out border border-slate-200/90 hover:border-brand-gold/70 select-none">
+        <div data-category="spices" class="commodity-showcase-card opacity-0 translate-y-8 w-[42vw] max-w-[175px] min-w-[145px] sm:w-[300px] sm:max-w-none sm:min-w-0 md:w-[320px] lg:w-[340px] xl:w-[360px] shrink-0 h-[270px] sm:h-[440px] lg:h-[480px] xl:h-[500px] group relative block rounded-xl sm:rounded-2xl overflow-hidden shadow-xs hover:shadow-2xl transition-all duration-700 ease-out border border-slate-200/90 hover:border-brand-gold/70 select-none">
           <img 
             src="images/product/Cassia.jpg" 
             alt="Vietnamese Cassia Cinnamon Split and Tube" 
@@ -1318,7 +1415,7 @@
             loading="lazy"
             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out pointer-events-none select-none"
           >
-          <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-brand-dark/40 to-transparent pointer-events-none"></div>
+          <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none"></div>
 
           <!-- Top Floating Metadata Badges -->
           <div class="absolute top-2.5 inset-x-2.5 sm:top-4 sm:inset-x-4 z-10 flex items-center justify-between gap-1.5 pointer-events-none">
@@ -1336,7 +1433,7 @@
           <div class="absolute bottom-0 inset-x-0 p-3 sm:p-5 lg:p-6 z-10 flex flex-col justify-end">
             <!-- Title & CTAs Row (Stacked on Mobile, Row on Tablet/Desktop) -->
             <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-1.5 sm:gap-3">
-              <a href="products.html#cinnamon" class="min-w-0 group/title block cursor-pointer">
+              <a href="product-cinnamon.html" class="min-w-0 group/title block cursor-pointer">
                 <h3 class="text-sm sm:text-xl font-bold text-white group-hover/title:text-brand-gold transition-colors duration-200 tracking-tight leading-snug drop-shadow-md">
                   Cassia Cinnamon
                 </h3>
@@ -1345,7 +1442,7 @@
                 </p>
               </a>
 
-              <!-- Dual Action Controls (Right-aligned below text on mobile) -->
+              <!-- Dual Action Controls (Left-aligned below text on mobile) -->
               <div class="flex items-center justify-start sm:justify-start gap-1.5 shrink-0 pt-0.5 sm:pt-0">
                 <!-- 1-Click TDS Spec Modal Trigger -->
                 <button type="button" onclick="openSpecModal('cinnamon')" class="h-7 sm:h-auto px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-lg sm:rounded-xl bg-white/15 hover:bg-brand-gold border border-white/20 hover:border-brand-gold text-white text-[10px] sm:text-xs font-bold transition-all duration-200 flex items-center justify-center gap-1 cursor-pointer shadow-sm active:scale-95" title="View Technical Data Sheet">
@@ -1354,7 +1451,7 @@
                 </button>
 
                 <!-- Direct Product Link Arrow -->
-                <a href="products.html#cinnamon" aria-label="Cinnamon Details" class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-white/15 hover:bg-brand-gold border border-white/20 hover:border-brand-gold text-white flex items-center justify-center transition-all duration-200 hover:translate-x-0.5 shadow-sm active:scale-95">
+                <a href="product-cinnamon.html" aria-label="Cinnamon Details" class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-white/15 hover:bg-brand-gold border border-white/20 hover:border-brand-gold text-white flex items-center justify-center transition-all duration-200 hover:translate-x-0.5 shadow-sm active:scale-95">
                   <i data-lucide="arrow-right" class="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[1.75]"></i>
                 </a>
               </div>
@@ -1363,7 +1460,7 @@
         </div>
 
         <!-- CARD 8: Cashew Kernels (WW240 / WW320) -->
-        <div data-category="agri" class="commodity-showcase-card opacity-0 translate-y-8 w-[42vw] max-w-[175px] min-w-[145px] sm:w-[300px] sm:max-w-none sm:min-w-0 md:w-[320px] lg:w-[340px] xl:w-[360px] shrink-0 h-[260px] sm:h-[440px] lg:h-[480px] xl:h-[500px] group relative block rounded-xl sm:rounded-2xl overflow-hidden shadow-xs hover:shadow-2xl transition-all duration-700 ease-out border border-slate-200/90 hover:border-brand-gold/70 select-none">
+        <div data-category="agri" class="commodity-showcase-card opacity-0 translate-y-8 w-[42vw] max-w-[175px] min-w-[145px] sm:w-[300px] sm:max-w-none sm:min-w-0 md:w-[320px] lg:w-[340px] xl:w-[360px] shrink-0 h-[270px] sm:h-[440px] lg:h-[480px] xl:h-[500px] group relative block rounded-xl sm:rounded-2xl overflow-hidden shadow-xs hover:shadow-2xl transition-all duration-700 ease-out border border-slate-200/90 hover:border-brand-gold/70 select-none">
           <img 
             src="images/product/cashewnuts.jpg" 
             alt="Vietnamese Cashew Kernels WW240 and WW320" 
@@ -1371,7 +1468,7 @@
             loading="lazy"
             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out pointer-events-none select-none"
           >
-          <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-brand-dark/40 to-transparent pointer-events-none"></div>
+          <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none"></div>
 
           <!-- Top Floating Metadata Badges -->
           <div class="absolute top-2.5 inset-x-2.5 sm:top-4 sm:inset-x-4 z-10 flex items-center justify-between gap-1.5 pointer-events-none">
@@ -1389,7 +1486,7 @@
           <div class="absolute bottom-0 inset-x-0 p-3 sm:p-5 lg:p-6 z-10 flex flex-col justify-end">
             <!-- Title & CTAs Row (Stacked on Mobile, Row on Tablet/Desktop) -->
             <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-1.5 sm:gap-3">
-              <a href="products.html#cashews" class="min-w-0 group/title block cursor-pointer">
+              <a href="product-cashews.html" class="min-w-0 group/title block cursor-pointer">
                 <h3 class="text-sm sm:text-xl font-bold text-white group-hover/title:text-brand-gold transition-colors duration-200 tracking-tight leading-snug drop-shadow-md">
                   Cashew Kernels
                 </h3>
@@ -1398,7 +1495,7 @@
                 </p>
               </a>
 
-              <!-- Dual Action Controls (Right-aligned below text on mobile) -->
+              <!-- Dual Action Controls (Left-aligned below text on mobile) -->
               <div class="flex items-center justify-start sm:justify-start gap-1.5 shrink-0 pt-0.5 sm:pt-0">
                 <!-- 1-Click TDS Spec Modal Trigger -->
                 <button type="button" onclick="openSpecModal('cashews')" class="h-7 sm:h-auto px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-lg sm:rounded-xl bg-white/15 hover:bg-brand-gold border border-white/20 hover:border-brand-gold text-white text-[10px] sm:text-xs font-bold transition-all duration-200 flex items-center justify-center gap-1 cursor-pointer shadow-sm active:scale-95" title="View Technical Data Sheet">
@@ -1407,7 +1504,7 @@
                 </button>
 
                 <!-- Direct Product Link Arrow -->
-                <a href="products.html#cashews" aria-label="Cashews Details" class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-white/15 hover:bg-brand-gold border border-white/20 hover:border-brand-gold text-white flex items-center justify-center transition-all duration-200 hover:translate-x-0.5 shadow-sm active:scale-95">
+                <a href="product-cashews.html" aria-label="Cashews Details" class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-white/15 hover:bg-brand-gold border border-white/20 hover:border-brand-gold text-white flex items-center justify-center transition-all duration-200 hover:translate-x-0.5 shadow-sm active:scale-95">
                   <i data-lucide="arrow-right" class="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[1.75]"></i>
                 </a>
               </div>
@@ -1416,7 +1513,7 @@
         </div>
 
         <!-- CARD 9: Desiccated Coconut (High Fat) -->
-        <div data-category="agri" class="commodity-showcase-card opacity-0 translate-y-8 w-[42vw] max-w-[175px] min-w-[145px] sm:w-[300px] sm:max-w-none sm:min-w-0 md:w-[320px] lg:w-[340px] xl:w-[360px] shrink-0 h-[260px] sm:h-[440px] lg:h-[480px] xl:h-[500px] group relative block rounded-xl sm:rounded-2xl overflow-hidden shadow-xs hover:shadow-2xl transition-all duration-700 ease-out border border-slate-200/90 hover:border-brand-gold/70 select-none">
+        <div data-category="agri" class="commodity-showcase-card opacity-0 translate-y-8 w-[42vw] max-w-[175px] min-w-[145px] sm:w-[300px] sm:max-w-none sm:min-w-0 md:w-[320px] lg:w-[340px] xl:w-[360px] shrink-0 h-[270px] sm:h-[440px] lg:h-[480px] xl:h-[500px] group relative block rounded-xl sm:rounded-2xl overflow-hidden shadow-xs hover:shadow-2xl transition-all duration-700 ease-out border border-slate-200/90 hover:border-brand-gold/70 select-none">
           <img 
             src="images/product/desiccated coconut.jpg" 
             alt="Vietnamese High Fat Desiccated Coconut" 
@@ -1424,7 +1521,7 @@
             loading="lazy"
             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out pointer-events-none select-none"
           >
-          <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-brand-dark/40 to-transparent pointer-events-none"></div>
+          <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none"></div>
 
           <!-- Top Floating Metadata Badges -->
           <div class="absolute top-2.5 inset-x-2.5 sm:top-4 sm:inset-x-4 z-10 flex items-center justify-between gap-1.5 pointer-events-none">
@@ -1442,7 +1539,7 @@
           <div class="absolute bottom-0 inset-x-0 p-3 sm:p-5 lg:p-6 z-10 flex flex-col justify-end">
             <!-- Title & CTAs Row (Stacked on Mobile, Row on Tablet/Desktop) -->
             <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-1.5 sm:gap-3">
-              <a href="products.html#coconut" class="min-w-0 group/title block cursor-pointer">
+              <a href="product-coconut.html" class="min-w-0 group/title block cursor-pointer">
                 <h3 class="text-sm sm:text-xl font-bold text-white group-hover/title:text-brand-gold transition-colors duration-200 tracking-tight leading-snug drop-shadow-md">
                   Desiccated Coconut
                 </h3>
@@ -1451,7 +1548,7 @@
                 </p>
               </a>
 
-              <!-- Dual Action Controls (Right-aligned below text on mobile) -->
+              <!-- Dual Action Controls (Left-aligned below text on mobile) -->
               <div class="flex items-center justify-start sm:justify-start gap-1.5 shrink-0 pt-0.5 sm:pt-0">
                 <!-- 1-Click TDS Spec Modal Trigger -->
                 <button type="button" onclick="openSpecModal('coconut')" class="h-7 sm:h-auto px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-lg sm:rounded-xl bg-white/15 hover:bg-brand-gold border border-white/20 hover:border-brand-gold text-white text-[10px] sm:text-xs font-bold transition-all duration-200 flex items-center justify-center gap-1 cursor-pointer shadow-sm active:scale-95" title="View Technical Data Sheet">
@@ -1460,7 +1557,7 @@
                 </button>
 
                 <!-- Direct Product Link Arrow -->
-                <a href="products.html#coconut" aria-label="Coconut Details" class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-white/15 hover:bg-brand-gold border border-white/20 hover:border-brand-gold text-white flex items-center justify-center transition-all duration-200 hover:translate-x-0.5 shadow-sm active:scale-95">
+                <a href="product-coconut.html" aria-label="Coconut Details" class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-white/15 hover:bg-brand-gold border border-white/20 hover:border-brand-gold text-white flex items-center justify-center transition-all duration-200 hover:translate-x-0.5 shadow-sm active:scale-95">
                   <i data-lucide="arrow-right" class="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[1.75]"></i>
                 </a>
               </div>
@@ -1480,7 +1577,7 @@
           id="commodityBottomPrevBtn" 
           onclick="scrollCommodityTrack('left')" 
           aria-label="Previous commodities" 
-          class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl border border-brand-green/20 hover:border-brand-green bg-white hover:bg-brand-green text-brand-green hover:text-white flex items-center justify-center transition-all duration-200 shadow-2xs hover:shadow-xs active:scale-95 cursor-pointer disabled:opacity-30 disabled:pointer-events-none"
+          class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl border border-brand-green/20 hover:border-brand-green bg-white hover:bg-brand-green text-brand-green hover:text-white flex items-center justify-center transition-all duration-200 shadow-2xs hover:shadow-xs active:scale-95 cursor-pointer disabled:opacity-30 disabled:pointer-events-none"
         >
           <i data-lucide="chevron-left" class="w-4 h-4 sm:w-4.5 sm:h-4.5 stroke-[1.75]"></i>
         </button>
@@ -1488,7 +1585,7 @@
           id="commodityBottomNextBtn" 
           onclick="scrollCommodityTrack('right')" 
           aria-label="Next commodities" 
-          class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl border border-brand-green/20 hover:border-brand-green bg-white hover:bg-brand-green text-brand-green hover:text-white flex items-center justify-center transition-all duration-200 shadow-2xs hover:shadow-xs active:scale-95 cursor-pointer disabled:opacity-30 disabled:pointer-events-none"
+          class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl border border-brand-green/20 hover:border-brand-green bg-white hover:bg-brand-green text-brand-green hover:text-white flex items-center justify-center transition-all duration-200 shadow-2xs hover:shadow-xs active:scale-95 cursor-pointer disabled:opacity-30 disabled:pointer-events-none"
         >
           <i data-lucide="chevron-right" class="w-4 h-4 sm:w-4.5 sm:h-4.5 stroke-[1.75]"></i>
         </button>
@@ -1517,7 +1614,7 @@
           <div>
             <div class="flex flex-wrap items-center gap-x-2.5 gap-y-0.5">
               <span class="font-bold text-white text-sm sm:text-base tracking-tight">Origin Harvest &amp; Forward Booking Windows</span>
-              <span class="text-[10px] sm:text-[11px] font-bold text-brand-gold uppercase tracking-wider bg-brand-gold/10 px-2 py-0.5 rounded border border-brand-gold/20">6 Commodities</span>
+              <span class="text-[10px] sm:text-[11px] font-bold text-brand-gold uppercase tracking-wider bg-brand-gold/10 px-2 py-0.5 rounded border border-brand-gold/20">9 Commodities</span>
             </div>
             <p class="text-xs text-slate-300 line-clamp-1 sm:line-clamp-none mt-0.5">
               Strategic monthly procurement timing guide across all Vietnamese agricultural commodities.
@@ -1528,7 +1625,7 @@
         <button 
           type="button" 
           onclick="openHarvestModal()" 
-          class="w-full sm:w-auto h-10 px-4 sm:px-5 rounded-lg sm:rounded-xl bg-brand-gold hover:bg-brand-goldDark text-white font-bold text-xs tracking-wide flex items-center justify-center gap-2 transition-all duration-200 shadow-xs hover:shadow-md cursor-pointer active:scale-95 shrink-0 min-h-[40px]"
+          class="w-full sm:w-auto h-11 px-4 sm:px-5 rounded-xl bg-brand-gold hover:bg-brand-goldDark text-white font-bold text-xs tracking-wide flex items-center justify-center gap-2 transition-all duration-200 shadow-xs hover:shadow-md cursor-pointer active:scale-95 shrink-0 min-h-[44px]"
         >
           <i data-lucide="calendar-days" class="w-3.5 h-3.5"></i>
           <span>Open Sourcing Timeline</span>
@@ -1564,8 +1661,8 @@
           </h2>
         </div>
         
-        <!-- Direct Ocean Corridor Pill (Strictly font-sans) -->
-        <div class="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white border border-slate-200/90 shadow-2xs text-[11px] sm:text-xs font-semibold text-slate-700 shrink-0 max-w-full">
+        <!-- Direct Ocean Corridor Badge (Architectural Radius rounded-xl) -->
+        <div class="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl bg-white border border-slate-200/90 shadow-2xs text-[11px] sm:text-xs font-semibold text-slate-700 shrink-0 max-w-full">
           <i data-lucide="compass" class="w-3.5 h-3.5 text-brand-gold stroke-[2] shrink-0"></i>
           <span class="text-slate-900 font-bold whitespace-nowrap">Ocean Corridor:</span>
           <span class="text-brand-gold font-bold whitespace-nowrap">28–32 Days</span>
@@ -1597,7 +1694,7 @@
 
           <!-- Top Row: Kicker & Legal Entity Tag -->
           <div class="relative z-10 flex items-center justify-between gap-2">
-            <span class="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 py-1.5 rounded-full bg-brand-gold text-white text-[10px] sm:text-[11px] font-sans font-bold uppercase tracking-wider shadow-sm whitespace-nowrap shrink-0">
+            <span class="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 py-1.5 rounded-lg bg-brand-gold text-white text-[10px] sm:text-[11px] font-sans font-bold uppercase tracking-wider shadow-sm whitespace-nowrap shrink-0">
               <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse shrink-0"></span>
               <span class="sm:hidden">Pole 01 · Legal Entity</span>
               <span class="hidden sm:inline">Pole 01 · European Legal Entity</span>
@@ -1659,7 +1756,7 @@
 
           <!-- Top Row: Kicker & Scale Tag -->
           <div class="relative z-10 flex items-center justify-between gap-2">
-            <span class="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 py-1.5 rounded-full bg-brand-green text-white text-[10px] sm:text-[11px] font-sans font-bold uppercase tracking-wider shadow-sm whitespace-nowrap shrink-0">
+            <span class="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 py-1.5 rounded-lg bg-brand-green text-white text-[10px] sm:text-[11px] font-sans font-bold uppercase tracking-wider shadow-sm whitespace-nowrap shrink-0">
               <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse shrink-0"></span>
               <span class="sm:hidden">Pole 02 · Origin</span>
               <span class="hidden sm:inline">Pole 02 · Manufacturing Origin</span>
@@ -1727,8 +1824,9 @@
         
         <!-- Left Column (lg:col-span-6): Kicker, Title, Subtitle & Dual CTA Buttons -->
         <div class="lg:col-span-6">
-          <div class="text-brand-gold text-[11px] sm:text-xs font-sans font-bold uppercase tracking-[0.2em] mb-2">
-            STANDARDS, ESG &amp; GLOBAL CERTIFICATIONS
+          <div class="inline-flex items-center gap-2 text-brand-gold text-[11px] sm:text-xs font-sans font-bold uppercase tracking-[0.2em] mb-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-brand-gold"></span>
+            <span>STANDARDS, ESG &amp; GLOBAL CERTIFICATIONS</span>
           </div>
           <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-brand-dark tracking-tight leading-[1.1] mb-3.5">
             International Standards,<br>
@@ -1818,11 +1916,11 @@
 
         <!-- Mobile & Tablet CTA Buttons (Positioned below the 4 metrics so user reads full context first) -->
         <div class="lg:hidden col-span-1 grid grid-cols-2 gap-2.5 pt-1">
-          <a href="certificates.html" class="h-10 inline-flex items-center justify-center gap-1.5 px-3 rounded-xl bg-brand-gold hover:bg-brand-goldDark text-white font-bold text-xs tracking-wide shadow-xs active:scale-[0.99] text-center">
+          <a href="certificates.html" class="h-11 inline-flex items-center justify-center gap-1.5 px-3 rounded-xl bg-brand-gold hover:bg-brand-goldDark text-white font-bold text-xs tracking-wide shadow-xs active:scale-[0.99] text-center">
             <span>Certificates</span>
             <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
           </a>
-          <a href="sustainability.html" class="h-10 inline-flex items-center justify-center gap-1.5 px-3 rounded-xl border border-slate-300 hover:border-brand-green bg-white text-brand-dark font-bold text-xs tracking-wide active:scale-[0.99] text-center">
+          <a href="sustainability.html" class="h-11 inline-flex items-center justify-center gap-1.5 px-3 rounded-xl border border-slate-300 hover:border-brand-green bg-white text-brand-dark font-bold text-xs tracking-wide active:scale-[0.99] text-center">
             <span>ESG &amp; Impact</span>
             <i data-lucide="leaf" class="w-3.5 h-3.5 text-brand-green"></i>
           </a>
@@ -1982,12 +2080,12 @@
               <span id="certCurrentStep" class="font-black text-brand-dark tracking-tight">01 EUDR &amp; Origin</span>
               <span class="font-bold text-slate-400">/ 04</span>
             </div>
-            <div class="flex items-center gap-1.5">
+            <div class="flex items-center gap-2">
               <button 
                 type="button" 
                 onclick="stepCertPanorama(-1)" 
                 aria-label="Previous standard"
-                class="w-8 h-8 rounded-lg border border-slate-200 hover:border-brand-green bg-white hover:bg-brand-green hover:text-white text-slate-700 flex items-center justify-center transition-all duration-200 active:scale-95 cursor-pointer shadow-2xs"
+                class="w-11 h-11 rounded-xl border border-slate-200 hover:border-brand-green bg-white hover:bg-brand-green hover:text-white text-slate-700 flex items-center justify-center transition-all duration-200 active:scale-95 cursor-pointer shadow-2xs"
               >
                 <i data-lucide="chevron-left" class="w-4 h-4 stroke-[1.75]"></i>
               </button>
@@ -1995,7 +2093,7 @@
                 type="button" 
                 onclick="stepCertPanorama(1)" 
                 aria-label="Next standard"
-                class="w-8 h-8 rounded-lg border border-slate-200 hover:border-brand-green bg-white hover:bg-brand-green hover:text-white text-slate-700 flex items-center justify-center transition-all duration-200 active:scale-95 cursor-pointer shadow-2xs"
+                class="w-11 h-11 rounded-xl border border-slate-200 hover:border-brand-green bg-white hover:bg-brand-green hover:text-white text-slate-700 flex items-center justify-center transition-all duration-200 active:scale-95 cursor-pointer shadow-2xs"
               >
                 <i data-lucide="chevron-right" class="w-4 h-4 stroke-[1.75]"></i>
               </button>
@@ -2022,11 +2120,13 @@
       <!-- Clean, Non-Repetitive Section Header (No repetitive 4-metric boxes) -->
       <div class="text-center mb-10 sm:mb-12">
         <div class="text-brand-gold text-[11px] sm:text-xs font-sans font-bold uppercase tracking-[0.2em] mb-2 flex items-center justify-center gap-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-brand-gold"></span>
           <span>DIRECT PROCUREMENT</span>
         </div>
         
         <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-brand-dark tracking-tight leading-[1.1] mb-3.5">
-          Request Container (FCL) Quotation
+          Request Container (FCL)<br>
+          <span class="text-brand-gold">Quotation.</span>
         </h2>
         
         <p class="text-slate-600 text-sm sm:text-base leading-relaxed max-w-xl mx-auto mb-5">
@@ -2073,8 +2173,9 @@
                 
                 <div class="relative custom-dropdown" data-dropdown="commodity">
                   <!-- Hidden Select for Native Form Submissions & Accessibility -->
-                  <select id="commoditySelect" name="commodity" required class="sr-only">
+                    <select id="commoditySelect" name="commodity" required class="sr-only">
                     <option value="">Select Export Commodity...</option>
+                    <option value="Vietnamese Dried Chili">Vietnamese Dried Chili (Stemless / Whole / Flakes / Powder)</option>
                     <option value="Robusta Coffee">Robusta Green Coffee (Screen 18/16 Wet Polished)</option>
                     <option value="Arabica Coffee">Arabica Green Coffee Specialty</option>
                     <option value="Black Pepper Steam Sterilized">Black Pepper Steam Sterilized (ASTA Quality)</option>
@@ -2130,6 +2231,13 @@
                     <div class="py-1">
                       <div class="px-3.5 py-1 text-[10px] font-bold tracking-wider uppercase text-brand-gold bg-slate-50/80">
                         Pepper &amp; Spices
+                      </div>
+                      <div class="custom-dropdown-option px-3.5 py-2.5 flex items-center justify-between hover:bg-brand-gold/10 cursor-pointer transition-colors text-xs text-slate-700 hover:text-brand-dark" data-value="Vietnamese Dried Chili" data-label="Vietnamese Dried Chili (Whole / Flakes)">
+                        <div>
+                          <div class="font-bold text-slate-900">Vietnamese Dried Chili</div>
+                          <div class="text-[11px] text-slate-500 font-normal">Stemless &amp; With Stem · 60k–90k SHU · Flakes &amp; Powder</div>
+                        </div>
+                        <i data-lucide="check" class="w-4 h-4 text-brand-green hidden custom-option-check shrink-0"></i>
                       </div>
                       <div class="custom-dropdown-option px-3.5 py-2.5 flex items-center justify-between hover:bg-brand-gold/10 cursor-pointer transition-colors text-xs text-slate-700 hover:text-brand-dark" data-value="Black Pepper Steam Sterilized" data-label="Black Pepper (Steam Sterilized · ASTA)">
                         <div>
@@ -2395,7 +2503,7 @@
                     <span class="sm:hidden">Request 500g Working Sample</span>
                     <span class="hidden sm:inline">Request 500g Physical Working Sample</span>
                   </span>
-                  <span class="px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-bold bg-brand-gold text-white uppercase tracking-wider whitespace-nowrap shrink-0">Free Express</span>
+                  <span class="px-2 py-0.5 rounded-md text-[9px] sm:text-[10px] font-bold bg-brand-gold text-white uppercase tracking-wider whitespace-nowrap shrink-0">Free Express</span>
                 </div>
               </label>
               <span class="text-brand-gold shrink-0 p-1.5 rounded-lg bg-brand-gold/10">
@@ -2674,40 +2782,48 @@
             </span>
           </button>
           <div id="footerCommodities" class="footer-accordion-content max-h-0 lg:max-h-none opacity-0 lg:opacity-100 overflow-hidden lg:overflow-visible transition-all duration-300 ease-in-out">
-            <ul class="space-y-3 text-xs text-slate-600 pt-3 lg:pt-0">
+            <ul class="space-y-2.5 text-xs text-slate-600 pt-3 lg:pt-0">
               <li class="flex items-start gap-2">
                 <span class="w-1.5 h-1.5 rounded-full bg-brand-gold mt-1.5 shrink-0"></span>
                 <div>
-                  <div class="font-semibold text-slate-800">Green Coffee (Robusta &amp; Arabica)</div>
+                  <a href="product-robusta.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Robusta</a>
+                  <span class="text-slate-300 mx-1">&middot;</span>
+                  <a href="product-arabica.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Arabica Green Coffee</a>
                   <div class="text-[11px] text-slate-400">Screen 18/16 Wet Polished · EUDR 100%</div>
                 </div>
               </li>
               <li class="flex items-start gap-2">
                 <span class="w-1.5 h-1.5 rounded-full bg-brand-green mt-1.5 shrink-0"></span>
                 <div>
-                  <div class="font-semibold text-slate-800">Steam Sterilized Pepper</div>
-                  <div class="text-[11px] text-slate-400">ASTA Quality · Cleaned FAQ · 5-Log Kill</div>
+                  <a href="product-pepper.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Black &amp; White Pepper</a>
+                  <span class="text-slate-300 mx-1">&middot;</span>
+                  <a href="product-chili.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Dried Chili</a>
+                  <div class="text-[11px] text-slate-400">ASTA 5-Log HTST · 60k–90k SHU Whole/Flakes</div>
+                </div>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-gold mt-1.5 shrink-0"></span>
+                <div>
+                  <a href="product-cinnamon.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Cassia Cinnamon</a>
+                  <span class="text-slate-300 mx-1">&middot;</span>
+                  <a href="product-star-anise.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Star Anise</a>
+                  <div class="text-[11px] text-slate-400">Yen Bai Split/Tubes · Lang Son Autumn Crop</div>
+                </div>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-gold mt-1.5 shrink-0"></span>
+                <div>
+                  <a href="product-turmeric.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors block">Turmeric Finger &amp; Powder</a>
+                  <div class="text-[11px] text-slate-400">Curcumin ≥ 5.0% · Polished &amp; Sun-Dried</div>
                 </div>
               </li>
               <li class="flex items-start gap-2">
                 <span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-1.5 shrink-0"></span>
                 <div>
-                  <div class="font-semibold text-slate-800">Raw Cashew Kernels</div>
-                  <div class="text-[11px] text-slate-400">W240, W320, LP, SP · AFI Grade Standard</div>
-                </div>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="w-1.5 h-1.5 rounded-full bg-brand-gold mt-1.5 shrink-0"></span>
-                <div>
-                  <div class="font-semibold text-slate-800">Cassia Cinnamon &amp; Star Anise</div>
-                  <div class="text-[11px] text-slate-400">Split, Tubes &amp; Autumn Crop Flower</div>
-                </div>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="w-1.5 h-1.5 rounded-full bg-brand-gold mt-1.5 shrink-0"></span>
-                <div>
-                  <div class="font-semibold text-slate-800">Turmeric Finger &amp; Powder</div>
-                  <div class="text-[11px] text-slate-400">Curcumin ≥ 5.0% · Polished &amp; Dried</div>
+                  <a href="product-cashews.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Cashew Kernels</a>
+                  <span class="text-slate-300 mx-1">&middot;</span>
+                  <a href="product-coconut.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Desiccated Coconut</a>
+                  <div class="text-[11px] text-slate-400">AFI W240/W320 · Ben Tre High Fat ≥ 65%</div>
                 </div>
               </li>
             </ul>
@@ -2782,7 +2898,7 @@
     id="backToTopBtn" 
     type="button" 
     onclick="if (window.smoothScrollTo) { window.smoothScrollTo(0); } else { window.scrollTo({top: 0, behavior: 'smooth'}); }" 
-    class="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-40 w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-slate-900/70 hover:bg-brand-gold active:bg-brand-gold text-white border border-white/20 hover:border-brand-gold shadow-md hover:shadow-lg backdrop-blur-md transition-all duration-300 flex items-center justify-center cursor-pointer opacity-0 pointer-events-none translate-y-3 group active:scale-95"
+    class="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-40 w-11 h-11 rounded-xl bg-slate-900/70 hover:bg-brand-gold active:bg-brand-gold text-white border border-white/20 hover:border-brand-gold shadow-md hover:shadow-lg backdrop-blur-md transition-all duration-300 flex items-center justify-center cursor-pointer opacity-0 pointer-events-none translate-y-3 group active:scale-95"
     aria-label="Back to top"
     title="Back to top"
   >
@@ -2797,13 +2913,13 @@
     <!-- Modal Card (Minimalist Monolithic White Architecture · Pure European Editorial Style) -->
     <div id="specSheetModalContent" class="relative w-full max-w-3xl lg:max-w-4xl bg-white rounded-3xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.2),0_0_1px_1px_rgba(0,0,0,0.05)] border border-slate-200/80 overflow-hidden transform transition-all duration-300 ease-out translate-y-4 scale-95 opacity-0 my-auto flex flex-col max-h-[calc(100dvh-1.5rem)] sm:max-h-[calc(100dvh-2.5rem)] lg:max-h-[88vh]">
       
-      <!-- Top Minimalist Header Bar (Clean, Light, Monolithic with Floating Circular Close) -->
+      <!-- Top Minimalist Header Bar (Clean, Light, Monolithic with Architectural Close) -->
       <div class="shrink-0 bg-white px-6 sm:px-8 pt-6 sm:pt-7 pb-5 border-b border-slate-100 flex items-start justify-between gap-4 relative z-10">
         <div>
           <!-- Subtle Editorial Kicker & Accreditation Status -->
-          <div class="flex flex-wrap sm:flex-nowrap items-center gap-1.5 sm:gap-2 mb-2">
-            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-brand-gold/10 text-brand-gold text-[10px] sm:text-[11px] font-bold uppercase tracking-wider whitespace-nowrap shrink-0">
-              <span class="w-1.5 h-1.5 rounded-full bg-brand-gold animate-pulse shrink-0"></span>
+          <div class="flex flex-wrap sm:flex-nowrap items-center gap-2 mb-2">
+            <span class="inline-flex items-center gap-2 text-brand-gold text-[11px] sm:text-xs font-sans font-bold uppercase tracking-[0.2em] whitespace-nowrap shrink-0">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-gold shrink-0"></span>
               Technical Data Sheet (TDS)
             </span>
             <span class="text-[11px] text-slate-300 hidden sm:inline">·</span>
@@ -2822,8 +2938,8 @@
           </p>
         </div>
 
-        <!-- Minimalist Floating Circular Close Button -->
-        <button type="button" onclick="closeSpecModal()" class="w-10 h-10 rounded-full border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-500 hover:text-slate-900 transition-all flex items-center justify-center cursor-pointer shrink-0 shadow-2xs active:scale-95 group mt-0.5" aria-label="Close Specification Sheet">
+        <!-- Minimalist Architectural Close Button (44x44px Touch Target) -->
+        <button type="button" onclick="closeSpecModal()" class="w-11 h-11 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-500 hover:text-slate-900 transition-all flex items-center justify-center cursor-pointer shrink-0 shadow-2xs active:scale-95 group mt-0.5" aria-label="Close Specification Sheet">
           <i data-lucide="x" class="w-4 h-4 stroke-[2] transition-transform duration-200 group-hover:rotate-90"></i>
         </button>
       </div>
@@ -2860,7 +2976,7 @@
               </span>
               <span>Guaranteed Laboratory &amp; Physical Benchmarks</span>
             </h4>
-            <span class="text-[10px] font-bold text-slate-600 bg-slate-100 px-2.5 py-1 rounded-full border border-slate-200">
+            <span class="text-[10px] font-bold text-slate-600 bg-slate-100 px-2.5 py-1 rounded-lg border border-slate-200">
               ISO 17025 Accredited Protocol
             </span>
           </div>
@@ -2940,13 +3056,13 @@
     <!-- Modal Card (Minimalist Monolithic White Architecture · Pure European Editorial Style) -->
     <div id="harvestModalContent" class="relative w-full max-w-4xl lg:max-w-5xl bg-white rounded-3xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.2),0_0_1px_1px_rgba(0,0,0,0.05)] border border-slate-200/80 overflow-hidden transform transition-all duration-300 ease-out translate-y-4 scale-95 opacity-0 my-auto flex flex-col max-h-[calc(100dvh-1.5rem)] sm:max-h-[calc(100dvh-2.5rem)] lg:max-h-[88vh]">
       
-      <!-- Top Minimalist Header Bar (Clean, Light, Monolithic with Floating Circular Close) -->
+      <!-- Top Minimalist Header Bar (Clean, Light, Monolithic with Architectural Close) -->
       <div class="shrink-0 bg-white px-6 sm:px-8 pt-6 sm:pt-7 pb-5 border-b border-slate-100 flex items-start justify-between gap-4 relative z-10">
         <div>
           <!-- Subtle Editorial Kicker & Accreditation Status -->
-          <div class="flex flex-wrap sm:flex-nowrap items-center gap-1.5 sm:gap-2 mb-2">
-            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-brand-gold/10 text-brand-gold text-[10px] sm:text-[11px] font-bold uppercase tracking-wider whitespace-nowrap shrink-0">
-              <span class="w-1.5 h-1.5 rounded-full bg-brand-gold animate-pulse shrink-0"></span>
+          <div class="flex flex-wrap sm:flex-nowrap items-center gap-2 mb-2">
+            <span class="inline-flex items-center gap-2 text-brand-gold text-[11px] sm:text-xs font-sans font-bold uppercase tracking-[0.2em] whitespace-nowrap shrink-0">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-gold shrink-0"></span>
               Forward Sourcing Timeline
             </span>
             <span class="text-[11px] text-slate-300 hidden sm:inline">·</span>
@@ -2965,8 +3081,8 @@
           </p>
         </div>
 
-        <!-- Minimalist Floating Circular Close Button -->
-        <button type="button" onclick="closeHarvestModal()" class="w-10 h-10 rounded-full border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-500 hover:text-slate-900 transition-all flex items-center justify-center cursor-pointer shrink-0 shadow-2xs active:scale-95 group mt-0.5" aria-label="Close Harvest Timeline">
+        <!-- Minimalist Architectural Close Button (44x44px Touch Target) -->
+        <button type="button" onclick="closeHarvestModal()" class="w-11 h-11 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-500 hover:text-slate-900 transition-all flex items-center justify-center cursor-pointer shrink-0 shadow-2xs active:scale-95 group mt-0.5" aria-label="Close Harvest Timeline">
           <i data-lucide="x" class="w-4 h-4 stroke-[2] transition-transform duration-200 group-hover:rotate-90"></i>
         </button>
       </div>
@@ -3085,7 +3201,27 @@
                   <td class="p-1 text-center min-w-[46px]"><span class="inline-block py-0.5 px-1.5 rounded-md bg-amber-50 text-amber-800 font-bold text-[10px]">Booking</span></td>
                 </tr>
 
-                <!-- Row 4: Cassia Cinnamon -->
+                <!-- Row 4: Vietnamese Dried Chili -->
+                <tr class="group hover:bg-slate-50/70 transition-colors">
+                  <td class="py-3 sm:py-3.5 px-3.5 sm:px-4 sticky left-0 z-10 bg-white group-hover:bg-slate-50 transition-colors border-r border-slate-200/80 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.06)]">
+                    <div class="font-bold text-slate-900 text-xs">Vietnamese Dried Chili</div>
+                    <div class="text-[10px] text-slate-500">Quang Ngai · Binh Dinh (60k–90k SHU)</div>
+                  </td>
+                  <td class="p-1 text-center min-w-[46px]"><span class="inline-block py-0.5 px-1.5 rounded-md bg-amber-50 text-amber-800 font-bold text-[10px]">Booking</span></td>
+                  <td class="p-1 text-center min-w-[46px]"><span class="inline-block py-0.5 px-1.5 rounded-md bg-amber-50 text-amber-800 font-bold text-[10px]">Booking</span></td>
+                  <td class="p-1 text-center min-w-[46px]"><span class="inline-block py-0.5 px-1.5 rounded-md bg-emerald-50 text-emerald-800 font-bold text-[10px]">Harvest</span></td>
+                  <td class="p-1 text-center min-w-[46px]"><span class="inline-block py-0.5 px-1.5 rounded-md bg-emerald-50 text-emerald-800 font-bold text-[10px]">Harvest</span></td>
+                  <td class="p-1 text-center min-w-[46px]"><span class="inline-block py-0.5 px-1.5 rounded-md bg-emerald-50 text-emerald-800 font-bold text-[10px]">Harvest</span></td>
+                  <td class="p-1 text-center min-w-[46px]"><span class="inline-block py-0.5 px-1.5 rounded-md bg-emerald-50 text-emerald-800 font-bold text-[10px]">Harvest</span></td>
+                  <td class="p-1 text-center min-w-[46px]"><span class="text-slate-400 text-[10px]">Cold Store</span></td>
+                  <td class="p-1 text-center min-w-[46px]"><span class="text-slate-400 text-[10px]">Cold Store</span></td>
+                  <td class="p-1 text-center min-w-[46px]"><span class="text-slate-400 text-[10px]">Stock</span></td>
+                  <td class="p-1 text-center min-w-[46px]"><span class="text-slate-400 text-[10px]">Stock</span></td>
+                  <td class="p-1 text-center min-w-[46px]"><span class="text-slate-400 text-[10px]">Stock</span></td>
+                  <td class="p-1 text-center min-w-[46px]"><span class="text-slate-400 text-[10px]">Stock</span></td>
+                </tr>
+
+                <!-- Row 5: Cassia Cinnamon -->
                 <tr class="group hover:bg-slate-50/70 transition-colors">
                   <td class="py-3 sm:py-3.5 px-3.5 sm:px-4 sticky left-0 z-10 bg-white group-hover:bg-slate-50 transition-colors border-r border-slate-200/80 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.06)]">
                     <div class="font-bold text-slate-900 text-xs">Cassia Cinnamon</div>
@@ -3105,7 +3241,7 @@
                   <td class="p-1 text-center min-w-[46px]"><span class="text-slate-400 text-[10px]">Stock</span></td>
                 </tr>
 
-                <!-- Row 5: Star Anise -->
+                <!-- Row 6: Star Anise -->
                 <tr class="group hover:bg-slate-50/70 transition-colors">
                   <td class="py-3 sm:py-3.5 px-3.5 sm:px-4 sticky left-0 z-10 bg-white group-hover:bg-slate-50 transition-colors border-r border-slate-200/80 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.06)]">
                     <div class="font-bold text-slate-900 text-xs">Star Anise</div>
@@ -3125,7 +3261,27 @@
                   <td class="p-1 text-center min-w-[46px]"><span class="text-slate-400 text-[10px]">Stock</span></td>
                 </tr>
 
-                <!-- Row 6: Raw Cashew Kernels -->
+                <!-- Row 7: Turmeric Finger & Powder -->
+                <tr class="group hover:bg-slate-50/70 transition-colors">
+                  <td class="py-3 sm:py-3.5 px-3.5 sm:px-4 sticky left-0 z-10 bg-white group-hover:bg-slate-50 transition-colors border-r border-slate-200/80 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.06)]">
+                    <div class="font-bold text-slate-900 text-xs">Turmeric Finger &amp; Powder</div>
+                    <div class="text-[10px] text-slate-500">Central Highlands (Curcumin ≥ 5%)</div>
+                  </td>
+                  <td class="p-1 text-center min-w-[46px]"><span class="inline-block py-0.5 px-1.5 rounded-md bg-emerald-50 text-emerald-800 font-bold text-[10px]">Harvest</span></td>
+                  <td class="p-1 text-center min-w-[46px]"><span class="inline-block py-0.5 px-1.5 rounded-md bg-emerald-50 text-emerald-800 font-bold text-[10px]">Harvest</span></td>
+                  <td class="p-1 text-center min-w-[46px]"><span class="inline-block py-0.5 px-1.5 rounded-md bg-emerald-50 text-emerald-800 font-bold text-[10px]">Harvest</span></td>
+                  <td class="p-1 text-center min-w-[46px]"><span class="text-slate-400 text-[10px]">Polished</span></td>
+                  <td class="p-1 text-center min-w-[46px]"><span class="text-slate-400 text-[10px]">Stock</span></td>
+                  <td class="p-1 text-center min-w-[46px]"><span class="text-slate-400 text-[10px]">Stock</span></td>
+                  <td class="p-1 text-center min-w-[46px]"><span class="text-slate-400 text-[10px]">Stock</span></td>
+                  <td class="p-1 text-center min-w-[46px]"><span class="text-slate-400 text-[10px]">Stock</span></td>
+                  <td class="p-1 text-center min-w-[46px]"><span class="text-slate-400 text-[10px]">Stock</span></td>
+                  <td class="p-1 text-center min-w-[46px]"><span class="text-slate-400 text-[10px]">Stock</span></td>
+                  <td class="p-1 text-center min-w-[46px]"><span class="inline-block py-0.5 px-1.5 rounded-md bg-amber-50 text-amber-800 font-bold text-[10px]">Booking</span></td>
+                  <td class="p-1 text-center min-w-[46px]"><span class="inline-block py-0.5 px-1.5 rounded-md bg-amber-50 text-amber-800 font-bold text-[10px]">Booking</span></td>
+                </tr>
+
+                <!-- Row 8: Raw Cashew Kernels -->
                 <tr class="group hover:bg-slate-50/70 transition-colors">
                   <td class="py-3 sm:py-3.5 px-3.5 sm:px-4 sticky left-0 z-10 bg-white group-hover:bg-slate-50 transition-colors border-r border-slate-200/80 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.06)]">
                     <div class="font-bold text-slate-900 text-xs">Raw Cashew Kernels</div>
@@ -3143,6 +3299,26 @@
                   <td class="p-1 text-center min-w-[46px]"><span class="text-slate-400 text-[10px]">Stock</span></td>
                   <td class="p-1 text-center min-w-[46px]"><span class="text-slate-400 text-[10px]">Stock</span></td>
                   <td class="p-1 text-center min-w-[46px]"><span class="text-slate-400 text-[10px]">Stock</span></td>
+                </tr>
+
+                <!-- Row 9: Desiccated Coconut -->
+                <tr class="group hover:bg-slate-50/70 transition-colors">
+                  <td class="py-3 sm:py-3.5 px-3.5 sm:px-4 sticky left-0 z-10 bg-white group-hover:bg-slate-50 transition-colors border-r border-slate-200/80 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.06)]">
+                    <div class="font-bold text-slate-900 text-xs">Desiccated Coconut</div>
+                    <div class="text-[10px] text-slate-500">Ben Tre Mekong (High Fat ≥ 65%)</div>
+                  </td>
+                  <td class="p-1 text-center min-w-[46px]"><span class="inline-block py-0.5 px-1.5 rounded-md bg-emerald-50 text-emerald-800 font-bold text-[10px]">Harvest</span></td>
+                  <td class="p-1 text-center min-w-[46px]"><span class="inline-block py-0.5 px-1.5 rounded-md bg-emerald-50 text-emerald-800 font-bold text-[10px]">Harvest</span></td>
+                  <td class="p-1 text-center min-w-[46px]"><span class="inline-block py-0.5 px-1.5 rounded-md bg-emerald-50 text-emerald-800 font-bold text-[10px]">Harvest</span></td>
+                  <td class="p-1 text-center min-w-[46px]"><span class="inline-block py-0.5 px-1.5 rounded-md bg-emerald-50 text-emerald-800 font-bold text-[10px]">Harvest</span></td>
+                  <td class="p-1 text-center min-w-[46px]"><span class="inline-block py-0.5 px-1.5 rounded-md bg-emerald-50 text-emerald-800 font-bold text-[10px]">Harvest</span></td>
+                  <td class="p-1 text-center min-w-[46px]"><span class="inline-block py-0.5 px-1.5 rounded-md bg-emerald-50 text-emerald-800 font-bold text-[10px]">Harvest</span></td>
+                  <td class="p-1 text-center min-w-[46px]"><span class="inline-block py-0.5 px-1.5 rounded-md bg-emerald-50 text-emerald-800 font-bold text-[10px]">Harvest</span></td>
+                  <td class="p-1 text-center min-w-[46px]"><span class="inline-block py-0.5 px-1.5 rounded-md bg-emerald-50 text-emerald-800 font-bold text-[10px]">Harvest</span></td>
+                  <td class="p-1 text-center min-w-[46px]"><span class="inline-block py-0.5 px-1.5 rounded-md bg-amber-50 text-amber-800 font-bold text-[10px]">Booking</span></td>
+                  <td class="p-1 text-center min-w-[46px]"><span class="inline-block py-0.5 px-1.5 rounded-md bg-amber-50 text-amber-800 font-bold text-[10px]">Booking</span></td>
+                  <td class="p-1 text-center min-w-[46px]"><span class="inline-block py-0.5 px-1.5 rounded-md bg-emerald-50 text-emerald-800 font-bold text-[10px]">Harvest</span></td>
+                  <td class="p-1 text-center min-w-[46px]"><span class="inline-block py-0.5 px-1.5 rounded-md bg-emerald-50 text-emerald-800 font-bold text-[10px]">Harvest</span></td>
                 </tr>
 
               </tbody>

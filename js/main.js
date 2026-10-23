@@ -10,15 +10,30 @@
   'use strict';
 
   // ---------------------------------------------------------------------------
-  // 1. LUCIDE ICONS INITIALIZATION
+  // 1. LUCIDE ICONS INITIALIZATION (Resilient with CDN Retry Polling)
   // ---------------------------------------------------------------------------
   function initIcons() {
-    if (window.lucide && typeof window.lucide.createIcons === 'function') {
-      window.lucide.createIcons({
-        attrs: {
-          'stroke-width': 1.65
+    function render() {
+      if (window.lucide && typeof window.lucide.createIcons === 'function') {
+        window.lucide.createIcons({
+          attrs: {
+            'stroke-width': 1.65
+          }
+        });
+        return true;
+      }
+      return false;
+    }
+
+    if (!render()) {
+      window.addEventListener('load', render);
+      let attempts = 0;
+      const interval = setInterval(() => {
+        attempts++;
+        if (render() || attempts >= 30) {
+          clearInterval(interval);
         }
-      });
+      }, 80);
     }
   }
 
@@ -341,22 +356,26 @@
       ]
     },
     chili: {
-      title: 'Vietnamese Dried Chili (Whole & Crushed Flakes)',
-      botanical: 'Capsicum Frutescens / Annuum',
-      origin: 'Dong Thap, Tien Giang, Gia Lai',
-      grade: 'Export Grade A · Stemless / With Stem',
-      moq: "1 x 20' FCL (8.0 MT) / 40' HC (16.0 MT)",
-      eudr: 'Traceable Farm Procurement',
-      packing: '10kg / 20kg Carton boxes or PP woven bags with inner liner',
-      terms: 'CIF European Ports / FOB Cat Lai Port',
-      dropdownValue: 'Black Pepper Steam Sterilized',
+      title: 'Vietnamese Dried Chili (Export Grade A)',
+      botanical: 'Capsicum annuum L. var. acuminatum / Capsicum frutescens L.',
+      origin: 'Dong Thap, Tien Giang, Gia Lai (Vietnam Origin)',
+      grade: 'Whole Stemless, Whole With Stem, Crushed Flakes, Powder',
+      moq: "1 x 20' FCL (8.0 MT) / 40' HC (16.0 MT) · Mixed FCL Available",
+      eudr: 'Traceable Farm Cooperative Procurement',
+      packing: '25kg Woven PP/PE bags, 25kg Kraft paper barrier sacks, or 10kg export cartons',
+      terms: 'CIF Hamburg, Rotterdam, Antwerp / FOB Cat Lai Port',
+      dropdownValue: 'Vietnamese Dried Chili',
       table: [
-        { param: 'Pungency / Capsaicin', standard: 'Min. 60,000 – 90,000 SHU (Scoville)', test: 'HPLC' },
-        { param: 'Moisture Content', standard: 'Max. 12.0%', test: 'Vacuum Oven' },
-        { param: 'Aflatoxin (B1+B2+G1+G2)', standard: 'Max. 10.0 ppb (EU Regulation)', test: 'HPLC-FLD / ISO 17025' },
-        { param: 'Ochratoxin A', standard: 'Max. 20.0 ppb (EU Limits)', test: 'ISO 17025 Verified' },
-        { param: 'Foreign Matter', standard: 'Max. 0.5%', test: 'Optical Inspection' },
-        { param: 'Microbiology (HTST)', standard: 'Salmonella Negative / 25g', test: 'ISO 6579-1' }
+        { param: 'Pungency / Capsaicin Content', standard: 'Min. 60,000 – 90,000 SHU (HPLC Verified)', test: 'ISO 3513 / HPLC' },
+        { param: 'Moisture Content', standard: 'Max. 12.0%', test: 'ISO 939 / Vacuum Oven' },
+        { param: 'Total Ash & Acid Insoluble', standard: 'Total Ash ≤ 8.0% · Acid Insoluble ≤ 1.0%', test: 'ISO 928 / ISO 930' },
+        { param: 'Aflatoxin (B1 + Total)', standard: 'B1 ≤ 5.0 ppb · Total (B1+B2+G1+G2) ≤ 10.0 ppb', test: 'HPLC-FLD / Immunoaffinity (EU 2023/915)' },
+        { param: 'Ochratoxin A (OTA)', standard: 'Max. 20.0 ppb (EU Regulation Limit)', test: 'ISO 17025 Accredited Laboratory' },
+        { param: 'Heavy Metals (Pb & Cd)', standard: 'Lead (Pb) ≤ 2.0 ppm · Cadmium (Cd) ≤ 1.0 ppm', test: 'ICP-MS / Reg (EU) 2023/915' },
+        { param: 'Pesticide Residue Limits (MRLs)', standard: '100% Compliant with EC Regulation 396/2005', test: 'Multi-Residue GC-MS/MS & LC-MS/MS (>500)' },
+        { param: 'Extraneous Foreign Matter', standard: 'Max. 0.5% (Destoned & Optical Laser Sorted)', test: 'ASTA Cleanliness Limit' },
+        { param: 'Salmonella spp.', standard: 'ABSENT in 25g (HTST 5-Log Microbial Kill)', test: 'EN ISO 6579-1' },
+        { param: 'Sudan Dyes (I, II, III, IV)', standard: 'NOT DETECTED (< 10 ppb limit of quantification)', test: 'LC-MS/MS Screen' }
       ]
     },
     'star-anise': {
@@ -834,12 +853,17 @@
     if (harvestModal && e.target === harvestModal) {
       closeHarvestModal();
     }
+    const coaModal = document.getElementById('coaModal');
+    if (coaModal && e.target === coaModal) {
+      closeCoaModal();
+    }
   });
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       closeSpecModal();
       closeHarvestModal();
+      closeCoaModal();
     }
   });
 
@@ -851,6 +875,14 @@
   window.openHarvestModal = openHarvestModal;
   window.closeHarvestModal = closeHarvestModal;
   window.inquireFromHarvestModal = inquireFromHarvestModal;
+  window.openCoaModal = openCoaModal;
+  window.closeCoaModal = closeCoaModal;
+  window.selectCommodityGrade = selectCommodityGrade;
+  window.selectChiliGrade = selectChiliGrade;
+  window.requestFlakeSample = requestFlakeSample;
+  window.verifySudanAndCoa = verifySudanAndCoa;
+  window.highlightTdsRow = highlightTdsRow;
+  window.showToast = showToast;
 
   // ---------------------------------------------------------------------------
   // 7. INTERACTIVE RFQ FORM & CUSTOM DROPDOWN SUITE
@@ -1141,12 +1173,14 @@
           }
         }
 
-        // 4. Validate Sample Address (Only if 500g physical sample is requested)
+        // 4. Validate Sample Address (Only if physical sample is requested)
         const isSampleRequested = sampleToggle?.checked || false;
+        const sampleBoxText = document.getElementById('sampleRequestContainer')?.textContent || '';
+        const sampleWeightLabel = sampleBoxText.includes('250g') ? '250g' : '500g';
         if (isSampleRequested && (!sampleAddressInput || !sampleAddressInput.value.trim())) {
           hasError = true;
           if (sampleAddressInput) {
-            showFieldError(sampleAddressInput, 'Please provide facility delivery address for 500g express sample dispatch.');
+            showFieldError(sampleAddressInput, `Please provide facility delivery address for ${sampleWeightLabel} express sample dispatch.`);
             if (!firstInvalidElement) firstInvalidElement = sampleAddressInput;
           }
         }
@@ -1284,7 +1318,7 @@
                       <i data-lucide="flask-conical" class="w-3.5 h-3.5"></i>
                     </div>
                     <div>
-                      <div class="font-bold text-slate-900">500g Courier Lab Sample Scheduled (48h Dispatch)</div>
+                      <div class="font-bold text-slate-900">${sampleWeightLabel} Courier Lab Sample Scheduled (48h Dispatch)</div>
                       <div class="text-[11px] text-slate-600 mt-0.5 leading-relaxed">
                         Facility: <span class="font-semibold text-slate-800">${sampleAddress || company}</span> · Objective: ${sampleObjective}. A DHL/FedEx tracking number will be issued to ${email}.
                       </div>
@@ -1430,7 +1464,7 @@
   // 8. MULTI-LAYER INTERACTIVE PARALLAX ENGINE (Mouse Cursor Tracking)
   // ---------------------------------------------------------------------------
   function initHeroParallax() {
-    const hero = document.getElementById('heroSection');
+    const hero = document.getElementById('heroSection') || document.getElementById('productHero');
     if (!hero) return;
 
     const layers = hero.querySelectorAll('.parallax-layer');
@@ -2110,20 +2144,32 @@
       }
     });
 
-    // 3. Update Editorial Content (CSS Grid stack col-start-1 row-start-1: ZERO JITTER / ZERO HEIGHT JUMP)
-    contents.forEach((c, i) => {
-      if (i === certPanoramaCurrent) {
-        c.classList.remove('opacity-0', 'pointer-events-none', 'z-0');
-        c.classList.add('opacity-100', 'pointer-events-auto', 'z-10');
-      } else {
-        c.classList.remove('opacity-100', 'pointer-events-auto', 'z-10');
-        c.classList.add('opacity-0', 'pointer-events-none', 'z-0');
-      }
-    });
+    // 3. Update Editorial Content (Only if multiple contents exist, otherwise keep content static)
+    if (contents.length > 1) {
+      contents.forEach((c, i) => {
+        if (i === certPanoramaCurrent) {
+          c.classList.remove('opacity-0', 'pointer-events-none', 'z-0');
+          c.classList.add('opacity-100', 'pointer-events-auto', 'z-10');
+        } else {
+          c.classList.remove('opacity-100', 'pointer-events-auto', 'z-10');
+          c.classList.add('opacity-0', 'pointer-events-none', 'z-0');
+        }
+      });
+    }
 
-    // 4. Update Indicators with standard name and step
-    if (currentStep && CERT_STANDARDS[certPanoramaCurrent]) {
-      currentStep.textContent = CERT_STANDARDS[certPanoramaCurrent];
+    // 4. Update Indicators with standard name or image caption
+    if (currentStep) {
+      const activeImg = images[certPanoramaCurrent];
+      const imgCaption = activeImg ? activeImg.getAttribute('data-caption') : null;
+      if (contents.length > 1) {
+        const activeContent = contents[certPanoramaCurrent];
+        const customTitle = activeContent ? activeContent.getAttribute('data-step-title') : null;
+        currentStep.textContent = customTitle || CERT_STANDARDS[certPanoramaCurrent] || '';
+      } else if (imgCaption) {
+        currentStep.textContent = imgCaption;
+      } else {
+        currentStep.textContent = `0${certPanoramaCurrent + 1}`;
+      }
     }
   }
 
@@ -2215,21 +2261,32 @@
     const WHEEL_SPEED = 0.95; // Natural displacement multiplier
 
     function getMaxScroll() {
-      return Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+      const scrollEl = document.scrollingElement || document.documentElement;
+      return Math.max(0, Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, scrollEl.scrollHeight) - window.innerHeight);
     }
 
-    function isInnerScrollable(target) {
+    function isInnerScrollable(target, e) {
       if (!target) return false;
       // Modals & Menu Takeover
       if (target.closest('#fullScreenMenu, #specSheetModal, #harvestModal, [role="dialog"], [data-no-smooth-scroll]')) {
         return true;
       }
-      // Vertically scrollable inner containers
+      // Vertically scrollable inner containers only (must have vertical scroll room)
       let el = target;
       while (el && el !== document.body && el !== document.documentElement) {
         const style = window.getComputedStyle(el);
         const overflowY = style.overflowY;
-        if ((overflowY === 'auto' || overflowY === 'scroll') && el.scrollHeight > el.clientHeight) {
+        const canScrollY = (overflowY === 'auto' || overflowY === 'scroll') && (el.scrollHeight - el.clientHeight >= 8);
+        
+        if (canScrollY) {
+          if (e && typeof e.deltaY === 'number') {
+            const atTop = el.scrollTop <= 0 && e.deltaY < 0;
+            const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 1 && e.deltaY > 0;
+            if (atTop || atBottom) {
+              el = el.parentElement;
+              continue; // Reached inner boundary, allow page scroll!
+            }
+          }
           return true;
         }
         el = el.parentElement;
@@ -2242,11 +2299,11 @@
 
       if (Math.abs(diff) > 0.35) {
         currentY += diff * EASE;
-        window.scrollTo(0, currentY);
+        window.scrollTo({ top: currentY, behavior: 'instant' });
         rafId = requestAnimationFrame(update);
       } else {
         currentY = targetY;
-        window.scrollTo(0, targetY);
+        window.scrollTo({ top: targetY, behavior: 'instant' });
         isMoving = false;
         rafId = null;
       }
@@ -2254,7 +2311,7 @@
 
     function onWheel(e) {
       // Respect inner scroll containers and full screen takeover states
-      if (isInnerScrollable(e.target)) return;
+      if (isInnerScrollable(e.target, e)) return;
       if (document.body.classList.contains('overflow-hidden')) return;
 
       // Prevent jerky native browser scroll step
@@ -2296,7 +2353,7 @@
 
     // Keyboard keys (ArrowUp, ArrowDown, PageUp, PageDown, Space)
     window.addEventListener('keydown', (e) => {
-      if (isInnerScrollable(document.activeElement) || document.body.classList.contains('overflow-hidden')) return;
+      if (isInnerScrollable(document.activeElement, e) || document.body.classList.contains('overflow-hidden')) return;
       const tag = (document.activeElement.tagName || '').toLowerCase();
       if (['input', 'textarea', 'select'].includes(tag) || document.activeElement.isContentEditable) return;
 
@@ -2337,9 +2394,15 @@
       const targetEl = document.querySelector(href);
       if (targetEl) {
         e.preventDefault();
-        const headerOffset = 72; // Deduct compact sticky navbar height
+        const fastSwitcher = document.getElementById('commodityFastSwitcher');
+        const switcherOffset = fastSwitcher ? fastSwitcher.offsetHeight : 0;
+        const headerOffset = 64 + switcherOffset + 16; // Dynamically accounts for both sticky bars
         const destY = targetEl.getBoundingClientRect().top + window.scrollY - headerOffset;
-        window.smoothScrollTo(destY);
+        if (window.smoothScrollTo) {
+          window.smoothScrollTo(destY);
+        } else {
+          window.scrollTo({ top: destY, behavior: 'smooth' });
+        }
 
         if (history.pushState) {
           history.pushState(null, '', href);
@@ -2359,18 +2422,25 @@
     gsap.registerPlugin(ScrollTrigger);
 
     // 1. Hero Section Cinematic Stagger Entrance (Runs immediately on page load)
-    const heroSection = document.getElementById('heroSection');
+    const heroSection = document.getElementById('heroSection') || document.getElementById('productHero');
     if (heroSection) {
-      const heroKicker = heroSection.querySelector('.text-brand-gold.uppercase');
+      const heroBreadcrumb = heroSection.querySelector('nav[aria-label="Breadcrumb"]');
+      const heroKicker = heroSection.querySelector('[class*="tracking-[0.2em]"]');
       const heroH1 = heroSection.querySelector('h1');
       const heroDesc = heroSection.querySelector('p');
-      const heroCtas = heroSection.querySelectorAll('.flex.flex-wrap.items-center.gap-3 a');
-      const heroPillars = heroSection.querySelectorAll('a.group\\/pillar');
+      // Target exclusively the CTA buttons container in the main hero deck
+      const heroCtas = heroSection.querySelectorAll('p ~ div.flex > a, p ~ div.flex > button');
+      // Target all pillars in the docked bottom proof bar (both <a> in index.html and <div> in product page)
+      const heroPillars = heroSection.querySelectorAll('.border-t .grid > a, .border-t .grid > div');
+      const routeIndicator = heroSection.querySelector('.border-t .border-l');
 
       const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
+      if (heroBreadcrumb) {
+        heroTl.fromTo(heroBreadcrumb, { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 }, '+=0.05');
+      }
       if (heroKicker) {
-        heroTl.fromTo(heroKicker, { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7 }, '+=0.1');
+        heroTl.fromTo(heroKicker, { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7 }, heroBreadcrumb ? '-=0.35' : '+=0.1');
       }
       if (heroH1) {
         heroTl.fromTo(heroH1, { y: 36, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, ease: 'power4.out' }, '-=0.45');
@@ -2384,10 +2454,13 @@
       if (heroPillars && heroPillars.length) {
         heroTl.fromTo(heroPillars, { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, stagger: 0.08 }, '-=0.35');
       }
+      if (routeIndicator) {
+        heroTl.fromTo(routeIndicator, { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.65 }, '-=0.5');
+      }
     }
 
-    // 2. Section Headings Stagger Reveal (Commodities, About, Certifications, RFQ)
-    const majorSections = ['#commodities', '#about', '#certifications', '#rfq'];
+    // 2. Section Headings Stagger Reveal (Commodities, About, Certifications, RFQ & Product Page Sections)
+    const majorSections = ['#commodities', '#about', '#certifications', '#rfq', '#productSpecimen', '#productGrades', '#productTds', '#productPipeline', '#crossCommodities'];
     majorSections.forEach((sel) => {
       const sec = document.querySelector(sel);
       if (!sec) return;
@@ -2538,6 +2611,368 @@
   }
 
   // ---------------------------------------------------------------------------
+  // FAST PRODUCT NAVIGATION SLIDER (Product Details Sub-Hero Quick Switcher)
+  // ---------------------------------------------------------------------------
+  function initProductFastNav() {
+    const track = document.getElementById('productFastTrack');
+    const prevBtn = document.getElementById('productFastPrev');
+    const nextBtn = document.getElementById('productFastNext');
+    if (!track) return;
+
+    function updateArrows() {
+      if (!prevBtn || !nextBtn) return;
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      if (maxScroll <= 5) {
+        prevBtn.classList.add('opacity-40', 'pointer-events-none');
+        nextBtn.classList.add('opacity-40', 'pointer-events-none');
+        return;
+      }
+      if (track.scrollLeft <= 5) {
+        prevBtn.classList.add('opacity-40', 'pointer-events-none');
+      } else {
+        prevBtn.classList.remove('opacity-40', 'pointer-events-none');
+      }
+      if (track.scrollLeft >= maxScroll - 5) {
+        nextBtn.classList.add('opacity-40', 'pointer-events-none');
+      } else {
+        nextBtn.classList.remove('opacity-40', 'pointer-events-none');
+      }
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        track.scrollBy({ left: -260, behavior: 'smooth' });
+      });
+    }
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        track.scrollBy({ left: 260, behavior: 'smooth' });
+      });
+    }
+
+    track.addEventListener('scroll', updateArrows, { passive: true });
+    window.addEventListener('resize', updateArrows);
+    // Initial check
+    setTimeout(updateArrows, 100);
+
+    // Drag-to-scroll support for desktop mouse
+    let isDown = false;
+    let startX = 0;
+    let scrollLeft = 0;
+
+    track.addEventListener('mousedown', (e) => {
+      isDown = true;
+      track.classList.add('cursor-grabbing');
+      startX = e.pageX - track.offsetLeft;
+      scrollLeft = track.scrollLeft;
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (!isDown) return;
+      isDown = false;
+      track.classList.remove('cursor-grabbing');
+    });
+
+    track.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - track.offsetLeft;
+      const walk = (x - startX) * 1.5;
+      track.scrollLeft = scrollLeft - walk;
+    });
+  }
+
+  // ---------------------------------------------------------------------------
+  // B2B INTERACTIVE SUITE (Toast, Grade Inquiries, COA & Sample Shortcuts)
+  // ---------------------------------------------------------------------------
+  function showToast(title, message) {
+    let toastContainer = document.getElementById('belkernToastContainer');
+    if (!toastContainer) {
+      toastContainer = document.createElement('div');
+      toastContainer.id = 'belkernToastContainer';
+      toastContainer.className = 'fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none max-w-sm w-full px-4';
+      document.body.appendChild(toastContainer);
+    }
+
+    const toast = document.createElement('div');
+    toast.className = 'pointer-events-auto bg-brand-dark/95 backdrop-blur-md text-white p-3.5 sm:p-4 rounded-xl border border-slate-700/80 shadow-2xl flex items-start gap-3 transition-all duration-300 transform translate-y-2 opacity-0';
+    toast.innerHTML = `
+      <div class="w-6 h-6 rounded-lg bg-brand-gold/20 text-brand-gold flex items-center justify-center shrink-0 mt-0.5">
+        <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+      </div>
+      <div class="flex-1 min-w-0">
+        <h4 class="text-xs font-bold text-white leading-tight">${title}</h4>
+        ${message ? `<p class="text-[11px] text-slate-300 mt-0.5 leading-snug">${message}</p>` : ''}
+      </div>
+      <button type="button" class="text-slate-400 hover:text-white shrink-0 p-1 cursor-pointer" onclick="this.parentElement.remove()">
+        <i data-lucide="x" class="w-3.5 h-3.5"></i>
+      </button>
+    `;
+
+    toastContainer.appendChild(toast);
+    if (window.lucide && typeof window.lucide.createIcons === 'function') {
+      window.lucide.createIcons();
+    }
+
+    requestAnimationFrame(() => {
+      toast.classList.remove('translate-y-2', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+    });
+
+    setTimeout(() => {
+      toast.classList.add('opacity-0', 'translate-y-2');
+      setTimeout(() => toast.remove(), 300);
+    }, 4500);
+  }
+
+  function selectCommodityGrade(commodityName, gradeName, volumePreset) {
+    const volumeInput = document.getElementById('volumeInput');
+    if (volumeInput && volumePreset) {
+      volumeInput.value = volumePreset;
+    }
+
+    const commodityDropdown = document.querySelector('[data-dropdown="commodity"]');
+    if (commodityDropdown) {
+      const label = commodityDropdown.querySelector('.custom-dropdown-label');
+      if (label) {
+        label.textContent = `${commodityName} · ${gradeName}`;
+        label.classList.remove('text-slate-500');
+        label.classList.add('text-slate-900', 'font-semibold');
+      }
+
+      // Also select matching option in hidden select
+      const select = document.getElementById('commoditySelect');
+      if (select) {
+        for (let i = 0; i < select.options.length; i++) {
+          if (select.options[i].text.includes(commodityName) || select.options[i].value.includes(commodityName)) {
+            select.selectedIndex = i;
+            break;
+          }
+        }
+      }
+    }
+
+    const rfq = document.getElementById('rfq');
+    if (rfq) {
+      rfq.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const container = document.getElementById('inquiryFormContainer');
+      if (container) {
+        container.classList.add('ring-2', 'ring-brand-gold');
+        setTimeout(() => container.classList.remove('ring-2', 'ring-brand-gold'), 1800);
+      }
+    }
+
+    showToast(`Configured RFQ: ${gradeName}`, 'Selected grade & standard FCL volume pre-filled below.');
+  }
+
+  function selectChiliGrade(gradeName, volumePreset) {
+    selectCommodityGrade('Vietnamese Dried Chili', gradeName, volumePreset);
+  }
+
+  function requestFlakeSample() {
+    const sampleToggle = document.getElementById('sampleRequestToggle');
+    if (sampleToggle) {
+      sampleToggle.checked = true;
+      if (typeof window.toggleSampleFields === 'function') {
+        window.toggleSampleFields(true);
+      }
+    }
+
+    const commodityDropdown = document.querySelector('[data-dropdown="commodity"]');
+    if (commodityDropdown) {
+      const label = commodityDropdown.querySelector('.custom-dropdown-label');
+      if (label) {
+        label.textContent = 'Vietnamese Dried Chili · Crushed Flakes (5–15 Mesh)';
+        label.classList.remove('text-slate-500');
+        label.classList.add('text-slate-900', 'font-semibold');
+      }
+    }
+
+    const objSelect = document.getElementById('sampleObjectiveSelect');
+    const objDropdown = document.querySelector('[data-dropdown="sampleObjective"]');
+    if (objDropdown) {
+      const label = objDropdown.querySelector('.custom-dropdown-label');
+      if (label) label.textContent = 'Physical Grading, Moisture & Color ASTA';
+      const opt = objDropdown.querySelector('[data-value="Physical Grading, Moisture & Color ASTA"]');
+      if (opt) {
+        objDropdown.querySelectorAll('.custom-dropdown-option').forEach(o => {
+          o.classList.remove('bg-brand-gold/10');
+          const chk = o.querySelector('.custom-option-check');
+          if (chk) chk.classList.add('hidden');
+        });
+        opt.classList.add('bg-brand-gold/10');
+        const chk = opt.querySelector('.custom-option-check');
+        if (chk) chk.classList.remove('hidden');
+      }
+    }
+    if (objSelect) {
+      objSelect.value = 'Physical Grading, Moisture & Color ASTA';
+    }
+
+    const sampleContainer = document.getElementById('sampleRequestContainer');
+    if (sampleContainer) {
+      sampleContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      sampleContainer.classList.add('ring-2', 'ring-brand-gold');
+      setTimeout(() => sampleContainer.classList.remove('ring-2', 'ring-brand-gold'), 1800);
+      const addrInput = document.getElementById('sampleAddressInput');
+      if (addrInput) {
+        setTimeout(() => addrInput.focus(), 600);
+      }
+    }
+
+    showToast('Sample Dispatch Activated', 'Crushed Flakes (5–15 Mesh) pre-selected for physical grading.');
+  }
+
+  function highlightTdsRow(rowId) {
+    const row = document.getElementById(rowId || 'tdsSudanRow');
+    if (row) {
+      row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      row.classList.add('bg-amber-100', 'ring-2', 'ring-brand-gold');
+      setTimeout(() => {
+        row.classList.remove('bg-amber-100', 'ring-2', 'ring-brand-gold');
+      }, 2500);
+      showToast('Sudan Dye Screen: NOT DETECTED', 'Verified LC-MS/MS laboratory result (<10 ppb).');
+    }
+  }
+
+  function verifySudanAndCoa() {
+    highlightTdsRow('tdsSudanRow');
+  }
+
+  function openCoaModal() {
+    const modal = document.getElementById('coaModal');
+    const content = document.getElementById('coaModalContent');
+    if (!modal || !content) return;
+
+    modal.classList.remove('opacity-0', 'pointer-events-none');
+    modal.classList.add('opacity-100', 'pointer-events-auto');
+    document.documentElement.classList.add('overflow-hidden');
+    document.body.classList.add('overflow-hidden');
+
+    requestAnimationFrame(() => {
+      content.classList.remove('translate-y-4', 'scale-95', 'opacity-0');
+      content.classList.add('translate-y-0', 'scale-100', 'opacity-100');
+    });
+
+    if (window.lucide && typeof window.lucide.createIcons === 'function') {
+      window.lucide.createIcons();
+    }
+  }
+
+  function closeCoaModal() {
+    const modal = document.getElementById('coaModal');
+    const content = document.getElementById('coaModalContent');
+    if (!modal || !content) return;
+
+    content.classList.add('translate-y-4', 'scale-95', 'opacity-0');
+    content.classList.remove('translate-y-0', 'scale-100', 'opacity-100');
+
+    setTimeout(() => {
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      modal.classList.remove('opacity-100', 'pointer-events-auto');
+      document.documentElement.classList.remove('overflow-hidden');
+      document.body.classList.remove('overflow-hidden');
+    }, 200);
+  }
+
+  // ---------------------------------------------------------------------------
+  // BOTANICAL & COMMERCIAL SPECIMEN PANORAMA (Unified Edge-to-Edge Showcase)
+  // ---------------------------------------------------------------------------
+  const SPECIMEN_STANDARDS = [
+    '01 Whole Dried Pods',
+    '02 De-Stemmed Selection',
+    '03 HTST Sterilization'
+  ];
+
+  let specimenPanoramaCurrent = 0;
+  let specimenPanoramaTimer = null;
+  const SPECIMEN_PANORAMA_DURATION = 6000;
+
+  function switchSpecimenPanorama(index) {
+    const showcase = document.getElementById('specimenPanoramaShowcase');
+    const currentStep = document.getElementById('specimenCurrentStep');
+    if (!showcase) return;
+
+    const total = SPECIMEN_STANDARDS.length;
+    specimenPanoramaCurrent = ((index % total) + total) % total;
+
+    const images = showcase.querySelectorAll('.specimen-panorama-img');
+    const contents = showcase.querySelectorAll('.specimen-panorama-content');
+
+    // 1. Update Images (100% stable cross-fade)
+    images.forEach((img, i) => {
+      if (i === specimenPanoramaCurrent) {
+        img.classList.remove('opacity-0', 'pointer-events-none');
+        img.classList.add('opacity-100');
+      } else {
+        img.classList.remove('opacity-100');
+        img.classList.add('opacity-0', 'pointer-events-none');
+      }
+    });
+
+    // 2. Update Editorial Content (CSS Grid stack col-start-1 row-start-1: zero height shift)
+    contents.forEach((c, i) => {
+      if (i === specimenPanoramaCurrent) {
+        c.classList.remove('opacity-0', 'pointer-events-none', 'z-0');
+        c.classList.add('opacity-100', 'pointer-events-auto', 'z-10');
+      } else {
+        c.classList.remove('opacity-100', 'pointer-events-auto', 'z-10');
+        c.classList.add('opacity-0', 'pointer-events-none', 'z-0');
+      }
+    });
+
+    // 3. Update Indicator step title
+    if (currentStep && SPECIMEN_STANDARDS[specimenPanoramaCurrent]) {
+      currentStep.textContent = SPECIMEN_STANDARDS[specimenPanoramaCurrent];
+    }
+  }
+
+  function stepSpecimenPanorama(delta) {
+    switchSpecimenPanorama(specimenPanoramaCurrent + delta);
+    restartSpecimenPanoramaTimer();
+  }
+
+  function restartSpecimenPanoramaTimer() {
+    if (specimenPanoramaTimer) clearInterval(specimenPanoramaTimer);
+    specimenPanoramaTimer = setInterval(() => {
+      switchSpecimenPanorama(specimenPanoramaCurrent + 1);
+    }, SPECIMEN_PANORAMA_DURATION);
+  }
+
+  window.switchSpecimenPanorama = switchSpecimenPanorama;
+  window.stepSpecimenPanorama = stepSpecimenPanorama;
+
+  function initSpecimenPanorama() {
+    const showcase = document.getElementById('specimenPanoramaShowcase');
+    if (!showcase) return;
+
+    // Pause on hover
+    showcase.addEventListener('mouseenter', () => {
+      if (specimenPanoramaTimer) clearInterval(specimenPanoramaTimer);
+    });
+    showcase.addEventListener('mouseleave', () => {
+      restartSpecimenPanoramaTimer();
+    });
+
+    // Touch swipe support on mobile
+    let touchStartX = 0;
+    showcase.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].clientX;
+    }, { passive: true });
+    showcase.addEventListener('touchend', (e) => {
+      const touchEndX = e.changedTouches[0].clientX;
+      const diffX = touchEndX - touchStartX;
+      if (Math.abs(diffX) > 40) {
+        if (diffX < 0) stepSpecimenPanorama(1);
+        else stepSpecimenPanorama(-1);
+      }
+    }, { passive: true });
+
+    switchSpecimenPanorama(0);
+    restartSpecimenPanoramaTimer();
+  }
+
+  // ---------------------------------------------------------------------------
   // 16. BOOTSTRAP ALL MODULES ON DOM READY
   // ---------------------------------------------------------------------------
   function initApp() {
@@ -2550,6 +2985,8 @@
     initWhoWeAreScrollExpansion();
     initCommodityTrack();
     initCommodityStaggerReveal();
+    initProductFastNav();
+    initSpecimenPanorama();
     initCertPanorama();
     initBackToTop();
     initInertialScroll();
