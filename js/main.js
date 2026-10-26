@@ -1,4 +1,4 @@
-/**
+﻿/**
  * =============================================================================
  * BELKERN GMBH — CORE APPLICATION JAVASCRIPT (js/main.js)
  * Vanilla JavaScript (100% dependency-free beyond Lucide Icons)
@@ -1261,118 +1261,9 @@
         }
 
         setTimeout(() => {
-          // Generate unique RFQ reference
-          const refCode = 'BK-' + Math.floor(100000 + Math.random() * 900000);
-
-          // Render pristine confirmation view inside the form card
-          container.innerHTML = `
-            <div class="py-4 text-center">
-              
-              <!-- Success Hallmark Icon -->
-              <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 border border-emerald-200/80 mx-auto flex items-center justify-center mb-4 shadow-xs">
-                <i data-lucide="check-circle" class="w-7 h-7 stroke-[2]"></i>
-              </div>
-
-              <!-- Header Status Badge -->
-              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold mb-2">
-                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span>RFQ Registered · Frankfurt Commercial Desk</span>
-              </div>
-              
-              <h3 class="text-2xl sm:text-3xl font-black text-brand-dark tracking-tight mb-2">
-                ${isSampleRequested ? 'Container RFQ & Sample Request Transmitted' : 'Container RFQ Transmitted'}
-              </h3>
-              
-              <p class="text-slate-600 text-xs sm:text-sm max-w-md mx-auto leading-relaxed mb-5">
-                Thank you, <span class="font-bold text-slate-900">${company}</span>. Your container inquiry has been securely registered with our Frankfurt trading desk under German commercial jurisdiction.
-              </p>
-
-              <!-- Ingestion Summary Card -->
-              <div class="bg-slate-50/80 rounded-xl border border-slate-200/90 p-4 sm:p-5 text-left mb-5 space-y-2.5">
-                <div class="flex items-center justify-between pb-2.5 border-b border-slate-200/70 text-xs">
-                  <span class="text-slate-500 font-medium">Tracking Reference:</span>
-                  <span class="font-sans font-black text-brand-gold text-sm tracking-wider">${refCode}</span>
-                </div>
-                <div class="grid grid-cols-2 gap-3 text-xs">
-                  <div>
-                    <span class="text-slate-400 block text-[11px] uppercase tracking-wider font-semibold">Commodity Cargo</span>
-                    <span class="font-bold text-slate-800">${commodity}</span>
-                  </div>
-                  <div>
-                    <span class="text-slate-400 block text-[11px] uppercase tracking-wider font-semibold">Target Volume</span>
-                    <span class="font-bold text-slate-800">${volume}</span>
-                  </div>
-                  <div>
-                    <span class="text-slate-400 block text-[11px] uppercase tracking-wider font-semibold">Destination Port (POD)</span>
-                    <span class="font-bold text-slate-800">${pod} (${incoterm})</span>
-                  </div>
-                  <div>
-                    <span class="text-slate-400 block text-[11px] uppercase tracking-wider font-semibold">Corporate Contact</span>
-                    <span class="font-bold text-slate-800 truncate block">${email}</span>
-                  </div>
-                </div>
-
-                ${isSampleRequested ? `
-                  <div class="mt-3 p-3.5 rounded-xl bg-amber-50/80 border border-brand-gold/40 text-amber-950 flex items-start gap-2.5 text-left text-xs">
-                    <div class="w-6 h-6 rounded-lg bg-brand-gold text-white flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
-                      <i data-lucide="flask-conical" class="w-3.5 h-3.5"></i>
-                    </div>
-                    <div>
-                      <div class="font-bold text-slate-900">${sampleWeightLabel} Courier Lab Sample Scheduled (48h Dispatch)</div>
-                      <div class="text-[11px] text-slate-600 mt-0.5 leading-relaxed">
-                        Facility: <span class="font-semibold text-slate-800">${sampleAddress || company}</span> · Objective: ${sampleObjective}. A DHL/FedEx tracking number will be issued to ${email}.
-                      </div>
-                    </div>
-                  </div>
-                ` : ''}
-
-                ${checkedCerts.length > 0 ? `
-                  <div class="pt-2 border-t border-slate-200/70 flex flex-wrap items-center gap-1.5 text-[11px]">
-                    <span class="text-slate-500 font-medium">Requested Accreditations:</span>
-                    ${checkedCerts.map(c => `<span class="px-2 py-0.5 rounded-md bg-white border border-slate-200 text-slate-700 font-semibold">${c}</span>`).join('')}
-                  </div>
-                ` : ''}
-              </div>
-
-              <!-- SLA Guarantee Banner -->
-              <div class="flex items-center justify-center gap-2 p-3 rounded-xl bg-brand-gold/10 border border-brand-gold/30 text-brand-dark text-xs mb-5">
-                <i data-lucide="shield-check" class="w-4 h-4 text-brand-gold shrink-0"></i>
-                <span class="font-medium">Direct trader spec sheet & spot pricing dispatched within <span class="font-bold">24 business hours (CET)</span>.</span>
-              </div>
-
-              <!-- Reset / New Submission Action with Smooth In-Place Restore -->
-              <div>
-                <button type="button" id="resetRFQBtn" class="h-10 sm:h-11 inline-flex items-center justify-center gap-2 px-5 rounded-xl border border-slate-300 hover:border-brand-gold bg-white hover:bg-slate-50 text-slate-800 font-bold text-xs tracking-wide transition-all duration-200 cursor-pointer shadow-2xs">
-                  <i data-lucide="rotate-ccw" class="w-3.5 h-3.5 text-slate-500"></i>
-                  <span>Submit Another Container Inquiry</span>
-                </button>
-              </div>
-
-            </div>
-          `;
-
-          if (window.lucide && typeof window.lucide.createIcons === 'function') {
-            window.lucide.createIcons();
-          }
-
-          // Reset Button Handler: Instant in-place reset without full page reload
-          const resetBtn = document.getElementById('resetRFQBtn');
-          if (resetBtn) {
-            resetBtn.addEventListener('click', () => {
-              if (container._initialHTML) {
-                container.innerHTML = container._initialHTML;
-                if (window.lucide && typeof window.lucide.createIcons === 'function') {
-                  window.lucide.createIcons();
-                }
-                initRFQForm();
-                container.scrollIntoView({ behavior: 'smooth', block: 'center' });
-              } else {
-                location.reload();
-              }
-            });
-          }
-
-        }, 550);
+          // Direct seamless navigation to dedicated RFQ confirmation & SLA page
+          window.location.href = 'rfq-success.html';
+        }, 750);
 
       });
     }
@@ -2311,7 +2202,16 @@
 
     function onWheel(e) {
       // Respect inner scroll containers and full screen takeover states
-      if (isInnerScrollable(e.target, e)) return;
+      if (isInnerScrollable(e.target, e)) {
+        currentY = window.scrollY;
+        targetY = window.scrollY;
+        isMoving = false;
+        if (rafId) {
+          cancelAnimationFrame(rafId);
+          rafId = null;
+        }
+        return;
+      }
       if (document.body.classList.contains('overflow-hidden')) return;
 
       // Prevent jerky native browser scroll step

@@ -2,6 +2,8 @@ User-agent: *
 Allow: /
 Disallow: /docs/
 Disallow: /scratch/
+Disallow: /rfq-success.html
+Disallow: /maintenance.html
 
 # Sitemap location
 Sitemap: https://belkern.com/sitemap.xml

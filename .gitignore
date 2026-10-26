@@ -1,3 +1,8 @@
 token.html
 *.token
 .env
+*.psd
+*.mp4
+images/UPDATE/
+*.DS_Store
+Thumbs.db
