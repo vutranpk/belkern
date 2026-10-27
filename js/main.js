@@ -1,4 +1,4 @@
-﻿/**
+/**
  * =============================================================================
  * BELKERN GMBH — CORE APPLICATION JAVASCRIPT (js/main.js)
  * Vanilla JavaScript (100% dependency-free beyond Lucide Icons)
@@ -572,7 +572,7 @@
           <div class="flex items-center gap-3">
             <span>Issue Date: <strong class="text-white">${today}</strong></span>
             <span class="text-slate-400">|</span>
-            <span class="text-emerald-400 font-bold">German Jurisdiction (HGB) · Eurofins / SGS Tested</span>
+            <span class="text-emerald-400 font-bold">International Trade Standards (IGPA · ECC) · Accredited Lab Tested</span>
           </div>
         </div>
 
@@ -656,8 +656,8 @@
         <!-- Official Sign-off & Legal Authentication Footer -->
         <div class="border-t-2 border-slate-800 pt-3 flex items-end justify-between text-[8.5px] text-slate-800">
           <div class="max-w-md leading-relaxed">
-            <p class="font-black text-slate-950 text-[9px] mb-0.5 uppercase tracking-wide">Belkern GmbH · German Legal Guarantee</p>
-            <p class="font-medium text-slate-800 leading-relaxed">Contractual fulfillment and specification warranty governed strictly under the German Commercial Code (Handelsgesetzbuch - HGB). Verified pre-shipment retain samples are stored in climate-controlled Frankfurt archives for 12 months post-clearance.</p>
+            <p class="font-black text-slate-950 text-[9px] mb-0.5 uppercase tracking-wide">Quality &amp; Specification Assurance</p>
+            <p class="font-medium text-slate-800 leading-relaxed">Contractual fulfillment and specification benchmarks governed strictly under standard international commodity trade terms (IGPA · ECC · Incoterms® 2020). Verified pre-shipment retain samples are archived for quality verification.</p>
           </div>
           <div class="text-right shrink-0">
             <div class="w-44 border-b-2 border-slate-800 pb-1 mb-1 text-center">
