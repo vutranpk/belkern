@@ -3,6 +3,9 @@ token.html
 .env
 *.psd
 *.mp4
+*.zip
 images/UPDATE/
 *.DS_Store
 Thumbs.db
+!DOCTYPE html.txt
+Untitled-1.*

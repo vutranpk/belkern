@@ -14,10 +14,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
 
-  <!-- Google Fonts: Plus Jakarta Sans -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Google Fonts: Inter (High-Legibility Modern European Sans) -->  <link rel="preconnect" href="https://fonts.googleapis.com">  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Belkern Tailwind Theme Configuration & Global Stylesheet -->
   <script src="js/tailwind-config.js"></script>
@@ -52,10 +49,10 @@
 
         <!-- Left Column: Status Visual Anchor -->
         <div class="lg:col-span-5 relative select-none">
-          <div class="text-[7rem] sm:text-[9.5rem] lg:text-[12rem] font-black text-slate-100 tracking-tighter leading-none -ml-1">
+          <div class="text-[7rem] sm:text-[9.5rem] lg:text-[12rem] font-bold text-slate-100 tracking-tighter leading-none -ml-1">
             503
           </div>
-          <div class="absolute bottom-3 left-1 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-600 text-white text-[11px] font-mono uppercase tracking-widest font-bold shadow-xs">
+          <div class="absolute bottom-3 left-1 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-600 text-white text-xs font-mono uppercase tracking-widest font-bold shadow-xs">
             <i data-lucide="wrench" class="w-3.5 h-3.5 stroke-[2.5]"></i>
             <span>Maintenance &middot; Live CET</span>
           </div>
@@ -69,7 +66,7 @@
               <span class="inline-block w-5 h-px bg-amber-500"></span>
               <span>Scheduled Infrastructure Upgrade</span>
             </div>
-            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight leading-tight">
               Portal Under Maintenance.<br>
               <span class="text-brand-gold">Trading Desk Is Fully Operational.</span>
             </h1>
@@ -81,9 +78,9 @@
 
           <!-- Primary Action: Check Status / Refresh (NO Return to Homepage button) -->
           <div class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-            <button type="button" onclick="window.location.reload()" class="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm tracking-wider uppercase transition-all duration-200 shadow-sm hover:shadow-md active:scale-[0.99] group cursor-pointer">
-              <i data-lucide="refresh-cw" class="w-4 h-4 text-brand-gold transition-transform duration-300 group-hover:rotate-180"></i>
+            <button type="button" onclick="window.location.reload()" class="h-11 sm:h-12 inline-flex items-center justify-center gap-2.5 px-7 rounded-xl bg-brand-green hover:bg-brand-greenDark text-white font-bold text-sm tracking-wide transition-all duration-200 shadow-sm hover:shadow-md active:scale-[0.99] group cursor-pointer">
               <span>Check Status &middot; Refresh</span>
+              <i data-lucide="refresh-cw" class="w-4 h-4 text-white transition-transform duration-300 group-hover:rotate-180"></i>
             </button>
             <div class="inline-flex items-center gap-2 text-xs font-mono text-slate-500 px-2 py-1">
               <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
@@ -98,19 +95,19 @@
       <!-- Quick Operational Highlights (Open Hairline Division) -->
       <div class="mt-14 sm:mt-18 pt-8 border-t border-slate-200/80 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 text-left">
         <div>
-          <div class="text-[11px] font-mono uppercase tracking-widest text-amber-600 font-bold mb-1">// Expected Window</div>
+          <div class="text-xs font-mono uppercase tracking-widest text-amber-600 font-bold mb-1">// Expected Window</div>
           <div class="text-sm font-bold text-slate-900">&lt; 60 Minutes Downtime</div>
           <p class="text-xs text-slate-500 mt-0.5">Digital portal will restore automatically upon server deployment.</p>
         </div>
         <div>
-          <div class="text-[11px] font-mono uppercase tracking-widest text-amber-600 font-bold mb-1">// Trading Desk Line</div>
+          <div class="text-xs font-mono uppercase tracking-widest text-amber-600 font-bold mb-1">// Trading Desk Line</div>
           <a href="tel:+496997761669" class="text-sm font-bold text-slate-900 hover:text-brand-gold transition-colors block">
             +49 69 97 76 16 69
           </a>
           <p class="text-xs text-slate-500 mt-0.5">Frankfurt trading desk &middot; Mon&ndash;Fri 08:30&ndash;17:30 CET.</p>
         </div>
         <div>
-          <div class="text-[11px] font-mono uppercase tracking-widest text-amber-600 font-bold mb-1">// Direct Contracts</div>
+          <div class="text-xs font-mono uppercase tracking-widest text-amber-600 font-bold mb-1">// Direct Contracts</div>
           <a href="mailto:mail@belkern.com" class="text-sm font-bold text-slate-900 hover:text-brand-gold transition-colors block">
             mail@belkern.com
           </a>
@@ -123,7 +120,7 @@
 
   <!-- Bottom Technical Coordinate Strip (No Footer Navigation) -->
   <div class="relative z-10 w-full border-t border-slate-200/80 py-4 bg-slate-50/80">
-    <div class="w-full max-w-6xl mx-auto px-6 sm:px-10 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] font-mono text-slate-500">
+    <div class="w-full max-w-6xl mx-auto px-6 sm:px-10 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs font-mono text-slate-500">
       <div>&copy; 2026 Belkern GmbH &middot; European Commercial Hub</div>
       <div>Frankfurt am Main (HRB 99468) &middot; Commercial Operations Uninterrupted</div>
     </div>

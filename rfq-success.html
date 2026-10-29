@@ -14,10 +14,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
 
-  <!-- Google Fonts: Plus Jakarta Sans -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Google Fonts: Inter (High-Legibility Modern European Sans) -->  <link rel="preconnect" href="https://fonts.googleapis.com">  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Belkern Tailwind Theme Configuration & Global Stylesheet -->
   <script src="js/tailwind-config.js"></script>
@@ -70,7 +67,7 @@
       </div>
 
       <!-- Grand Title -->
-      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight mb-4">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight leading-tight mb-4">
         Request Successfully Transmitted.<br>
         <span class="text-brand-gold">Our Commercial Desk Is On It.</span>
       </h1>
@@ -122,13 +119,13 @@
 
       <!-- Action Buttons (With Return to Homepage) -->
       <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
-        <a href="index.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl bg-brand-gold hover:bg-brand-goldDark text-white font-bold text-xs sm:text-sm tracking-wider uppercase transition-all duration-200 shadow-sm hover:shadow-md active:scale-[0.99] cursor-pointer group">
-          <i data-lucide="home" class="w-4 h-4 transition-transform duration-200 group-hover:-translate-y-0.5"></i>
+        <a href="index.html" class="w-full sm:w-auto h-11 sm:h-12 inline-flex items-center justify-center gap-2.5 px-7 rounded-xl bg-brand-green hover:bg-brand-greenDark text-white font-bold text-sm tracking-wide transition-all duration-200 shadow-sm hover:shadow-md active:scale-[0.99] cursor-pointer group">
           <span>Return to Homepage</span>
+          <i data-lucide="arrow-right" class="w-4 h-4 text-white transition-transform duration-200 group-hover:translate-x-0.5"></i>
         </a>
-        <a href="products.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs sm:text-sm tracking-wider uppercase transition-all duration-200 active:scale-[0.99] cursor-pointer">
-          <i data-lucide="grid" class="w-4 h-4 text-slate-500"></i>
+        <a href="products.html" class="w-full sm:w-auto h-11 sm:h-12 inline-flex items-center justify-center gap-2.5 px-6 rounded-xl border border-slate-300 hover:border-brand-green bg-white hover:bg-brand-green/5 text-slate-800 hover:text-brand-green font-bold text-sm tracking-wide transition-all duration-200 active:scale-[0.99] group cursor-pointer shadow-2xs hover:shadow-xs">
           <span>Explore Product Portfolio</span>
+          <i data-lucide="grid" class="w-4 h-4 text-slate-400 group-hover:text-brand-green transition-colors"></i>
         </a>
       </div>
 
@@ -137,7 +134,7 @@
 
   <!-- Bottom Technical Coordinate Strip (No Footer Navigation) -->
   <div class="relative z-10 w-full border-t border-slate-200/80 py-4 bg-slate-50/80">
-    <div class="w-full max-w-6xl mx-auto px-6 sm:px-10 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] font-mono text-slate-500">
+    <div class="w-full max-w-6xl mx-auto px-6 sm:px-10 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs font-mono text-slate-500">
       <div>&copy; 2026 Belkern GmbH &middot; European Commercial Hub</div>
       <div>Frankfurt am Main (HRB 99468) &middot; <a href="mailto:mail@belkern.com" class="hover:text-brand-gold font-medium">mail@belkern.com</a></div>
     </div>

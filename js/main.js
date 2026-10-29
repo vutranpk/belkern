@@ -231,17 +231,21 @@
           mainNavBar.classList.remove('h-20');
           mainNavBar.classList.add('h-16');
         }
-        // Swap to Light Mode Logo on solid white header
+        // Swap to Light Mode Logo on solid white header & compact size on scroll
         if (headerLogoDark) {
           headerLogoDark.classList.add('hidden');
           headerLogoDark.classList.remove('block');
+          headerLogoDark.classList.remove('h-[3.6rem]');
+          headerLogoDark.classList.add('h-9', 'lg:h-10');
         }
         if (headerLogoLight) {
           headerLogoLight.classList.remove('hidden');
           headerLogoLight.classList.add('block');
+          headerLogoLight.classList.remove('h-[3.6rem]');
+          headerLogoLight.classList.add('h-8', 'sm:h-9', 'lg:h-10');
         }
         headerNavLinks.forEach((link) => {
-          link.classList.remove('text-white/90', 'hover:text-brand-gold');
+          link.classList.remove('text-white/90', 'hover:text-brand-mint');
           link.classList.add('text-slate-800', 'hover:text-brand-green');
         });
         headerHbgBars.forEach((bar) => {
@@ -264,18 +268,22 @@
           mainNavBar.classList.remove('h-16');
           mainNavBar.classList.add('h-20');
         }
-        // Swap to Dark Mode Logo over hero background
+        // Swap to Dark Mode Logo over hero background & enlarged 3.6rem height at page top
         if (headerLogoDark) {
           headerLogoDark.classList.remove('hidden');
           headerLogoDark.classList.add('block');
+          headerLogoDark.classList.remove('h-8', 'sm:h-9', 'h-9', 'sm:h-10', 'lg:h-10', 'lg:h-11');
+          headerLogoDark.classList.add('h-[3.6rem]');
         }
         if (headerLogoLight) {
           headerLogoLight.classList.add('hidden');
           headerLogoLight.classList.remove('block');
+          headerLogoLight.classList.remove('h-8', 'sm:h-9', 'lg:h-10');
+          headerLogoLight.classList.add('h-[3.6rem]');
         }
         headerNavLinks.forEach((link) => {
           link.classList.remove('text-slate-800', 'hover:text-brand-green');
-          link.classList.add('text-white/90', 'hover:text-brand-gold');
+          link.classList.add('text-white/90', 'hover:text-brand-mint');
         });
         headerHbgBars.forEach((bar) => {
           bar.classList.remove('bg-brand-dark');
@@ -1969,10 +1977,10 @@
   let certPanoramaTimer = null;
   const CERT_PANORAMA_DURATION = 6500; // 6.5s per slide
   const CERT_STANDARDS = [
-    '01 EUDR & Origin',
-    '02 Food Safety & Steam',
-    '03 In-House Laboratory',
-    '04 ESG & Governance'
+    '01 Origin Traceability',
+    '02 Contract Specifications',
+    '03 Pre-Shipment Testing',
+    '04 Trade Governance'
   ];
 
   function switchCertPanorama(index) {
