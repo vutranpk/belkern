@@ -37,52 +37,34 @@
   <url>
     <loc>https://belkern.com/product-arabica.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://belkern.com/product-arabica.html"/>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Product: Robusta Coffee -->
-  <url>
-    <loc>https://belkern.com/product-robusta.html</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://belkern.com/product-robusta.html"/>
-    <lastmod>2026-10-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Product: Black & White Pepper -->
+  <!-- Product: Black Pepper -->
   <url>
     <loc>https://belkern.com/product-pepper.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://belkern.com/product-pepper.html"/>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Product: Turmeric -->
+  <!-- Product: Peppercorn Sauce -->
   <url>
-    <loc>https://belkern.com/product-turmeric.html</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://belkern.com/product-turmeric.html"/>
-    <lastmod>2026-10-26</lastmod>
+    <loc>https://belkern.com/product-pepper-sauce.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://belkern.com/product-pepper-sauce.html"/>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-
-  <!-- Product: Dried Chili -->
-  <url>
-    <loc>https://belkern.com/product-chili.html</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://belkern.com/product-chili.html"/>
-    <lastmod>2026-10-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
+    <priority>0.8</priority>
   </url>
 
   <!-- Product: Cassia Cinnamon -->
   <url>
     <loc>https://belkern.com/product-cinnamon.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://belkern.com/product-cinnamon.html"/>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
@@ -91,7 +73,7 @@
   <url>
     <loc>https://belkern.com/product-star-anise.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://belkern.com/product-star-anise.html"/>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
@@ -100,7 +82,7 @@
   <url>
     <loc>https://belkern.com/product-cashews.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://belkern.com/product-cashews.html"/>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
@@ -109,7 +91,7 @@
   <url>
     <loc>https://belkern.com/product-coconut.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://belkern.com/product-coconut.html"/>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>

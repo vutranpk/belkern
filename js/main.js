@@ -207,6 +207,7 @@
   // ---------------------------------------------------------------------------
   function initHeaderScroll() {
     const mainHeader = document.getElementById('mainHeader');
+    const headerScrim = document.getElementById('headerScrim');
     const headerTopBar = document.getElementById('headerTopBar');
     const mainNavBar = document.getElementById('mainNavBar');
     const headerLogoDark = document.getElementById('headerLogoDark');
@@ -223,6 +224,9 @@
         mainHeader.classList.remove('bg-transparent', 'border-transparent');
         mainHeader.classList.add('bg-white/95', 'backdrop-blur-md', 'border-slate-200/80', 'shadow-xs');
 
+        if (headerScrim) {
+          headerScrim.classList.add('opacity-0');
+        }
         if (headerTopBar) {
           headerTopBar.classList.add('max-h-0', 'opacity-0', 'py-0', 'border-transparent', 'pointer-events-none');
           headerTopBar.classList.remove('max-h-12', 'opacity-100', 'py-2.5', 'border-white/15');
@@ -235,18 +239,34 @@
         if (headerLogoDark) {
           headerLogoDark.classList.add('hidden');
           headerLogoDark.classList.remove('block');
-          headerLogoDark.classList.remove('h-[3.6rem]');
+          headerLogoDark.classList.remove('h-[3.4rem]');
           headerLogoDark.classList.add('h-9', 'lg:h-10');
         }
         if (headerLogoLight) {
           headerLogoLight.classList.remove('hidden');
           headerLogoLight.classList.add('block');
-          headerLogoLight.classList.remove('h-[3.6rem]');
+          headerLogoLight.classList.remove('h-[3.4rem]');
           headerLogoLight.classList.add('h-8', 'sm:h-9', 'lg:h-10');
         }
         headerNavLinks.forEach((link) => {
-          link.classList.remove('text-white/90', 'hover:text-brand-mint');
-          link.classList.add('text-slate-800', 'hover:text-brand-green');
+          if (link.classList.contains('text-brand-mint') || link.classList.contains('text-brand-gold') || link.classList.contains('text-brand-green')) {
+            link.setAttribute('data-active-nav', 'true');
+          }
+          link.classList.remove(
+            'text-white',
+            'text-white/90',
+            'text-brand-mint',
+            'hover:text-brand-mint',
+            'group-hover:text-brand-mint',
+            'hover:text-brand-gold',
+            'group-hover:text-brand-gold',
+            'drop-shadow-xs'
+          );
+          if (link.getAttribute('data-active-nav') === 'true') {
+            link.classList.add('text-brand-green', 'hover:text-brand-greenDark', 'group-hover:text-brand-greenDark');
+          } else {
+            link.classList.add('text-slate-800', 'hover:text-brand-green', 'group-hover:text-brand-green');
+          }
         });
         headerHbgBars.forEach((bar) => {
           bar.classList.remove('bg-white');
@@ -260,6 +280,9 @@
         mainHeader.classList.add('bg-transparent', 'border-transparent');
         mainHeader.classList.remove('bg-white/95', 'backdrop-blur-md', 'border-slate-200/80', 'shadow-xs');
 
+        if (headerScrim) {
+          headerScrim.classList.remove('opacity-0');
+        }
         if (headerTopBar) {
           headerTopBar.classList.remove('max-h-0', 'opacity-0', 'py-0', 'border-transparent', 'pointer-events-none');
           headerTopBar.classList.add('max-h-12', 'opacity-100', 'py-2.5', 'border-white/15');
@@ -268,22 +291,41 @@
           mainNavBar.classList.remove('h-16');
           mainNavBar.classList.add('h-20');
         }
-        // Swap to Dark Mode Logo over hero background & enlarged 3.6rem height at page top
+        // Swap to Dark Mode Logo over hero background & 3.4rem height at page top
         if (headerLogoDark) {
           headerLogoDark.classList.remove('hidden');
           headerLogoDark.classList.add('block');
           headerLogoDark.classList.remove('h-8', 'sm:h-9', 'h-9', 'sm:h-10', 'lg:h-10', 'lg:h-11');
-          headerLogoDark.classList.add('h-[3.6rem]');
+          headerLogoDark.classList.add('h-[3.4rem]');
         }
         if (headerLogoLight) {
           headerLogoLight.classList.add('hidden');
           headerLogoLight.classList.remove('block');
           headerLogoLight.classList.remove('h-8', 'sm:h-9', 'lg:h-10');
-          headerLogoLight.classList.add('h-[3.6rem]');
+          headerLogoLight.classList.add('h-[3.4rem]');
         }
         headerNavLinks.forEach((link) => {
-          link.classList.remove('text-slate-800', 'hover:text-brand-green');
-          link.classList.add('text-white/90', 'hover:text-brand-mint');
+          if (link.classList.contains('text-brand-mint') || link.classList.contains('text-brand-gold') || link.classList.contains('text-brand-green')) {
+            link.setAttribute('data-active-nav', 'true');
+          }
+          link.classList.remove(
+            'text-slate-800',
+            'text-brand-green',
+            'text-brand-gold',
+            'hover:text-brand-green',
+            'group-hover:text-brand-green',
+            'hover:text-brand-greenDark',
+            'group-hover:text-brand-greenDark',
+            'hover:text-brand-gold',
+            'group-hover:text-brand-gold',
+            'text-white/90'
+          );
+          link.classList.add('drop-shadow-xs');
+          if (link.getAttribute('data-active-nav') === 'true') {
+            link.classList.add('text-brand-mint', 'hover:text-brand-mint', 'group-hover:text-brand-mint');
+          } else {
+            link.classList.add('text-white', 'hover:text-brand-mint', 'group-hover:text-brand-mint');
+          }
         });
         headerHbgBars.forEach((bar) => {
           bar.classList.remove('bg-brand-dark');
@@ -305,14 +347,14 @@
   // ---------------------------------------------------------------------------
   const COMMODITY_SPECS = {
     arabica: {
-      title: 'Vietnamese Arabica Specialty (Cau Dat)',
+      title: 'Arabica Coffee (Coffee Beans)',
       botanical: 'Coffea Arabica (Catimor, Typica, Bourbon)',
-      origin: 'Cau Dat, Da Lat Highland, Lam Dong (1,450m–1,650m MSL)',
-      grade: 'Grade 1 · Specialty (SCA 82+)',
+      origin: 'Highland Cooperatives (1,450m–1,650m MSL)',
+      grade: 'Grade 1 · Specialty & Commercial (Screen 18/16)',
       moq: "1 x 20' FCL (19.2 MT / 320 Bags)",
       eudr: '100% Polygon Mapped & Traceable',
       packing: '60kg GrainPro hermetic bag inside jute bag · 20ft FCL = 19.2 MT palletized',
-      terms: 'FOB Cat Lai, CIF European Ports (Hamburg, Rotterdam, Antwerp, Genoa)',
+      terms: 'FOB Origin Port, CIF European Ports (Hamburg, Rotterdam, Antwerp, Genoa)',
       dropdownValue: 'Arabica Coffee',
       table: [
         { param: 'Moisture Content', standard: 'Max. 12.0%', test: 'ISO 6673 / Farmex Lab' },
@@ -323,35 +365,16 @@
         { param: 'Cup Profile', standard: 'Citrus acidity, caramel body, floral jasmine aroma', test: 'Q-Grader Cupping' }
       ]
     },
-    robusta: {
-      title: 'Vietnamese Robusta Green Coffee Grade 1',
-      botanical: 'Coffea Canephora',
-      origin: 'Dak Lak, Dak Nong, Lam Dong (Central Highlands)',
-      grade: 'Grade 1 · Screen 18 Wet Polished / Cleaned',
-      moq: "1 x 20' FCL (19.2 MT) / 40' FCL (26.4 MT)",
-      eudr: '100% Polygon Geolocation & Farm-Gate Audited',
-      packing: '60kg Jute bags or 1,000kg Big Bags (Jumbo) · Palletized or Bulk in Container',
-      terms: 'FOB Cat Lai / CIF European Main Ports (Hamburg, Bremen, Rotterdam, Antwerp)',
-      dropdownValue: 'Robusta Coffee',
-      table: [
-        { param: 'Moisture Content', standard: 'Max. 12.5%', test: 'ISO 6673' },
-        { param: 'Screen Size', standard: 'Screen 18 (7.1mm) ≥ 90%', test: 'ISO 4150' },
-        { param: 'Black & Broken Beans', standard: 'Max. 0.5% black, Max. 0.5% broken', test: 'Visual Sorting' },
-        { param: 'Foreign Matter', standard: 'Max. 0.1%', test: 'Gravity Destoner & Optical Sorter' },
-        { param: 'Excelsa Beans', standard: 'Max. 0.2%', test: 'Botanical Inspection' },
-        { param: 'Ochratoxin A (OTA)', standard: 'Max. 5.0 ppb (EU Reg. 2023/915)', test: 'ISO/IEC 17025 Accredited Lab' }
-      ]
-    },
     pepper: {
-      title: 'Black Pepper Steam Sterilized (ASTA Quality)',
+      title: 'Black Pepper (Steam Sterilized & FAQ)',
       botanical: 'Piper Nigrum L.',
-      origin: 'Chu Se (Gia Lai), Dak Nong, Binh Phuoc',
-      grade: 'ASTA Cleaned · 570 g/l · Steam Sterilized',
+      origin: 'Audited Pepper Cooperatives & Processing Plants',
+      grade: 'ASTA Cleaned · 500–570 g/l · Steam Sterilized',
       moq: "1 x 20' FCL (15.0 – 16.5 MT)",
       eudr: 'Zero-Deforestation & Full Farm-Gate Traceability',
       packing: '25kg Multi-wall Kraft paper bags with PE liner · Shrink-wrapped on Euro pallets',
-      terms: 'CIF Hamburg, Rotterdam, Antwerp / CFR / FOB Cat Lai',
-      dropdownValue: 'Black Pepper Steam Sterilized',
+      terms: 'CIF Hamburg, Rotterdam, Antwerp / CFR / FOB Origin Port',
+      dropdownValue: 'Black Pepper',
       table: [
         { param: 'Bulk Density', standard: 'Min. 570 g/l (FAQ available: 500–550 g/l)', test: 'ISO 959-1' },
         { param: 'Moisture Content', standard: 'Max. 12.5%', test: 'Dean-Stark Toluene' },
@@ -363,76 +386,34 @@
         { param: 'Pesticide MRLs', standard: 'Strict compliance with EC 396/2005', test: 'GC-MS/MS & LC-MS/MS' }
       ]
     },
-    chili: {
-      title: 'Vietnamese Dried Chili (Export Grade A)',
-      botanical: 'Capsicum annuum L. var. acuminatum / Capsicum frutescens L.',
-      origin: 'Dong Thap, Tien Giang, Gia Lai (Vietnam Origin)',
-      grade: 'Whole Stemless, Whole With Stem, Crushed Flakes, Powder',
-      moq: "1 x 20' FCL (8.0 MT) / 40' HC (16.0 MT) · Mixed FCL Available",
-      eudr: 'Traceable Farm Cooperative Procurement',
-      packing: '25kg Woven PP/PE bags, 25kg Kraft paper barrier sacks, or 10kg export cartons',
-      terms: 'CIF Hamburg, Rotterdam, Antwerp / FOB Cat Lai Port',
-      dropdownValue: 'Vietnamese Dried Chili',
+    'pepper-sauce': {
+      title: 'Peppercorn Sauce (Culinary & Industrial Condiments)',
+      botanical: 'Piper Nigrum L. Culinary Formulation',
+      origin: 'BRCGS / HACCP Certified Condiment Processing Facilities',
+      grade: 'Culinary Foodservice & Industrial Manufacturing Grade',
+      moq: "1 x 20' FCL (16.0 – 18.0 MT Palletized)",
+      eudr: 'Traceable Crushed Black Peppercorn Sourcing',
+      packing: '2kg / 5kg Foodservice Jerrycans, 25kg HDPE Drums, or 200L Aseptic Drums',
+      terms: 'CIF Hamburg, Rotterdam, Antwerp / CFR / FOB Origin Port',
+      dropdownValue: 'Peppercorn Sauce',
       table: [
-        { param: 'Pungency / Capsaicin Content', standard: 'Min. 60,000 – 90,000 SHU (HPLC Verified)', test: 'ISO 3513 / HPLC' },
-        { param: 'Moisture Content', standard: 'Max. 12.0%', test: 'ISO 939 / Vacuum Oven' },
-        { param: 'Total Ash & Acid Insoluble', standard: 'Total Ash ≤ 8.0% · Acid Insoluble ≤ 1.0%', test: 'ISO 928 / ISO 930' },
-        { param: 'Aflatoxin (B1 + Total)', standard: 'B1 ≤ 5.0 ppb · Total (B1+B2+G1+G2) ≤ 10.0 ppb', test: 'HPLC-FLD / Immunoaffinity (EU 2023/915)' },
-        { param: 'Ochratoxin A (OTA)', standard: 'Max. 20.0 ppb (EU Regulation Limit)', test: 'ISO 17025 Accredited Laboratory' },
-        { param: 'Heavy Metals (Pb & Cd)', standard: 'Lead (Pb) ≤ 2.0 ppm · Cadmium (Cd) ≤ 1.0 ppm', test: 'ICP-MS / Reg (EU) 2023/915' },
-        { param: 'Pesticide Residue Limits (MRLs)', standard: '100% Compliant with EC Regulation 396/2005', test: 'Multi-Residue GC-MS/MS & LC-MS/MS (>500)' },
-        { param: 'Extraneous Foreign Matter', standard: 'Max. 0.5% (Destoned & Optical Laser Sorted)', test: 'ASTA Cleanliness Limit' },
-        { param: 'Salmonella spp.', standard: 'ABSENT in 25g (HTST 5-Log Microbial Kill)', test: 'EN ISO 6579-1' },
-        { param: 'Sudan Dyes (I, II, III, IV)', standard: 'NOT DETECTED (< 10 ppb limit of quantification)', test: 'LC-MS/MS Screen' }
-      ]
-    },
-    'star-anise': {
-      title: 'Vietnamese Star Anise (Autumn Flower Prime)',
-      botanical: 'Illicium Verum Hook. f.',
-      origin: 'Lang Son, Cao Bang (Northern Highlands)',
-      grade: 'Autumn Crop · Flower Diameter ≥ 2.5cm',
-      moq: "1 x 20' FCL (6.8 MT) / 40' HC (15.5 MT)",
-      eudr: 'Wild-Harvested Mountain Forest Agroforestry',
-      packing: '10kg / 20kg Net Carton boxes with polybag liner',
-      terms: 'CIF Hamburg, Rotterdam, Koper / FOB Hai Phong Port',
-      dropdownValue: 'Star Anise',
-      table: [
-        { param: 'Whole Stars Percentage', standard: 'Min. 80.0% whole intact stars', test: 'Physical Count' },
-        { param: 'Flower Diameter', standard: 'Min. 2.5 cm (Screen sorted)', test: 'Caliper measurement' },
-        { param: 'Volatile Essential Oil', standard: 'Min. 6.0% (Anethole ≥ 85%)', test: 'Steam Distillation & GC-MS' },
-        { param: 'Moisture Content', standard: 'Max. 13.5%', test: 'Dean-Stark Toluene' },
-        { param: 'Foreign Matter', standard: 'Max. 1.0%', test: 'Visual Destoning' },
-        { param: 'Sulfur Dioxide (SO2)', standard: 'FREE / Undetectable (No sulfur smoking)', test: 'Monier-Williams Method' }
-      ]
-    },
-    turmeric: {
-      title: 'Vietnamese Turmeric Finger & Powder',
-      botanical: 'Curcuma Longa L.',
-      origin: 'Gia Lai, Dak Lak, Nghe An',
-      grade: 'Polished Export Grade · High Curcumin',
-      moq: "1 x 20' FCL (15.0 MT)",
-      eudr: 'Direct Farm Traceability',
-      packing: '25kg / 50kg PP bags with PE liner or Kraft paper sacks',
-      terms: 'CIF European Ports / FOB Cat Lai',
-      dropdownValue: 'Turmeric',
-      table: [
-        { param: 'Curcumin Content', standard: 'Min. 5.0% (Natural Active)', test: 'Spectrophotometry / HPLC' },
-        { param: 'Moisture Content', standard: 'Max. 10.0%', test: 'Air Oven Method' },
-        { param: 'Total Ash', standard: 'Max. 7.0%', test: 'Muffle Furnace' },
-        { param: 'Acid Insoluble Ash', standard: 'Max. 1.0%', test: 'Acid Digestion' },
-        { param: 'Foreign Matter', standard: 'Max. 0.5%', test: 'Optical Inspection' },
-        { param: 'Heavy Metals (Pb, Cd, As)', standard: 'Strictly below EU Food Safety MRLs', test: 'ICP-MS / ISO 17025' }
+        { param: 'Brix (Soluble Solids)', standard: '28.0° – 34.0° Brix (Customizable)', test: 'Digital Refractometer' },
+        { param: 'pH Level', standard: '3.8 – 4.2 (Ambient Shelf-Stable)', test: 'Potentiometric pH Meter' },
+        { param: 'Viscosity (25°C)', standard: '4,500 – 6,500 cP (Rich Pourable Body)', test: 'Brookfield Viscometer' },
+        { param: 'Crushed Pepper Inclusion', standard: '8.0% – 12.0% Steam-Sterilized Black Pepper', test: 'Sieve & Gravimetric' },
+        { param: 'Salmonella & Listeria', standard: 'ABSENT in 25g (Thermal Pasteurized)', test: 'ISO 6579-1 / ISO 11290' },
+        { param: 'Sudan Dyes & Illegal Colors', standard: 'NOT DETECTED (< 10 ppb LOQ)', test: 'LC-MS/MS Accredited Lab' }
       ]
     },
     cinnamon: {
-      title: 'Vietnamese Cassia Cinnamon (Yen Bai Split & Tube)',
+      title: 'Cassia Cinnamon (Split & Tube Quills)',
       botanical: 'Cinnamomum Cassia Presl',
-      origin: 'Van Yen, Yen Bai Province',
+      origin: 'Audited Highland Agroforestry Cooperatives',
       grade: 'Split, Cigarette Tubes & Broken (Export Grade)',
       moq: "1 x 20' FCL (8.5 MT) / 40' HC (18.0 MT)",
       eudr: 'Sustainable Agroforestry Traceable',
       packing: '10kg / 20kg Carton boxes or 50kg Pressed Bales',
-      terms: 'CIF Hamburg, Rotterdam, Antwerp / FOB Hai Phong',
+      terms: 'CIF Hamburg, Rotterdam, Antwerp / FOB Origin Port',
       dropdownValue: 'Cassia Cinnamon',
       table: [
         { param: 'Volatile Essential Oil', standard: 'Min. 3.5% – 4.5% v/w (Cinnamaldehyde ≥ 85%)', test: 'Steam Distillation & GC-MS' },
@@ -443,16 +424,35 @@
         { param: 'Foreign Matter', standard: 'Max. 0.5%', test: 'Manual Sorting' }
       ]
     },
+    'star-anise': {
+      title: 'Star Anise (Whole Autumn Crop)',
+      botanical: 'Illicium Verum Hook. f.',
+      origin: 'Audited Highland Forest Agroforestry',
+      grade: 'Autumn Crop · Flower Diameter ≥ 2.5cm',
+      moq: "1 x 20' FCL (6.8 MT) / 40' HC (15.5 MT)",
+      eudr: 'Wild-Harvested Mountain Forest Agroforestry',
+      packing: '10kg / 20kg Net Carton boxes with polybag liner',
+      terms: 'CIF Hamburg, Rotterdam, Koper / FOB Origin Port',
+      dropdownValue: 'Star Anise',
+      table: [
+        { param: 'Whole Stars Percentage', standard: 'Min. 80.0% whole intact stars', test: 'Physical Count' },
+        { param: 'Flower Diameter', standard: 'Min. 2.5 cm (Screen sorted)', test: 'Caliper measurement' },
+        { param: 'Volatile Essential Oil', standard: 'Min. 6.0% (Anethole ≥ 85%)', test: 'Steam Distillation & GC-MS' },
+        { param: 'Moisture Content', standard: 'Max. 13.5%', test: 'Dean-Stark Toluene' },
+        { param: 'Foreign Matter', standard: 'Max. 1.0%', test: 'Visual Destoning' },
+        { param: 'Sulfur Dioxide (SO2)', standard: 'FREE / Undetectable (No sulfur smoking)', test: 'Monier-Williams Method' }
+      ]
+    },
     cashews: {
-      title: 'Vietnamese Raw Cashew Kernels (AFI Standard)',
+      title: 'Cashew Kernels (AFI Standard)',
       botanical: 'Anacardium Occidentale',
-      origin: 'Binh Phuoc, Dong Nai (South Vietnam)',
+      origin: 'BRCGS / HACCP Certified Cashew Processing Facilities',
       grade: 'WW240, WW320, LP, SP Grade',
       moq: "1 x 20' FCL (15.8 MT / 700 Cartons)",
       eudr: 'Zero-Deforestation Compliant',
       packing: '2 x 25 lbs (11.34 kg) Vacuum flexible pouches in export cartons with CO2/N2 flush',
-      terms: 'CIF European Ports / FOB Cat Lai',
-      dropdownValue: 'Cashews',
+      terms: 'CIF European Ports / FOB Origin Port',
+      dropdownValue: 'Cashew Kernels',
       table: [
         { param: 'Grade Classification', standard: 'White Wholes: 240 or 320 kernels/lb', test: 'AFI Quality Specification' },
         { param: 'Moisture Content', standard: 'Max. 5.0%', test: 'ISO 665' },
@@ -463,14 +463,14 @@
       ]
     },
     coconut: {
-      title: 'High-Fat Desiccated Coconut (Fine & Medium)',
+      title: 'Desiccated Coconut (High Fat Fine & Medium)',
       botanical: 'Cocos Nucifera L.',
-      origin: 'Ben Tre (Mekong Delta Region)',
+      origin: 'Audited Tropical Coconut Processing Facilities',
       grade: 'High Fat Fine Grade & Medium Grade',
       moq: "1 x 20' FCL (12.5 MT) / 40' HC (26.0 MT)",
-      eudr: 'Full Mekong Delta Farm Traceability',
+      eudr: 'Full Plantation Traceability',
       packing: '25kg multi-layer Kraft paper bag with inner food-grade PE liner',
-      terms: 'CIF European Main Ports / FOB Cat Lai',
+      terms: 'CIF European Main Ports / FOB Origin Port',
       dropdownValue: 'Desiccated Coconut',
       table: [
         { param: 'Natural Fat Content', standard: 'Min. 65.0% ± 2%', test: 'Soxhlet Extraction' },
@@ -483,12 +483,12 @@
     }
   };
 
-  let activeModalCommodityKey = 'robusta';
+  let activeModalCommodityKey = 'arabica';
 
   function openSpecModal(commodityKey) {
     const modal = document.getElementById('specSheetModal');
     const content = document.getElementById('specSheetModalContent');
-    const spec = COMMODITY_SPECS[commodityKey] || COMMODITY_SPECS['robusta'];
+    const spec = COMMODITY_SPECS[commodityKey] || COMMODITY_SPECS['arabica'];
     if (!modal || !content || !spec) return;
 
     activeModalCommodityKey = commodityKey;
@@ -542,7 +542,7 @@
   }
 
   function renderPrintableTds(commodityKey) {
-    const spec = COMMODITY_SPECS[commodityKey] || COMMODITY_SPECS['robusta'];
+    const spec = COMMODITY_SPECS[commodityKey] || COMMODITY_SPECS['arabica'];
     const printDoc = document.getElementById('printableTdsDocument');
     if (!printDoc || !spec) return;
 

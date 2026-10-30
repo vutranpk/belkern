@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
@@ -91,10 +91,13 @@
   <!-- 1. HEADER NAVIGATION (Full-Width · Transparent at Top · Compact on Scroll)-->
   <!-- ========================================================================= -->
   <header id="mainHeader" class="fixed top-0 left-0 right-0 z-40 bg-transparent border-b border-transparent transition-all duration-500 ease-out will-change-transform">
-    <div class="w-full px-6 sm:px-10 lg:px-14 xl:px-20">
+    
+    <!-- Ambient Daylight Header Scrim Overlay (Preserves Nav Contrast Over Bright Hero Photography) -->
+    <div id="headerScrim" class="absolute top-0 left-0 right-0 h-48 lg:h-60 -z-10 bg-gradient-to-b from-black/75 via-black/45 to-transparent transition-opacity duration-500 pointer-events-none"></div>
+<div class="w-full px-6 sm:px-10 lg:px-14 xl:px-20">
 
       <!-- Tier 1: Utility Bar (Full-Width, Collapses smoothly on scroll, Desktop >= 1024px Only) -->
-      <div id="headerTopBar" class="hidden lg:flex justify-between items-center text-xs text-slate-300 font-medium transition-all duration-300 overflow-hidden max-h-12 py-2.5 border-b border-white/15">
+      <div id="headerTopBar" class="hidden lg:flex justify-between items-center text-xs text-white font-medium transition-all duration-300 overflow-hidden max-h-12 py-2.5 border-b border-white/15">
         <!-- Trade Terms, POL & Corporate Coordinates -->
         <div class="flex items-center gap-2.5 xl:gap-3 shrink-0">
           <span class="inline-flex items-center gap-1.5 text-white font-semibold">
@@ -102,12 +105,12 @@
             <span>Incoterms® 2020: FOB · CIF · CFR</span>
           </span>
           <span class="text-white/30">|</span>
-          <span class="hidden xl:inline-flex items-center gap-1.5 text-slate-300">
+          <span class="hidden xl:inline-flex items-center gap-1.5 text-white">
             <i data-lucide="globe-2" class="w-3.5 h-3.5 text-brand-mint"></i>
             <span>Origins: Vietnam &middot; Brazil &middot; Indonesia &middot; India &middot; Africa</span>
           </span>
           <span class="hidden xl:inline text-white/30">|</span>
-          <span class="inline-flex items-center gap-1.5 text-slate-300">
+          <span class="inline-flex items-center gap-1.5 text-white">
             <i data-lucide="map-pin" class="w-3.5 h-3.5 text-brand-mint"></i>
             <span>Frankfurt am Main (HRB 99468)</span>
           </span>
@@ -115,12 +118,12 @@
 
         <!-- Contact & Language Switcher -->
         <div class="flex items-center gap-4 xl:gap-6 shrink-0">
-          <a href="mailto:mail@belkern.com" class="inline-flex items-center gap-1.5 hover:text-brand-mint text-slate-300 transition-colors group">
-            <i data-lucide="mail" class="w-3.5 h-3.5 text-slate-400 group-hover:text-brand-mint transition-colors"></i>
+          <a href="mailto:mail@belkern.com" class="inline-flex items-center gap-1.5 hover:text-brand-mint text-white transition-colors group">
+            <i data-lucide="mail" class="w-3.5 h-3.5 text-white/90 group-hover:text-brand-mint transition-colors"></i>
             <span>mail@belkern.com</span>
           </a>
-          <a href="tel:+496997761669" class="inline-flex items-center gap-1.5 hover:text-brand-mint text-slate-300 transition-colors group">
-            <i data-lucide="phone" class="w-3.5 h-3.5 text-slate-400 group-hover:text-brand-mint transition-colors"></i>
+          <a href="tel:+496997761669" class="inline-flex items-center gap-1.5 hover:text-brand-mint text-white transition-colors group">
+            <i data-lucide="phone" class="w-3.5 h-3.5 text-white/90 group-hover:text-brand-mint transition-colors"></i>
             <span>+49 69 97 76 16 69</span>
           </a>
 
@@ -138,79 +141,73 @@
         <!-- Left: Brand Logo (Dynamic Dark Mode over Hero / Light Mode on Scroll) -->
         <a href="index.html" class="flex items-center group shrink-0 py-1" aria-label="Belkern GmbH Home">
           <!-- Dark Mode Logo: Used for dark hero background at page summit -->
-          <img id="headerLogoDark" src="images/DM-Belkern-2.png" alt="Belkern GmbH - Coffee & Spice World" class="h-[3.6rem] w-auto object-contain transition-all duration-300 block">
+          <img id="headerLogoDark" src="images/DM-Belkern-2.png" alt="Belkern GmbH - Coffee & Spice World" class="h-[3.4rem] w-auto object-contain transition-all duration-300 block">
           <!-- Light Mode Logo: Used when scrolled down over solid light navigation -->
           <img id="headerLogoLight" src="images/LM-Belkern-1.png" alt="Belkern GmbH - Coffee & Spice World" class="h-8 sm:h-9 lg:h-10 w-auto object-contain transition-all duration-300 hidden">
         </a>
 
         <!-- Center: Desktop Navigation Links (>= 1024px / lg) -->
-        <nav class="hidden lg:flex items-center gap-6 xl:gap-10 font-bold text-sm">
-          <a href="about.html" class="header-nav-link text-white/90 hover:text-brand-gold transition-colors py-2">About Us</a>
+                        <nav class="hidden lg:flex items-center gap-6 xl:gap-8 font-medium text-[15px]">
+          <a href="about.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors py-2">About Us</a>
           
           <!-- Products with Rich Hover Dropdown Menu -->
           <div class="relative group py-2">
-            <a href="products.html" class="header-nav-link text-brand-gold hover:text-brand-gold transition-colors inline-flex items-center gap-1.5" aria-current="page">
+            <a href="products.html" class="header-nav-link uppercase tracking-wider font-medium text-brand-mint drop-shadow-xs group-hover:text-brand-mint transition-colors inline-flex items-center gap-1.5">
               <span>Products</span>
-              <i data-lucide="chevron-down" class="w-3.5 h-3.5 opacity-70 group-hover:rotate-180 transition-transform duration-200"></i>
+              <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-current group-hover:rotate-180 transition-transform duration-200"></i>
             </a>
 
             <!-- Floating Mega Dropdown Panel -->
             <div class="absolute top-full left-1/2 -translate-x-1/2 pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none group-hover:pointer-events-auto z-50">
               <div class="w-[580px] bg-white rounded-2xl shadow-xl border border-slate-200/90 p-5 text-left text-slate-800">
                 <div class="grid grid-cols-3 gap-5">
-                  <!-- Col 1: Coffee -->
+                  <!-- Col 1: Coffee Beans -->
                   <div>
-                    <div class="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-gold mb-2.5">
-                      <i data-lucide="coffee" class="w-3.5 h-3.5 text-brand-gold"></i>
-                      <span>Coffee</span>
+                    <div class="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-brand-green mb-2.5">
+                      <i data-lucide="coffee" class="w-3.5 h-3.5 text-brand-green"></i>
+                      <span>Coffee Beans</span>
                     </div>
                     <ul class="space-y-1.5 text-xs">
                       <li>
-                        <a href="product-arabica.html" class="text-slate-600 hover:text-brand-dark hover:font-bold transition-all block py-1 px-2 rounded-lg hover:bg-slate-50">Arabica</a>
-                      </li>
-                      <li>
-                        <a href="product-robusta.html" class="text-slate-600 hover:text-brand-dark hover:font-bold transition-all block py-1 px-2 rounded-lg hover:bg-slate-50">Robusta</a>
+                        <a href="product-arabica.html" class="font-medium text-slate-600 hover:text-brand-green hover:bg-brand-green/5 transition-all block py-1.5 px-2.5 rounded-lg">Arabica Coffee</a>
                       </li>
                     </ul>
                   </div>
 
-                  <!-- Col 2: Pepper & Spices -->
+                  <!-- Col 2: Spices & Sauces -->
                   <div>
-                    <div class="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-gold mb-2.5">
-                      <i data-lucide="sparkles" class="w-3.5 h-3.5 text-brand-gold"></i>
-                      <span>Spices</span>
+                    <div class="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-brand-green mb-2.5">
+                      <i data-lucide="sparkles" class="w-3.5 h-3.5 text-brand-green"></i>
+                      <span>Spices &amp; Sauces</span>
                     </div>
                     <ul class="space-y-1.5 text-xs">
                       <li>
-                        <a href="product-pepper.html" class="text-slate-600 hover:text-brand-dark hover:font-bold transition-all block py-1 px-2 rounded-lg hover:bg-slate-50">Black Pepper &amp; White Pepper</a>
+                        <a href="product-pepper.html" class="font-medium text-slate-600 hover:text-brand-green hover:bg-brand-green/5 transition-all block py-1.5 px-2.5 rounded-lg">Black Pepper</a>
                       </li>
                       <li>
-                        <a href="product-turmeric.html" class="text-slate-600 hover:text-brand-dark hover:font-bold transition-all block py-1 px-2 rounded-lg hover:bg-slate-50">Turmeric</a>
+                        <a href="product-pepper-sauce.html" class="font-medium text-slate-600 hover:text-brand-green hover:bg-brand-green/5 transition-all block py-1.5 px-2.5 rounded-lg">Peppercorn Sauce</a>
                       </li>
                       <li>
-                        <a href="product-chili.html" class="text-slate-600 hover:text-brand-dark hover:font-bold transition-all block py-1 px-2 rounded-lg hover:bg-slate-50">Chili</a>
+                        <a href="product-cinnamon.html" class="font-medium text-slate-600 hover:text-brand-green hover:bg-brand-green/5 transition-all block py-1.5 px-2.5 rounded-lg">Cassia Cinnamon</a>
                       </li>
                       <li>
-                        <a href="product-cinnamon.html" class="text-slate-600 hover:text-brand-dark hover:font-bold transition-all block py-1 px-2 rounded-lg hover:bg-slate-50">Cassia Cinnamon</a>
-                      </li>
-                      <li>
-                        <a href="product-star-anise.html" class="text-brand-gold font-bold bg-brand-gold/5 transition-all block py-1 px-2 rounded-lg" aria-current="page">Star Anise</a>
+                        <a href="product-star-anise.html" class="font-medium text-slate-600 hover:text-brand-green hover:bg-brand-green/5 transition-all block py-1.5 px-2.5 rounded-lg">Star Anise</a>
                       </li>
                     </ul>
                   </div>
 
                   <!-- Col 3: Commodities -->
                   <div>
-                    <div class="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-gold mb-2.5">
-                      <i data-lucide="package" class="w-3.5 h-3.5 text-brand-gold"></i>
+                    <div class="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-brand-green mb-2.5">
+                      <i data-lucide="package" class="w-3.5 h-3.5 text-brand-green"></i>
                       <span>Commodities</span>
                     </div>
                     <ul class="space-y-1.5 text-xs">
                       <li>
-                        <a href="product-cashews.html" class="text-slate-600 hover:text-brand-dark hover:font-bold transition-all block py-1 px-2 rounded-lg hover:bg-slate-50">Cashew Kernels</a>
+                        <a href="product-cashews.html" class="font-medium text-slate-600 hover:text-brand-green hover:bg-brand-green/5 transition-all block py-1.5 px-2.5 rounded-lg">Cashew Kernels</a>
                       </li>
                       <li>
-                        <a href="product-coconut.html" class="text-slate-600 hover:text-brand-dark hover:font-bold transition-all block py-1 px-2 rounded-lg hover:bg-slate-50">Desiccated Coconut</a>
+                        <a href="product-coconut.html" class="font-medium text-slate-600 hover:text-brand-green hover:bg-brand-green/5 transition-all block py-1.5 px-2.5 rounded-lg">Desiccated Coconut</a>
                       </li>
                     </ul>
                   </div>
@@ -219,7 +216,7 @@
                 <!-- Footer row in Dropdown -->
                 <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
                   <span class="text-slate-400 font-normal">German Standard Quality Sourcing</span>
-                  <a href="products.html" class="font-bold text-brand-gold hover:text-brand-goldDark inline-flex items-center gap-1 transition-colors">
+                  <a href="products.html" class="font-semibold text-brand-green hover:text-brand-greenDark inline-flex items-center gap-1 transition-colors">
                     <span>All Products Portfolio</span>
                     <i data-lucide="arrow-right" class="w-3 h-3"></i>
                   </a>
@@ -228,9 +225,9 @@
             </div>
           </div>
 
-          <a href="sustainability.html" class="header-nav-link text-white/90 hover:text-brand-gold transition-colors py-2">Sustainability & ESG</a>
-          <a href="certificates.html" class="header-nav-link text-white/90 hover:text-brand-gold transition-colors py-2">Certifications</a>
-          <a href="careers.html" class="header-nav-link text-white/90 hover:text-brand-gold transition-colors py-2">Careers</a>
+          <a href="sustainability.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors py-2">Sustainability &amp; ESG</a>
+          <a href="certificates.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors py-2">Certifications</a>
+          <a href="careers.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors py-2">Careers</a>
         </nav>
 
         <!-- Right: Actions (Pinned Right) -->
@@ -329,7 +326,7 @@
               <i id="acc-product-icon" data-lucide="chevron-down" class="menu-accordion-icon w-4 h-4 sm:w-5 sm:h-5 stroke-[1.75] text-brand-mint/80 group-hover:text-brand-mint transition-transform duration-300"></i>
             </button>
             
-            <div id="acc-product" class="menu-accordion-content max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-in-out pl-4 sm:pl-6 border-l-2 border-brand-mint/40 my-1">
+                        <div id="acc-product" class="menu-accordion-content max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-in-out pl-4 sm:pl-6 border-l-2 border-brand-mint/40 my-1">
               <div class="py-2.5 space-y-3.5">
 
                 <!-- Subgroup 2.1: Coffee -->
@@ -339,23 +336,21 @@
                     <span>Coffee</span>
                   </div>
                   <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1 pl-3 border-l border-white/10 text-xs sm:text-sm text-slate-200">
-                    <a href="product-arabica.html" class="menu-link hover:text-brand-mint transition-all block py-0.5 hover:translate-x-1 duration-200">Arabica</a>
-                    <a href="product-robusta.html" class="menu-link hover:text-brand-mint transition-all block py-0.5 hover:translate-x-1 duration-200">Robusta</a>
+                    <a href="product-arabica.html" class="menu-link hover:text-brand-mint transition-all block py-0.5 hover:translate-x-1 duration-200">Arabica Coffee</a>
                   </div>
                 </div>
 
-                <!-- Subgroup 2.2: Pepper & Spices -->
+                <!-- Subgroup 2.2: Spices & Sauces -->
                 <div>
                   <div class="flex items-center gap-1.5 text-xs font-sans font-bold uppercase tracking-wider text-brand-mint mb-1.5">
                     <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
-                    <span>Pepper & Spices</span>
+                    <span>Spices &amp; Sauces</span>
                   </div>
                   <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1 pl-3 border-l border-white/10 text-xs sm:text-sm text-slate-200">
-                    <a href="product-pepper.html" class="menu-link hover:text-brand-mint transition-all block py-0.5 hover:translate-x-1 duration-200">Black Pepper & White Pepper</a>
-                    <a href="product-turmeric.html" class="menu-link hover:text-brand-mint transition-all block py-0.5 hover:translate-x-1 duration-200">Turmeric</a>
-                    <a href="product-chili.html" class="menu-link hover:text-brand-mint transition-all block py-0.5 hover:translate-x-1 duration-200">Chili</a>
+                    <a href="product-pepper.html" class="menu-link hover:text-brand-mint transition-all block py-0.5 hover:translate-x-1 duration-200">Black Pepper</a>
+                    <a href="product-pepper-sauce.html" class="menu-link hover:text-brand-mint transition-all block py-0.5 hover:translate-x-1 duration-200">Peppercorn Sauce</a>
                     <a href="product-cinnamon.html" class="menu-link hover:text-brand-mint transition-all block py-0.5 hover:translate-x-1 duration-200">Cassia Cinnamon</a>
-                    <a href="product-star-anise.html" class="menu-link hover:text-brand-mint transition-all block py-0.5 hover:translate-x-1 duration-200 text-brand-mint font-semibold" aria-current="page">Star Anise</a>
+                    <a href="product-star-anise.html" class="menu-link hover:text-brand-mint transition-all block py-0.5 hover:translate-x-1 duration-200">Star Anise</a>
                   </div>
                 </div>
 
@@ -601,60 +596,11 @@
         </button>
 
         <!-- Horizontal Scrollable Track (Image on Top · Text Below · Centered on Wide Screens) -->
-        <div 
+                        <div 
           id="productFastTrack" 
           class="flex items-start gap-4 sm:gap-7 lg:gap-8 xl:gap-9 overflow-x-auto no-scrollbar scroll-smooth py-1 px-4 sm:px-1 cursor-grab active:cursor-grabbing select-none w-full justify-start xl:justify-center"
         >
-          
-          <!-- 1. Chili -->
-          <a 
-            href="product-chili.html" 
-            class="shrink-0 flex flex-col items-center text-center group cursor-pointer"
-          >
-            <div class="relative mb-2">
-              <img 
-                src="images/product/chili.jpg" 
-                alt="Dried Chili" 
-                class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl object-cover border border-slate-200 shadow-2xs group-hover:scale-105 group-hover:border-brand-green/60 transition-all duration-200"
-              >
-            </div>
-            <span class="text-xs sm:text-[13px] font-bold text-slate-700 group-hover:text-brand-dark transition-colors leading-tight">Chili</span>
-            <span class="text-xs text-slate-400 font-medium tracking-wide mt-0.5">Whole &amp; Flakes</span>
-          </a>
-
-          <!-- 2. Pepper -->
-          <a 
-            href="product-pepper.html" 
-            class="shrink-0 flex flex-col items-center text-center group cursor-pointer"
-          >
-            <div class="relative mb-2">
-              <img 
-                src="images/product/black-pepper-white-pepper.jpg" 
-                alt="Black Pepper &amp; White Pepper" 
-                class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl object-cover border border-slate-200 shadow-2xs group-hover:scale-105 group-hover:border-brand-green/60 transition-all duration-200"
-              >
-            </div>
-            <span class="text-xs sm:text-[13px] font-bold text-slate-700 group-hover:text-brand-dark transition-colors leading-tight">Pepper</span>
-            <span class="text-xs text-slate-400 font-medium tracking-wide mt-0.5">Black &amp; White</span>
-          </a>
-
-          <!-- 3. Robusta Coffee -->
-          <a 
-            href="product-robusta.html" 
-            class="shrink-0 flex flex-col items-center text-center group cursor-pointer"
-          >
-            <div class="relative mb-2">
-              <img 
-                src="images/product/robusta.jpg" 
-                alt="Robusta Green Coffee" 
-                class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl object-cover border border-slate-200 shadow-2xs group-hover:scale-105 group-hover:border-brand-green/60 transition-all duration-200"
-              >
-            </div>
-            <span class="text-xs sm:text-[13px] font-bold text-slate-700 group-hover:text-brand-dark transition-colors leading-tight">Robusta</span>
-            <span class="text-xs text-slate-400 font-medium tracking-wide mt-0.5">Wet Polished</span>
-          </a>
-
-                    <!-- 4. Arabica Coffee -->
+          <!-- 1. Arabica Coffee -->
           <a 
             href="product-arabica.html" 
             class="shrink-0 flex flex-col items-center text-center group cursor-pointer"
@@ -662,15 +608,44 @@
             <div class="relative mb-2">
               <img 
                 src="images/product/arabica.jpg" 
-                alt="Arabica Green Coffee" 
+                alt="Arabica Coffee" 
                 class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl object-cover border border-slate-200 shadow-2xs group-hover:scale-105 group-hover:border-brand-green/60 transition-all duration-200"
               >
             </div>
-            <span class="text-xs sm:text-[13px] font-bold text-slate-700 group-hover:text-brand-dark transition-colors leading-tight">Arabica</span>
-            <span class="text-xs text-slate-400 font-medium tracking-wide mt-0.5">Highland Washed</span>
+            <span class="text-xs sm:text-[13px] font-bold text-slate-700 group-hover:text-brand-dark transition-colors leading-tight">Arabica Coffee</span>
+            <span class="text-xs text-slate-400 font-medium tracking-wide mt-0.5">Coffee Beans</span>
           </a>
-
-          <!-- 5. Cassia Cinnamon -->
+          <!-- 2. Black Pepper -->
+          <a 
+            href="product-pepper.html" 
+            class="shrink-0 flex flex-col items-center text-center group cursor-pointer"
+          >
+            <div class="relative mb-2">
+              <img 
+                src="images/product/pepper.jpg" 
+                alt="Black Pepper" 
+                class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl object-cover border border-slate-200 shadow-2xs group-hover:scale-105 group-hover:border-brand-green/60 transition-all duration-200"
+              >
+            </div>
+            <span class="text-xs sm:text-[13px] font-bold text-slate-700 group-hover:text-brand-dark transition-colors leading-tight">Black Pepper</span>
+            <span class="text-xs text-slate-400 font-medium tracking-wide mt-0.5">Steam Cleaned</span>
+          </a>
+          <!-- 3. Peppercorn Sauce -->
+          <a 
+            href="product-pepper-sauce.html" 
+            class="shrink-0 flex flex-col items-center text-center group cursor-pointer"
+          >
+            <div class="relative mb-2">
+              <img 
+                src="images/product/pepper-sauce.jpg" 
+                alt="Peppercorn Sauce" 
+                class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl object-cover border border-slate-200 shadow-2xs group-hover:scale-105 group-hover:border-brand-green/60 transition-all duration-200"
+              >
+            </div>
+            <span class="text-xs sm:text-[13px] font-bold text-slate-700 group-hover:text-brand-dark transition-colors leading-tight">Peppercorn Sauce</span>
+            <span class="text-xs text-slate-400 font-medium tracking-wide mt-0.5">Condiments</span>
+          </a>
+          <!-- 4. Cassia Cinnamon -->
           <a 
             href="product-cinnamon.html" 
             class="shrink-0 flex flex-col items-center text-center group cursor-pointer"
@@ -682,11 +657,10 @@
                 class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl object-cover border border-slate-200 shadow-2xs group-hover:scale-105 group-hover:border-brand-green/60 transition-all duration-200"
               >
             </div>
-            <span class="text-xs sm:text-[13px] font-bold text-slate-700 group-hover:text-brand-dark transition-colors leading-tight">Cinnamon</span>
-            <span class="text-xs text-slate-400 font-medium tracking-wide mt-0.5">Volatile &ge; 3.5%</span>
+            <span class="text-xs sm:text-[13px] font-bold text-slate-700 group-hover:text-brand-dark transition-colors leading-tight">Cassia Cinnamon</span>
+            <span class="text-xs text-slate-400 font-medium tracking-wide mt-0.5">Split &amp; Tube</span>
           </a>
-
-          <!-- 6. Star Anise (Current / Active) -->
+          <!-- 5. Star Anise (Current / Active) -->
           <a 
             href="product-star-anise.html" 
             class="shrink-0 flex flex-col items-center text-center group cursor-pointer"
@@ -702,40 +676,22 @@
             <span class="text-xs sm:text-[13px] font-bold text-brand-dark leading-tight">Star Anise</span>
             <span class="text-xs font-bold text-brand-gold tracking-wide mt-0.5">Current</span>
           </a>
-
-          <!-- 7. Turmeric -->
-          <a 
-            href="product-turmeric.html" 
-            class="shrink-0 flex flex-col items-center text-center group cursor-pointer"
-          >
-            <div class="relative mb-2">
-              <img 
-                src="images/product/turmeric.jpg" 
-                alt="Turmeric" 
-                class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl object-cover border border-slate-200 shadow-2xs group-hover:scale-105 group-hover:border-brand-green/60 transition-all duration-200"
-              >
-            </div>
-            <span class="text-xs sm:text-[13px] font-bold text-slate-700 group-hover:text-brand-dark transition-colors leading-tight">Turmeric</span>
-            <span class="text-xs text-slate-400 font-medium tracking-wide mt-0.5">Polished Fingers</span>
-          </a>
-
-          <!-- 8. Cashews -->
+          <!-- 6. Cashew Kernels -->
           <a 
             href="product-cashews.html" 
             class="shrink-0 flex flex-col items-center text-center group cursor-pointer"
           >
             <div class="relative mb-2">
               <img 
-                src="images/product/cashew-kernels.jpg" 
-                alt="Cashews" 
+                src="images/product/cashews.jpg" 
+                alt="Cashew Kernels" 
                 class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl object-cover border border-slate-200 shadow-2xs group-hover:scale-105 group-hover:border-brand-green/60 transition-all duration-200"
               >
             </div>
-            <span class="text-xs sm:text-[13px] font-bold text-slate-700 group-hover:text-brand-dark transition-colors leading-tight">Cashews</span>
-            <span class="text-xs text-slate-400 font-medium tracking-wide mt-0.5">Whole &amp; Pieces</span>
+            <span class="text-xs sm:text-[13px] font-bold text-slate-700 group-hover:text-brand-dark transition-colors leading-tight">Cashew Kernels</span>
+            <span class="text-xs text-slate-400 font-medium tracking-wide mt-0.5">WW240 / WW320</span>
           </a>
-
-          <!-- 9. Desiccated Coconut -->
+          <!-- 7. Desiccated Coconut -->
           <a 
             href="product-coconut.html" 
             class="shrink-0 flex flex-col items-center text-center group cursor-pointer"
@@ -747,10 +703,9 @@
                 class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl object-cover border border-slate-200 shadow-2xs group-hover:scale-105 group-hover:border-brand-green/60 transition-all duration-200"
               >
             </div>
-            <span class="text-xs sm:text-[13px] font-bold text-slate-700 group-hover:text-brand-dark transition-colors leading-tight">Coconut</span>
+            <span class="text-xs sm:text-[13px] font-bold text-slate-700 group-hover:text-brand-dark transition-colors leading-tight">Desiccated Coconut</span>
             <span class="text-xs text-slate-400 font-medium tracking-wide mt-0.5">High Fat</span>
           </a>
-
         </div>
 
         <!-- Next Arrow (Inline, Belkern Squircle) -->
@@ -923,111 +878,6 @@
   </section>
 
   <!-- ========================================================================= -->
-  <!-- 5. COMMERCIAL PROCESSING FORMS & APPLICATIONS (Pure Product Showcase)    -->
-  <!-- ========================================================================= -->
-  <section id="productGrades" class="scroll-mt-32 pt-20 lg:pt-28 pb-16 sm:pb-20 lg:pb-24 bg-white relative">
-    <div class="max-w-7xl mx-auto px-5 sm:px-10 lg:px-12">
-      
-      <!-- Section Header -->
-      <div class="max-w-3xl mb-12">
-        <div class="text-brand-green text-xs sm:text-sm font-bold uppercase tracking-[0.18em] mb-2 sm:mb-2.5">COMMODITY CUTS & APPLICATIONS</div>
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-dark tracking-tight leading-[1.1] mb-3.5">
-          Commercial Processing Forms & Applications.
-        </h2>
-        <p class="text-slate-600 text-sm sm:text-base leading-relaxed max-w-xl">
-          Star anise preparations and sorting selections formulated for industrial soup bases, beverage distilleries, seasonal bakery blends, and international spice packaging.
-        </p>
-      </div>
-
-      <!-- 4 Pure Descriptive Cards (Zero Lab Numbers, Zero Standard Metrics) -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-
-        <!-- Card 1: Autumn Whole Star Anise -->
-        <div class="p-6 rounded-2xl bg-white border border-slate-200/90 hover:border-brand-green/70 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
-          <div>
-            <div class="mb-3.5">
-              <span class="inline-block px-3 py-1 rounded-lg text-xs font-sans font-bold bg-slate-100 text-slate-800 uppercase tracking-wider">Whole Star Premium</span>
-            </div>
-            <h3 class="text-lg font-bold text-brand-dark group-hover:text-brand-green transition-colors mb-2.5">
-              Autumn Whole Star Anise
-            </h3>
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-              Selected eight-pointed star flowers harvested during the prime autumn season. Displays a rich reddish-brown tone with glossy seeds in every carpel, releasing an intense licorice fragrance for broths, mulled wines, and festive baking.
-            </p>
-          </div>
-          <div class="pt-6">
-            <button type="button" onclick="selectCommodityGrade('Whole Autumn Star Anise', 'Autumn Whole Star Anise', 'FCL Order Inquiry')" class="w-full h-11 rounded-xl bg-brand-green hover:bg-brand-greenDark text-white font-bold text-sm tracking-wide flex items-center justify-center gap-2 transition-all cursor-pointer shadow-2xs hover:shadow-xs active:scale-[0.99] group">
-              <span>Inquire Autumn Whole</span>
-              <i data-lucide="arrow-right" class="w-4 h-4 text-white transition-transform duration-200 group-hover:translate-x-0.5"></i>
-            </button>
-          </div>
-        </div>
-        <!-- Card 2: Spring Crop Star Anise -->
-        <div class="p-6 rounded-2xl bg-white border border-slate-200/90 hover:border-brand-green/70 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
-          <div>
-            <div class="mb-3.5">
-              <span class="inline-block px-3 py-1 rounded-lg text-xs font-sans font-bold bg-slate-100 text-slate-800 uppercase tracking-wider">Spring Crop Whole</span>
-            </div>
-            <h3 class="text-lg font-bold text-brand-dark group-hover:text-brand-green transition-colors mb-2.5">
-              Spring Crop Star Anise
-            </h3>
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-              Harvested during the spring crop, offering firm star petals with a warm, distinctive anethole scent. Widely utilized for commercial pho broths, braised meat preparations, and savory Asian sauces.
-            </p>
-          </div>
-          <div class="pt-6">
-            <button type="button" onclick="selectCommodityGrade('Spring Crop Star Anise', 'Spring Crop Star Anise', 'FCL Order Inquiry')" class="w-full h-11 rounded-xl border border-slate-300 hover:border-brand-green bg-white hover:bg-brand-green/5 text-slate-800 hover:text-brand-green font-bold text-sm tracking-wide flex items-center justify-center gap-2 transition-all cursor-pointer shadow-2xs hover:shadow-xs active:scale-[0.99] group">
-              <span>Inquire Spring Whole</span>
-              <i data-lucide="arrow-right" class="w-4 h-4 text-slate-400 group-hover:text-brand-green group-hover:translate-x-0.5 transition-all"></i>
-            </button>
-          </div>
-        </div>
-        <!-- Card 3: Broken Star Anise & Petals -->
-        <div class="p-6 rounded-2xl bg-white border border-slate-200/90 hover:border-brand-green/70 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
-          <div>
-            <div class="mb-3.5">
-              <span class="inline-block px-3 py-1 rounded-lg text-xs font-sans font-bold bg-slate-100 text-slate-800 uppercase tracking-wider">Culinary Grinding</span>
-            </div>
-            <h3 class="text-lg font-bold text-brand-dark group-hover:text-brand-green transition-colors mb-2.5">
-              Broken Star Anise & Petals
-            </h3>
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-              Clean star petals and broken carpels that retain full aromatic sweetness. An economical, practical choice for five-spice powder blending, garam masala mixes, and craft tea brewing.
-            </p>
-          </div>
-          <div class="pt-6">
-            <button type="button" onclick="selectCommodityGrade('Broken Star Anise & Petals', 'Broken Star Anise & Petals', 'FCL Order Inquiry')" class="w-full h-11 rounded-xl border border-slate-300 hover:border-brand-green bg-white hover:bg-brand-green/5 text-slate-800 hover:text-brand-green font-bold text-sm tracking-wide flex items-center justify-center gap-2 transition-all cursor-pointer shadow-2xs hover:shadow-xs active:scale-[0.99] group">
-              <span>Inquire Broken Petals</span>
-              <i data-lucide="arrow-right" class="w-4 h-4 text-slate-400 group-hover:text-brand-green group-hover:translate-x-0.5 transition-all"></i>
-            </button>
-          </div>
-        </div>
-        <!-- Card 4: Ground Star Anise Powder -->
-        <div class="p-6 rounded-2xl bg-white border border-slate-200/90 hover:border-brand-green/70 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
-          <div>
-            <div class="mb-3.5">
-              <span class="inline-block px-3 py-1 rounded-lg text-xs font-sans font-bold bg-slate-100 text-slate-800 uppercase tracking-wider">Fine Spice Powder</span>
-            </div>
-            <h3 class="text-lg font-bold text-brand-dark group-hover:text-brand-green transition-colors mb-2.5">
-              Ground Star Anise Powder
-            </h3>
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-              Smoothly ground pure star anise powder offering immediate flavor dispersion. Essential for artisan spice seasonings, gingerbread glazes, pastry fillings, and liqueur distillation.
-            </p>
-          </div>
-          <div class="pt-6">
-            <button type="button" onclick="selectCommodityGrade('Ground Star Anise Powder', 'Ground Star Anise Powder', 'FCL Order Inquiry')" class="w-full h-11 rounded-xl border border-slate-300 hover:border-brand-green bg-white hover:bg-brand-green/5 text-slate-800 hover:text-brand-green font-bold text-sm tracking-wide flex items-center justify-center gap-2 transition-all cursor-pointer shadow-2xs hover:shadow-xs active:scale-[0.99] group">
-              <span>Inquire Anise Powder</span>
-              <i data-lucide="arrow-right" class="w-4 h-4 text-slate-400 group-hover:text-brand-green group-hover:translate-x-0.5 transition-all"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ========================================================================= -->
   <!-- 7. B2B CONTAINER INQUIRY TERMINAL (European Procurement Form)            -->
   <!-- ========================================================================= -->
   <section id="rfq" class="pt-20 pb-12 sm:pt-24 sm:pb-16 lg:pt-28 lg:pb-20 bg-brand-canvas relative overflow-hidden">
@@ -1088,20 +938,17 @@
                   Commodity Cargo <span class="text-brand-gold">*</span>
                 </label>
                 
-                <div class="relative custom-dropdown" data-dropdown="commodity">
-                  <!-- Hidden Select for Native Form Submissions & Accessibility -->
+                                <div class="relative custom-dropdown" data-dropdown="commodity">
                   <select id="commoditySelect" name="commodity" required class="sr-only">
-                    <option value="Arabica Coffee">Arabica Green Coffee Specialty (Highland Washed)</option>
-                    <option value="Robusta Coffee">Robusta Green Coffee (Wet Polished &amp; Clean)</option>
-                    <option value="Black Pepper Steam Sterilized">Black Pepper (Steam Cleaned Quality)</option>
-                    <option value="Black Pepper FAQ">Black Pepper (Field Cleaned &amp; Sorted)</option>
-                    <option value="White Pepper">White Pepper (Double Washed / Decorticated)</option>
-                    <option value="Dried Chili">Dried Chili (Stemless / Whole / Flakes / Powder)</option>
-                    <option value="Cassia Cinnamon">Cassia Cinnamon (Split, Tube &amp; Broken)</option>
-                    <option value="Star Anise" selected>Star Anise (Autumn Crop ≥ 2.5cm)</option>
-                    <option value="Turmeric">Turmeric Finger (Polished &amp; Dried)</option>
-                    <option value="Cashews">Cashew Kernels (Whole &amp; Broken Pieces)</option>
-                    <option value="Desiccated Coconut">Desiccated Coconut (High Fat)</option>
+                    <option value="" disabled selected>Select Commodity Cargo *</option>
+                    <option value="Arabica Coffee">Arabica Coffee (Coffee Beans)</option>
+                    <option value="Black Pepper">Black Pepper</option>
+                    <option value="Peppercorn Sauce">Peppercorn Sauce</option>
+                    <option value="Cassia Cinnamon">Cassia Cinnamon</option>
+                    <option value="Star Anise">Star Anise</option>
+                    <option value="Cashew Kernels">Cashew Kernels</option>
+                    <option value="Desiccated Coconut">Desiccated Coconut</option>
+                    <option value="Multiple Commodities / Consolidation">Multiple Commodities / Consolidation FCL</option>
                   </select>
 
                   <button type="button" 
@@ -1112,88 +959,60 @@
                       <span class="text-slate-400 group-hover:text-brand-mint transition-colors shrink-0">
                         <i data-lucide="package" class="w-4 h-4 stroke-[1.75]"></i>
                       </span>
-                      <span class="custom-dropdown-label text-xs sm:text-sm font-semibold text-slate-900 truncate">Star Anise (Autumn Crop ≥ 2.5cm)</span>
+                      <span class="custom-dropdown-label text-xs sm:text-sm text-slate-500 truncate">Select Commodity Cargo...</span>
                     </div>
                     <span class="text-slate-400 group-hover:text-slate-700 transition-transform duration-200 custom-dropdown-chevron shrink-0 ml-2">
                       <i data-lucide="chevron-down" class="w-4 h-4 stroke-[2]"></i>
                     </span>
                   </button>
 
-                  <!-- Custom Dropdown Menu Panel -->
+                  <!-- Custom Dropdown Menu Panel with high z-index and max-height -->
                   <div class="custom-dropdown-menu absolute left-0 right-0 top-[calc(100%+6px)] z-50 bg-white rounded-xl border border-slate-200 shadow-xl py-1.5 max-h-64 overflow-y-auto hidden opacity-0 translate-y-1 transition-all duration-200 divide-y divide-slate-100">
                     
-                    <!-- Group: Green Coffee -->
+                    <!-- Group: Coffee Beans -->
                     <div class="py-1">
                       <div class="px-3.5 py-1 text-xs font-bold tracking-wider uppercase text-brand-gold bg-slate-50/80">
-                        Green Coffee
+                        Coffee Beans
                       </div>
-                      <div class="custom-dropdown-option px-3.5 py-2.5 flex items-center justify-between hover:bg-brand-green/10 cursor-pointer transition-colors text-xs text-slate-700 hover:text-brand-dark" data-value="Arabica Coffee" data-label="Arabica Green Coffee Specialty">
+                      <div class="custom-dropdown-option px-3.5 py-2.5 flex items-center justify-between hover:bg-brand-green/10 cursor-pointer transition-colors text-xs text-slate-700 hover:text-brand-dark" data-value="Arabica Coffee" data-label="Arabica Coffee (Coffee Beans)">
                         <div>
-                          <div class="font-bold text-slate-900">Arabica Green Coffee</div>
-                          <div class="text-xs text-slate-500 font-normal">Specialty Highland &middot; Wet Processed</div>
-                        </div>
-                        <i data-lucide="check" class="w-4 h-4 text-brand-green hidden custom-option-check shrink-0"></i>
-                      </div>
-                      <div class="custom-dropdown-option px-3.5 py-2.5 flex items-center justify-between hover:bg-brand-green/10 cursor-pointer transition-colors text-xs text-slate-700 hover:text-brand-dark" data-value="Robusta Coffee" data-label="Robusta Green Coffee (Wet Polished)">
-                        <div>
-                          <div class="font-bold text-slate-900">Robusta Green Coffee</div>
-                          <div class="text-xs text-slate-500 font-normal">Central Highlands &middot; Wet Polished</div>
+                          <div class="font-bold text-slate-900">Arabica Coffee</div>
+                          <div class="text-xs text-slate-500 font-normal">Coffee Beans &middot; Screen 18/16 Washed &amp; Natural</div>
                         </div>
                         <i data-lucide="check" class="w-4 h-4 text-brand-green hidden custom-option-check shrink-0"></i>
                       </div>
                     </div>
 
-                    <!-- Group: Pepper & Spices -->
+                    <!-- Group: Spices & Sauces -->
                     <div class="py-1">
                       <div class="px-3.5 py-1 text-xs font-bold tracking-wider uppercase text-brand-gold bg-slate-50/80">
-                        Pepper &amp; Spices
+                        Spices &amp; Sauces
                       </div>
-                      <div class="custom-dropdown-option px-3.5 py-2.5 flex items-center justify-between hover:bg-brand-green/10 cursor-pointer transition-colors text-xs text-slate-700 hover:text-brand-dark" data-value="Black Pepper Steam Sterilized" data-label="Black Pepper (Steam Cleaned)">
+                      <div class="custom-dropdown-option px-3.5 py-2.5 flex items-center justify-between hover:bg-brand-green/10 cursor-pointer transition-colors text-xs text-slate-700 hover:text-brand-dark" data-value="Black Pepper" data-label="Black Pepper (Steam Sterilized / FAQ)">
                         <div>
-                          <div class="font-bold text-slate-900">Black Pepper Steam Sterilized</div>
-                          <div class="text-xs text-slate-500 font-normal">Export Quality &middot; Steam Cleaned</div>
+                          <div class="font-bold text-slate-900">Black Pepper</div>
+                          <div class="text-xs text-slate-500 font-normal">Steam Sterilized &amp; FAQ &middot; 500 &ndash; 570 g/l</div>
                         </div>
                         <i data-lucide="check" class="w-4 h-4 text-brand-green hidden custom-option-check shrink-0"></i>
                       </div>
-                      <div class="custom-dropdown-option px-3.5 py-2.5 flex items-center justify-between hover:bg-brand-green/10 cursor-pointer transition-colors text-xs text-slate-700 hover:text-brand-dark" data-value="Black Pepper FAQ" data-label="Black Pepper (Field Cleaned)">
+                      <div class="custom-dropdown-option px-3.5 py-2.5 flex items-center justify-between hover:bg-brand-green/10 cursor-pointer transition-colors text-xs text-slate-700 hover:text-brand-dark" data-value="Peppercorn Sauce" data-label="Peppercorn Sauce (Culinary &amp; Industrial)">
                         <div>
-                          <div class="font-bold text-slate-900">Black Pepper FAQ</div>
-                          <div class="text-xs text-slate-500 font-normal">Naturally Dried &middot; Spiral Cleaned</div>
-                        </div>
-                        <i data-lucide="check" class="w-4 h-4 text-brand-green hidden custom-option-check shrink-0"></i>
-                      </div>
-                      <div class="custom-dropdown-option px-3.5 py-2.5 flex items-center justify-between hover:bg-brand-green/10 cursor-pointer transition-colors text-xs text-slate-700 hover:text-brand-dark" data-value="White Pepper" data-label="White Pepper (Double Washed)">
-                        <div>
-                          <div class="font-bold text-slate-900">White Pepper (Double Washed)</div>
-                          <div class="text-xs text-slate-500 font-normal">Double Washed &middot; Decorticated</div>
-                        </div>
-                        <i data-lucide="check" class="w-4 h-4 text-brand-green hidden custom-option-check shrink-0"></i>
-                      </div>
-                      <div class="custom-dropdown-option px-3.5 py-2.5 flex items-center justify-between hover:bg-brand-green/10 cursor-pointer transition-colors text-xs text-slate-700 hover:text-brand-dark" data-value="Dried Chili" data-label="Dried Chili (Stemless / Whole / Flakes)">
-                        <div>
-                          <div class="font-bold text-slate-900">Dried Chili</div>
-                          <div class="text-xs text-slate-500 font-normal">Stemless &amp; With Stem &middot; Crushed Flakes &amp; Powder</div>
+                          <div class="font-bold text-slate-900">Peppercorn Sauce</div>
+                          <div class="text-xs text-slate-500 font-normal">Culinary &amp; Industrial Condiments &middot; Bulk Foodservice</div>
                         </div>
                         <i data-lucide="check" class="w-4 h-4 text-brand-green hidden custom-option-check shrink-0"></i>
                       </div>
                       <div class="custom-dropdown-option px-3.5 py-2.5 flex items-center justify-between hover:bg-brand-green/10 cursor-pointer transition-colors text-xs text-slate-700 hover:text-brand-dark" data-value="Cassia Cinnamon" data-label="Cassia Cinnamon (Split / Tubes)">
                         <div>
                           <div class="font-bold text-slate-900">Cassia Cinnamon</div>
-                          <div class="text-xs text-slate-500 font-normal">Split, Cigarette Tubes &amp; Broken</div>
+                          <div class="text-xs text-slate-500 font-normal">Split &amp; Cigarette Tubes &middot; High Essential Oil</div>
                         </div>
                         <i data-lucide="check" class="w-4 h-4 text-brand-green hidden custom-option-check shrink-0"></i>
                       </div>
-                      <div class="custom-dropdown-option px-3.5 py-2.5 flex items-center justify-between hover:bg-brand-green/10 cursor-pointer transition-colors text-xs text-slate-700 hover:text-brand-dark bg-brand-gold/10" data-value="Star Anise" data-label="Star Anise (Autumn Crop)">
+                      <div class="custom-dropdown-option px-3.5 py-2.5 flex items-center justify-between hover:bg-brand-green/10 cursor-pointer transition-colors text-xs text-slate-700 hover:text-brand-dark" data-value="Star Anise" data-label="Star Anise (Autumn Crop)">
                         <div>
                           <div class="font-bold text-slate-900">Star Anise</div>
-                          <div class="text-xs text-slate-500 font-normal">Autumn Crop · Flower Size ≥ 2.5cm</div>
-                        </div>
-                        <i data-lucide="check" class="w-4 h-4 text-brand-green custom-option-check shrink-0"></i>
-                      </div>
-                      <div class="custom-dropdown-option px-3.5 py-2.5 flex items-center justify-between hover:bg-brand-green/10 cursor-pointer transition-colors text-xs text-slate-700 hover:text-brand-dark" data-value="Turmeric" data-label="Turmeric Finger (Polished &amp; Dried)">
-                        <div>
-                          <div class="font-bold text-slate-900">Turmeric Finger &amp; Powder</div>
-                          <div class="text-xs text-slate-500 font-normal">Sun-Dried &middot; Polished Fingers</div>
+                          <div class="text-xs text-slate-500 font-normal">Autumn Crop &middot; Whole Flower &ge; 2.5cm</div>
                         </div>
                         <i data-lucide="check" class="w-4 h-4 text-brand-green hidden custom-option-check shrink-0"></i>
                       </div>
@@ -1204,17 +1023,24 @@
                       <div class="px-3.5 py-1 text-xs font-bold tracking-wider uppercase text-brand-gold bg-slate-50/80">
                         Agricultural Commodities
                       </div>
-                      <div class="custom-dropdown-option px-3.5 py-2.5 flex items-center justify-between hover:bg-brand-green/10 cursor-pointer transition-colors text-xs text-slate-700 hover:text-brand-dark" data-value="Cashews" data-label="Cashew Kernels (Whole &amp; Broken)">
+                      <div class="custom-dropdown-option px-3.5 py-2.5 flex items-center justify-between hover:bg-brand-green/10 cursor-pointer transition-colors text-xs text-slate-700 hover:text-brand-dark" data-value="Cashew Kernels" data-label="Cashew Kernels (WW240 / WW320)">
                         <div>
-                          <div class="font-bold text-slate-900">Cashew Kernels (Whole &amp; Pieces)</div>
-                          <div class="text-xs text-slate-500 font-normal">W240, W320, LP, SP Grade</div>
+                          <div class="font-bold text-slate-900">Cashew Kernels</div>
+                          <div class="text-xs text-slate-500 font-normal">WW240, WW320, LP, SP Grade &middot; Vacuum Packed</div>
                         </div>
                         <i data-lucide="check" class="w-4 h-4 text-brand-green hidden custom-option-check shrink-0"></i>
                       </div>
                       <div class="custom-dropdown-option px-3.5 py-2.5 flex items-center justify-between hover:bg-brand-green/10 cursor-pointer transition-colors text-xs text-slate-700 hover:text-brand-dark" data-value="Desiccated Coconut" data-label="Desiccated Coconut (High Fat)">
                         <div>
                           <div class="font-bold text-slate-900">Desiccated Coconut</div>
-                          <div class="text-xs text-slate-500 font-normal">High Fat · Fine &amp; Medium Grade</div>
+                          <div class="text-xs text-slate-500 font-normal">High Fat &ge; 65% &middot; Fine &amp; Medium Grade</div>
+                        </div>
+                        <i data-lucide="check" class="w-4 h-4 text-brand-green hidden custom-option-check shrink-0"></i>
+                      </div>
+                      <div class="custom-dropdown-option px-3.5 py-2.5 flex items-center justify-between hover:bg-brand-green/10 cursor-pointer transition-colors text-xs text-slate-700 hover:text-brand-dark" data-value="Multiple Commodities / Consolidation" data-label="Multiple Commodities / Consolidation FCL">
+                        <div>
+                          <div class="font-bold text-slate-900">Multiple Commodities / Consolidation FCL</div>
+                          <div class="text-xs text-slate-500 font-normal">Mixed Container Load (Coffee, Spices &amp; Condiments)</div>
                         </div>
                         <i data-lucide="check" class="w-4 h-4 text-brand-green hidden custom-option-check shrink-0"></i>
                       </div>
@@ -1634,24 +1460,22 @@
               <i id="footerCommoditiesIcon" data-lucide="chevron-down" class="w-3.5 h-3.5 text-slate-500 group-hover:text-brand-mint transition-transform duration-300 stroke-[2]"></i>
             </span>
           </button>
-          <div id="footerCommodities" class="footer-accordion-content max-h-0 lg:max-h-none opacity-0 lg:opacity-100 overflow-hidden lg:overflow-visible transition-all duration-300 ease-in-out">
+                    <div id="footerCommodities" class="footer-accordion-content max-h-0 lg:max-h-none opacity-0 lg:opacity-100 overflow-hidden lg:overflow-visible transition-all duration-300 ease-in-out">
             <ul class="space-y-2.5 text-xs text-slate-600 pt-3 lg:pt-0">
               <li class="flex items-start gap-2">
                 <span class="w-1.5 h-1.5 bg-brand-gold mt-1.5 shrink-0"></span>
                 <div>
-                  <a href="product-robusta.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Robusta</a>
-                  <span class="text-slate-300 mx-1">&middot;</span>
-                  <a href="product-arabica.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Arabica Green Coffee</a>
-                  <div class="text-xs text-slate-400">Highland Green Coffee &middot; Fully Washed</div>
+                  <a href="product-arabica.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Arabica Coffee</a>
+                  <div class="text-xs text-slate-400">Highland Green Coffee Beans &middot; Fully Washed</div>
                 </div>
               </li>
               <li class="flex items-start gap-2">
                 <span class="w-1.5 h-1.5 bg-brand-green mt-1.5 shrink-0"></span>
                 <div>
-                  <a href="product-pepper.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Black Pepper &amp; White Pepper</a>
+                  <a href="product-pepper.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Black Pepper</a>
                   <span class="text-slate-300 mx-1">&middot;</span>
-                  <a href="product-chili.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Dried Chili</a>
-                  <div class="text-xs text-slate-400">Steam Cleaned Black &amp; White Pepper</div>
+                  <a href="product-pepper-sauce.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Peppercorn Sauce</a>
+                  <div class="text-xs text-slate-400">Cleaned Peppercorns &middot; Culinary &amp; Industrial Condiments</div>
                 </div>
               </li>
               <li class="flex items-start gap-2">
@@ -1664,19 +1488,12 @@
                 </div>
               </li>
               <li class="flex items-start gap-2">
-                <span class="w-1.5 h-1.5 bg-brand-gold mt-1.5 shrink-0"></span>
-                <div>
-                  <a href="product-turmeric.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors block">Turmeric Finger &amp; Powder</a>
-                  <div class="text-xs text-slate-400">Whole Polished Fingers &amp; Pure Ground</div>
-                </div>
-              </li>
-              <li class="flex items-start gap-2">
                 <span class="w-1.5 h-1.5 bg-slate-400 mt-1.5 shrink-0"></span>
                 <div>
                   <a href="product-cashews.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Cashew Kernels</a>
                   <span class="text-slate-300 mx-1">&middot;</span>
                   <a href="product-coconut.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Desiccated Coconut</a>
-                  <div class="text-xs text-slate-400">Whole &amp; Broken Kernels &middot; Fine &amp; Medium Cuts</div>
+                  <div class="text-xs text-slate-400">Whole &amp; Broken Kernels &middot; Fine &amp; Medium High Fat</div>
                 </div>
               </li>
             </ul>
