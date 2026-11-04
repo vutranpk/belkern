@@ -80,7 +80,7 @@
     
     <!-- Ambient Daylight Header Scrim Overlay (Preserves Nav Contrast Over Bright Hero Photography) -->
     <div id="headerScrim" class="absolute top-0 left-0 right-0 h-48 lg:h-60 -z-10 bg-gradient-to-b from-black/75 via-black/45 to-transparent transition-opacity duration-500 pointer-events-none"></div>
-<div class="w-full px-6 sm:px-10 lg:px-14 xl:px-20">
+<div class="w-full px-4 sm:px-8 lg:px-6 xl:px-12 2xl:px-20">
 
       <!-- Tier 1: Utility Bar (Desktop >= 1024px Only) -->
       <div id="headerTopBar" class="hidden lg:flex justify-end items-center text-xs text-white font-medium transition-all duration-300 overflow-hidden max-h-12 py-2.5">
@@ -114,11 +114,11 @@
         </a>
 
         <!-- Center: Desktop Navigation Links (>= 1024px / lg) -->
-                        <!-- Center: Desktop Navigation Links (>= 1024px / lg) -->
-        <nav class="hidden lg:flex items-center gap-5 xl:gap-7 font-medium text-[14px] xl:text-[15px]">
+        <nav class="hidden lg:flex items-center gap-3.5 xl:gap-5 2xl:gap-6 font-medium text-[12.5px] xl:text-[13.5px] 2xl:text-[14.5px] whitespace-nowrap">
           <a href="about.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors py-2">About Us</a>
           <a href="product-arabica.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors py-2">Coffee</a>
           <a href="product-pepper.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors py-2">Pepper</a>
+          <a href="product-green-pepper-in-brine.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors py-2">Green Pepper in Brine</a>
           
           <!-- Spices & Other Commodities with Rich Hover Dropdown Menu -->
           <div class="relative group py-2">
@@ -233,9 +233,10 @@
       <!-- Main Body: 2 Columns -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 py-5 sm:py-7 lg:py-8 items-start">
         
-        <!-- Left Column: Hierarchical Navigation Tree -->
+        <!-- Left Column (7 Columns): Hierarchical Navigation Tree (Clean English, Refined Hierarchy) -->
         <div class="lg:col-span-7 space-y-1">
           
+          <!-- Item 0: Home -->
           <div class="border-b border-white/[0.07]">
             <a href="index.html" class="menu-link w-full py-2.5 sm:py-3 text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-white/95 hover:text-brand-mint transition-colors flex items-center justify-between group">
               <span>Home</span>
@@ -243,6 +244,7 @@
             </a>
           </div>
 
+          <!-- Item 1: About Us -->
           <div class="border-b border-white/[0.07]">
             <a href="about.html" class="menu-link w-full py-2.5 sm:py-3 text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-white/95 hover:text-brand-mint transition-colors flex items-center justify-between group">
               <span>About Us</span>
@@ -250,55 +252,64 @@
             </a>
           </div>
 
+          <!-- Item 2: Coffee -->
           <div class="border-b border-white/[0.07]">
-            <button type="button" onclick="toggleMenuAccordion('productsSubMenu')" class="w-full py-2.5 sm:py-3 text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-white/95 hover:text-brand-mint transition-colors flex items-center justify-between group text-left cursor-pointer">
-              <span>Agricultural Products</span>
-              <i id="productsSubMenu-icon" data-lucide="chevron-down" class="menu-accordion-icon w-4 h-4 sm:w-5 sm:h-5 stroke-[1.75] text-white/50 group-hover:text-brand-mint transition-transform duration-200"></i>
-            </button>
-                        <div id="productsSubMenu" class="menu-accordion-content max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-in-out pl-3 sm:pl-4 space-y-3 pb-3">
-              <a href="products.html" class="menu-link text-xs font-bold uppercase tracking-wider text-brand-mint hover:underline block pt-1">View Full Portfolio &rarr;</a>
-              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1 border-t border-white/[0.07]">
-                <div>
-                  <span class="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">Coffee</span>
-                  <div class="space-y-1 pl-2">
-                    <a href="product-arabica.html" class="menu-link text-xs font-medium text-slate-300 hover:text-brand-mint block py-0.5">Arabica Coffee</a>
-                  </div>
-                </div>
-                <div>
-                  <span class="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">Spices &amp; Sauces</span>
-                  <div class="space-y-1 pl-2">
-                    <a href="product-pepper.html" class="menu-link text-xs font-medium text-slate-300 hover:text-brand-mint block py-0.5">Black Pepper</a>
-                    <a href="product-pepper-sauce.html" class="menu-link text-xs font-medium text-slate-300 hover:text-brand-mint block py-0.5">Peppercorn Sauce</a>
-                    <a href="product-cinnamon.html" class="menu-link text-xs font-medium text-slate-300 hover:text-brand-mint block py-0.5">Cassia</a>
-                    <a href="product-star-anise.html" class="menu-link text-xs font-medium text-slate-300 hover:text-brand-mint block py-0.5">Star Anise</a>
-                  </div>
-                </div>
-                <div>
-                  <span class="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">Commodities</span>
-                  <div class="space-y-1 pl-2">
-                    <a href="product-cashews.html" class="menu-link text-xs font-medium text-slate-300 hover:text-brand-mint block py-0.5">Cashew Kernels</a>
-                    <a href="product-coconut.html" class="menu-link text-xs font-medium text-slate-300 hover:text-brand-mint block py-0.5">Desiccated Coconut</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          </div>
-
-          <div class="border-b border-white/[0.07]">
-            <a href="sustainability.html" aria-current="page" class="menu-link w-full py-2.5 sm:py-3 text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-brand-mint flex items-center justify-between group">
-              <span>Sustainability &amp; ESG</span>
-              <span class="w-2 h-2 bg-brand-mint"></span>
-            </a>
-          </div>
-
-          <div class="border-b border-white/[0.07]">
-            <a href="certificates.html" class="menu-link w-full py-2.5 sm:py-3 text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-white/95 hover:text-brand-mint transition-colors flex items-center justify-between group">
-              <span>Certificates &amp; Accreditations</span>
+            <a href="product-arabica.html" class="menu-link w-full py-2.5 sm:py-3 text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-white/95 hover:text-brand-mint transition-colors flex items-center justify-between group">
+              <span>Coffee</span>
               <i data-lucide="arrow-right" class="w-4 h-4 sm:w-5 sm:h-5 stroke-[1.75] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-brand-mint"></i>
             </a>
           </div>
 
+          <!-- Item 3: Pepper -->
+          <div class="border-b border-white/[0.07]">
+            <a href="product-pepper.html" class="menu-link w-full py-2.5 sm:py-3 text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-white/95 hover:text-brand-mint transition-colors flex items-center justify-between group">
+              <span>Pepper</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 sm:w-5 sm:h-5 stroke-[1.75] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-brand-mint"></i>
+            </a>
+          </div>
+
+          <!-- Item 3.5: Green Pepper in Brine -->
+          <div class="border-b border-white/[0.07]">
+            <a href="product-green-pepper-in-brine.html" class="menu-link w-full py-2.5 sm:py-3 text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-white/95 hover:text-brand-mint transition-colors flex items-center justify-between group">
+              <span>Green Pepper in Brine</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 sm:w-5 sm:h-5 stroke-[1.75] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-brand-mint"></i>
+            </a>
+          </div>
+
+          <!-- Item 4: Cashew / Spices / Other Commodities Accordion -->
+          <div class="border-b border-white/[0.07]">
+            <button type="button" onclick="toggleMenuAccordion('acc-spices')" class="w-full flex items-center justify-between py-2.5 sm:py-3 text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-white/95 hover:text-brand-mint transition-colors text-left group cursor-pointer focus:outline-none">
+              <span>Spices &amp; Other Commodities</span>
+              <i id="acc-spices-icon" data-lucide="chevron-down" class="menu-accordion-icon w-4 h-4 sm:w-5 sm:h-5 stroke-[1.75] text-brand-mint/80 group-hover:text-brand-mint transition-transform duration-300"></i>
+            </button>
+            <div id="acc-spices" class="menu-accordion-content max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-in-out pl-4 sm:pl-6 border-l-2 border-brand-mint/40 my-1">
+              <div class="py-2.5 space-y-2 text-xs sm:text-sm text-slate-200">
+                <a href="product-cashews.html" class="menu-link hover:text-brand-mint transition-all block py-1 hover:translate-x-1 duration-200">Cashew Kernels</a>
+                <a href="product-cinnamon.html" class="menu-link hover:text-brand-mint transition-all block py-1 hover:translate-x-1 duration-200">Cassia</a>
+                <a href="product-star-anise.html" class="menu-link hover:text-brand-mint transition-all block py-1 hover:translate-x-1 duration-200">Star Anise</a>
+                <a href="product-coconut.html" class="menu-link hover:text-brand-mint transition-all block py-1 hover:translate-x-1 duration-200">Desiccated Coconut</a>
+                <a href="products.html" class="menu-link text-brand-mint font-bold hover:underline block pt-1.5">&rarr; View Full Commodity Portfolio</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 5: FMCG (Value-Added Consumer Goods) -->
+          <div class="border-b border-white/[0.07]">
+            <a href="fmcg.html" class="menu-link w-full py-2.5 sm:py-3 text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-white/95 hover:text-brand-mint transition-colors flex items-center justify-between group">
+              <span>FMCG</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 sm:w-5 sm:h-5 stroke-[1.75] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-brand-mint"></i>
+            </a>
+          </div>
+
+          <!-- Item 6: Certificate -->
+          <div class="border-b border-white/[0.07]">
+            <a href="certificates.html" class="menu-link w-full py-2.5 sm:py-3 text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-white/95 hover:text-brand-mint transition-colors flex items-center justify-between group">
+              <span>Certificate</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 sm:w-5 sm:h-5 stroke-[1.75] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-brand-mint"></i>
+            </a>
+          </div>
+
+          <!-- Item 7: Careers -->
           <div class="border-b border-white/[0.07]">
             <a href="careers.html" class="menu-link w-full py-2.5 sm:py-3 text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-white/95 hover:text-brand-mint transition-colors flex items-center justify-between group">
               <span>Careers</span>
@@ -306,16 +317,17 @@
             </a>
           </div>
 
-          <div class="border-b border-white/[0.07]">
-                      <div class="border-b border-white/[0.07]">
-            <a href="faq.html" class="menu-link w-full py-2.5 sm:py-3 text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-white/95 hover:text-brand-mint transition-colors flex items-center justify-between group">
-              <span>Buyer FAQ</span>
-              <i data-lucide="arrow-right" class="w-4 h-4 sm:w-5 sm:h-5 stroke-[1.75] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-brand-mint"></i>
-            </a>
-          </div>
+          <!-- Item 8: Buyer FAQ & Contact -->
+          <div>
+            <div class="border-b border-white/[0.07]">
+              <a href="faq.html" class="menu-link w-full py-2.5 sm:py-3 text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-white/95 hover:text-brand-mint transition-colors flex items-center justify-between group">
+                <span>Buyer FAQ</span>
+                <i data-lucide="arrow-right" class="w-4 h-4 sm:w-5 sm:h-5 stroke-[1.75] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-brand-mint"></i>
+              </a>
+            </div>
 
-          <a href="contact.html" class="menu-link w-full py-2.5 sm:py-3 text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-white/95 hover:text-brand-mint transition-colors flex items-center justify-between group">
-              <span>Contact &amp; RFQ Desk</span>
+            <a href="contact.html" class="menu-link w-full py-2.5 sm:py-3 text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-white/95 hover:text-brand-mint transition-colors flex items-center justify-between group">
+              <span>Contact</span>
               <i data-lucide="arrow-right" class="w-4 h-4 sm:w-5 sm:h-5 stroke-[1.75] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-brand-mint"></i>
             </a>
           </div>
@@ -825,35 +837,37 @@
               <li class="flex items-start gap-2">
                 <span class="w-1.5 h-1.5 bg-brand-gold mt-1.5 shrink-0"></span>
                 <div>
-                  <a href="product-arabica.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Arabica Coffee</a>
+                  <a href="product-arabica.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Coffee Beans</a>
                   <div class="text-xs text-slate-400">Highland Green Coffee Beans &middot; Fully Washed</div>
                 </div>
               </li>
               <li class="flex items-start gap-2">
                 <span class="w-1.5 h-1.5 bg-brand-green mt-1.5 shrink-0"></span>
                 <div>
-                  <a href="product-pepper.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Black Pepper</a>
+                  <a href="product-pepper.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Peppercorns</a>
                   <span class="text-slate-300 mx-1">&middot;</span>
-                  <a href="fmcg.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">FMCG</a>
-                  <div class="text-xs text-slate-400">Cleaned Peppercorns &middot; Culinary &amp; Industrial Condiments</div>
+                  <a href="product-green-pepper-in-brine.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Green Pepper in Brine</a>
+                  <div class="text-xs text-slate-400">Cleaned Peppercorns &middot; Gourmet Brine Packaging</div>
                 </div>
               </li>
               <li class="flex items-start gap-2">
                 <span class="w-1.5 h-1.5 bg-brand-gold mt-1.5 shrink-0"></span>
                 <div>
-                  <a href="product-cinnamon.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Cassia</a>
+                  <a href="fmcg.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">FMCG</a>
                   <span class="text-slate-300 mx-1">&middot;</span>
-                  <a href="product-star-anise.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Star Anise</a>
-                  <div class="text-xs text-slate-400">Split &amp; Tube Quills &middot; Autumn Crop Prime</div>
+                  <a href="product-cinnamon.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Cassia</a>
+                  <div class="text-xs text-slate-400">Packaged Consumer Goods &middot; Direct to Shelf</div>
                 </div>
               </li>
               <li class="flex items-start gap-2">
                 <span class="w-1.5 h-1.5 bg-slate-400 mt-1.5 shrink-0"></span>
                 <div>
+                  <a href="product-star-anise.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Star Anise</a>
+                  <span class="text-slate-300 mx-1">&middot;</span>
                   <a href="product-cashews.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Cashew Kernels</a>
                   <span class="text-slate-300 mx-1">&middot;</span>
                   <a href="product-coconut.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Desiccated Coconut</a>
-                  <div class="text-xs text-slate-400">Whole &amp; Broken Kernels &middot; Fine &amp; Medium High Fat</div>
+                  <div class="text-xs text-slate-400">Whole &amp; Broken Kernels &middot; Autumn Prime Spices</div>
                 </div>
               </li>
             </ul>

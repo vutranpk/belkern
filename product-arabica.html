@@ -94,7 +94,7 @@
     
     <!-- Ambient Daylight Header Scrim Overlay (Preserves Nav Contrast Over Bright Hero Photography) -->
     <div id="headerScrim" class="absolute top-0 left-0 right-0 h-48 lg:h-60 -z-10 bg-gradient-to-b from-black/75 via-black/45 to-transparent transition-opacity duration-500 pointer-events-none"></div>
-<div class="w-full px-6 sm:px-10 lg:px-14 xl:px-20">
+<div class="w-full px-4 sm:px-8 lg:px-6 xl:px-12 2xl:px-20">
 
       <!-- Tier 1: Utility Bar (Full-Width, Collapses smoothly on scroll, Desktop >= 1024px Only) -->
       <div id="headerTopBar" class="hidden lg:flex justify-end items-center text-xs text-white font-medium transition-all duration-300 overflow-hidden max-h-12 py-2.5">
@@ -130,11 +130,11 @@
         </a>
 
         <!-- Center: Desktop Navigation Links (>= 1024px / lg) -->
-                        <!-- Center: Desktop Navigation Links (>= 1024px / lg) -->
-        <nav class="hidden lg:flex items-center gap-5 xl:gap-7 font-medium text-[14px] xl:text-[15px]">
+        <nav class="hidden lg:flex items-center gap-3.5 xl:gap-5 2xl:gap-6 font-medium text-[12.5px] xl:text-[13.5px] 2xl:text-[14.5px] whitespace-nowrap">
           <a href="about.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors py-2">About Us</a>
           <a href="product-arabica.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors py-2">Coffee</a>
           <a href="product-pepper.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors py-2">Pepper</a>
+          <a href="product-green-pepper-in-brine.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors py-2">Green Pepper in Brine</a>
           
           <!-- Spices & Other Commodities with Rich Hover Dropdown Menu -->
           <div class="relative group py-2">
@@ -285,6 +285,14 @@
             </a>
           </div>
 
+          <!-- Item 3.5: Green Pepper in Brine -->
+          <div class="border-b border-white/[0.07]">
+            <a href="product-green-pepper-in-brine.html" class="menu-link w-full py-2.5 sm:py-3 text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-white/95 hover:text-brand-mint transition-colors flex items-center justify-between group">
+              <span>Green Pepper in Brine</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 sm:w-5 sm:h-5 stroke-[1.75] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-brand-mint"></i>
+            </a>
+          </div>
+
           <!-- Item 4: Cashew / Spices / Other Commodities Accordion -->
           <div class="border-b border-white/[0.07]">
             <button type="button" onclick="toggleMenuAccordion('acc-spices')" class="w-full flex items-center justify-between py-2.5 sm:py-3 text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-white/95 hover:text-brand-mint transition-colors text-left group cursor-pointer focus:outline-none">
@@ -340,8 +348,8 @@
               <i data-lucide="arrow-right" class="w-4 h-4 sm:w-5 sm:h-5 stroke-[1.75] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-brand-mint"></i>
             </a>
           </div>
-
         </div>
+
         <!-- Right Column (5 Columns): Company Details & Pill Action (Clean Editorial Hierarchy) -->
         <div class="lg:col-span-5 flex flex-col justify-between space-y-6 lg:space-y-8 lg:pl-12 lg:border-l lg:border-white/[0.08]">
           
@@ -493,60 +501,68 @@
         </button>
 
         <!-- Horizontal Scrollable Track (Image on Top · Text Below · Centered on Wide Screens) -->
-                                        <div
+                                                <div
           id="productFastTrack"
           class="flex items-start gap-4 sm:gap-7 lg:gap-8 xl:gap-9 overflow-x-auto no-scrollbar scroll-smooth py-1 px-4 sm:px-1 cursor-grab active:cursor-grabbing select-none w-full justify-start xl:justify-center"
         >
-          <!-- 1. Arabica Coffee (Current / Active) -->
+          <!-- 1. Coffee Beans (Current / Active) -->
           <a href="product-arabica.html" class="shrink-0 flex flex-col items-center text-center group cursor-pointer" aria-current="page">
             <div class="relative mb-2">
               <img src="images/product/arabica.jpg" alt="Coffee Beans" class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl object-cover ring-2 ring-brand-gold ring-offset-2 ring-offset-white shadow-sm">
             </div>
             <span class="text-xs sm:text-[13px] font-bold text-brand-dark leading-tight">Coffee Beans</span>
           </a>
-          <!-- 2. Black Pepper -->
+          <!-- 2. Peppercorns -->
           <a href="product-pepper.html" class="shrink-0 flex flex-col items-center text-center group cursor-pointer">
             <div class="relative mb-2">
               <img src="images/product/pepper.jpg" alt="Peppercorns" class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl object-cover border border-slate-200 shadow-2xs group-hover:scale-105 group-hover:border-brand-green/60 transition-all duration-200">
             </div>
             <span class="text-xs sm:text-[13px] font-bold text-slate-700 group-hover:text-brand-dark transition-colors leading-tight">Peppercorns</span>
           </a>
-          <!-- 3. FMCG -->
-          <a href="fmcg.html" class="shrink-0 flex flex-col items-center text-center group cursor-pointer">
+          <!-- 3. Green Pepper in Brine -->
+          <a href="product-green-pepper-in-brine.html" class="shrink-0 flex flex-col items-center text-center group cursor-pointer">
             <div class="relative mb-2">
               <img src="images/about/FMCG.jpg" alt="Green Pepper in Brine" class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl object-cover border border-slate-200 shadow-2xs group-hover:scale-105 group-hover:border-brand-green/60 transition-all duration-200">
             </div>
             <span class="text-xs sm:text-[13px] font-bold text-slate-700 group-hover:text-brand-dark transition-colors leading-tight">Green Pepper in Brine</span>
           </a>
-          <!-- 4. Cassia Cinnamon -->
+          <!-- 4. FMCG -->
+          <a href="fmcg.html" class="shrink-0 flex flex-col items-center text-center group cursor-pointer">
+            <div class="relative mb-2">
+              <img src="images/product/fmcg.jpg" alt="FMCG" class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl object-cover border border-slate-200 shadow-2xs group-hover:scale-105 group-hover:border-brand-green/60 transition-all duration-200">
+            </div>
+            <span class="text-xs sm:text-[13px] font-bold text-slate-700 group-hover:text-brand-dark transition-colors leading-tight">FMCG</span>
+          </a>
+          <!-- 5. Cassia -->
           <a href="product-cinnamon.html" class="shrink-0 flex flex-col items-center text-center group cursor-pointer">
             <div class="relative mb-2">
               <img src="images/product/cassia-cinnamon.jpg" alt="Cassia" class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl object-cover border border-slate-200 shadow-2xs group-hover:scale-105 group-hover:border-brand-green/60 transition-all duration-200">
             </div>
             <span class="text-xs sm:text-[13px] font-bold text-slate-700 group-hover:text-brand-dark transition-colors leading-tight">Cassia</span>
           </a>
-          <!-- 5. Star Anise -->
+          <!-- 6. Star Anise -->
           <a href="product-star-anise.html" class="shrink-0 flex flex-col items-center text-center group cursor-pointer">
             <div class="relative mb-2">
               <img src="images/product/star-anise.jpg" alt="Star Anise" class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl object-cover border border-slate-200 shadow-2xs group-hover:scale-105 group-hover:border-brand-green/60 transition-all duration-200">
             </div>
             <span class="text-xs sm:text-[13px] font-bold text-slate-700 group-hover:text-brand-dark transition-colors leading-tight">Star Anise</span>
           </a>
-          <!-- 6. Cashew Kernels -->
+          <!-- 7. Cashew Kernels -->
           <a href="product-cashews.html" class="shrink-0 flex flex-col items-center text-center group cursor-pointer">
             <div class="relative mb-2">
               <img src="images/product/cashews.jpg" alt="Cashew Kernels" class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl object-cover border border-slate-200 shadow-2xs group-hover:scale-105 group-hover:border-brand-green/60 transition-all duration-200">
             </div>
             <span class="text-xs sm:text-[13px] font-bold text-slate-700 group-hover:text-brand-dark transition-colors leading-tight">Cashew Kernels</span>
           </a>
-          <!-- 7. Desiccated Coconut -->
+          <!-- 8. Desiccated Coconut -->
           <a href="product-coconut.html" class="shrink-0 flex flex-col items-center text-center group cursor-pointer">
             <div class="relative mb-2">
               <img src="images/product/desiccated-coconut.jpg" alt="Desiccated Coconut" class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl object-cover border border-slate-200 shadow-2xs group-hover:scale-105 group-hover:border-brand-green/60 transition-all duration-200">
             </div>
             <span class="text-xs sm:text-[13px] font-bold text-slate-700 group-hover:text-brand-dark transition-colors leading-tight">Desiccated Coconut</span>
           </a>
-        </div><!-- Next Arrow (Inline, Belkern Squircle) -->
+        </div>
+<!-- Next Arrow (Inline, Belkern Squircle) -->
         <button 
           type="button" 
           id="productFastNext"
@@ -1287,35 +1303,37 @@
               <li class="flex items-start gap-2">
                 <span class="w-1.5 h-1.5 bg-brand-gold mt-1.5 shrink-0"></span>
                 <div>
-                  <a href="product-arabica.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Arabica Coffee</a>
+                  <a href="product-arabica.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Coffee Beans</a>
                   <div class="text-xs text-slate-400">Highland Green Coffee Beans &middot; Fully Washed</div>
                 </div>
               </li>
               <li class="flex items-start gap-2">
                 <span class="w-1.5 h-1.5 bg-brand-green mt-1.5 shrink-0"></span>
                 <div>
-                  <a href="product-pepper.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Black Pepper</a>
+                  <a href="product-pepper.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Peppercorns</a>
                   <span class="text-slate-300 mx-1">&middot;</span>
-                  <a href="fmcg.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">FMCG</a>
-                  <div class="text-xs text-slate-400">Cleaned Peppercorns &middot; Culinary &amp; Industrial Condiments</div>
+                  <a href="product-green-pepper-in-brine.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Green Pepper in Brine</a>
+                  <div class="text-xs text-slate-400">Cleaned Peppercorns &middot; Gourmet Brine Packaging</div>
                 </div>
               </li>
               <li class="flex items-start gap-2">
                 <span class="w-1.5 h-1.5 bg-brand-gold mt-1.5 shrink-0"></span>
                 <div>
-                  <a href="product-cinnamon.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Cassia</a>
+                  <a href="fmcg.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">FMCG</a>
                   <span class="text-slate-300 mx-1">&middot;</span>
-                  <a href="product-star-anise.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Star Anise</a>
-                  <div class="text-xs text-slate-400">Split &amp; Tube Quills &middot; Autumn Crop Prime</div>
+                  <a href="product-cinnamon.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Cassia</a>
+                  <div class="text-xs text-slate-400">Packaged Consumer Goods &middot; Direct to Shelf</div>
                 </div>
               </li>
               <li class="flex items-start gap-2">
                 <span class="w-1.5 h-1.5 bg-slate-400 mt-1.5 shrink-0"></span>
                 <div>
+                  <a href="product-star-anise.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Star Anise</a>
+                  <span class="text-slate-300 mx-1">&middot;</span>
                   <a href="product-cashews.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Cashew Kernels</a>
                   <span class="text-slate-300 mx-1">&middot;</span>
                   <a href="product-coconut.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Desiccated Coconut</a>
-                  <div class="text-xs text-slate-400">Whole &amp; Broken Kernels &middot; Fine &amp; Medium High Fat</div>
+                  <div class="text-xs text-slate-400">Whole &amp; Broken Kernels &middot; Autumn Prime Spices</div>
                 </div>
               </li>
             </ul>

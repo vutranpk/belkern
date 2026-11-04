@@ -219,7 +219,13 @@
     if (!mainHeader) return;
 
     function handleHeaderScroll() {
-      const isScrolled = window.scrollY > 25;
+      const scrollY = Math.max(
+        window.pageYOffset || 0,
+        window.scrollY || 0,
+        document.documentElement.scrollTop || 0,
+        document.body.scrollTop || 0
+      );
+      const isScrolled = scrollY > 20;
       if (isScrolled) {
         mainHeader.classList.remove('bg-transparent', 'border-transparent');
         mainHeader.classList.add('bg-white/95', 'backdrop-blur-md', 'border-slate-200/80', 'shadow-xs');
@@ -339,6 +345,8 @@
     }
 
     window.addEventListener('scroll', handleHeaderScroll, { passive: true });
+    document.addEventListener('scroll', handleHeaderScroll, { passive: true });
+    window.handleHeaderScroll = handleHeaderScroll;
     handleHeaderScroll();
   }
 
@@ -1988,7 +1996,10 @@
     const tabs = document.querySelectorAll('.cert-tab-btn');
     const currentStep = document.getElementById('certCurrentStep');
 
-    const total = CERT_STANDARDS.length;
+    const images = showcase ? showcase.querySelectorAll('.cert-panorama-img') : [];
+    const contents = showcase ? showcase.querySelectorAll('.cert-panorama-content') : [];
+
+    const total = (contents.length > 0) ? contents.length : ((images.length > 0) ? images.length : CERT_STANDARDS.length);
     certPanoramaCurrent = ((index % total) + total) % total;
 
     // 1. Update Story Segment Tabs (If present)
@@ -2029,8 +2040,6 @@
     }
 
     if (!showcase) return;
-    const images = showcase.querySelectorAll('.cert-panorama-img');
-    const contents = showcase.querySelectorAll('.cert-panorama-content');
 
     // 2. Update Images (100% stable, cross-fade with opacity-100 / opacity-0)
     images.forEach((img, i) => {
@@ -2199,10 +2208,16 @@
       if (Math.abs(diff) > 0.35) {
         currentY += diff * EASE;
         window.scrollTo({ top: currentY, behavior: 'instant' });
+        if (typeof window.handleHeaderScroll === 'function') {
+          window.handleHeaderScroll();
+        }
         rafId = requestAnimationFrame(update);
       } else {
         currentY = targetY;
         window.scrollTo({ top: targetY, behavior: 'instant' });
+        if (typeof window.handleHeaderScroll === 'function') {
+          window.handleHeaderScroll();
+        }
         isMoving = false;
         rafId = null;
       }

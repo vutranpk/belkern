@@ -69,6 +69,15 @@
     <priority>0.85</priority>
   </url>
 
+  <!-- Product: Green Pepper in Brine -->
+  <url>
+    <loc>https://belkern.com/product-green-pepper-in-brine.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://belkern.com/product-green-pepper-in-brine.html"/>
+    <lastmod>2026-11-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- Product: Cassia Cinnamon -->
   <url>
     <loc>https://belkern.com/product-cinnamon.html</loc>
