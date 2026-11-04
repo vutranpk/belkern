@@ -60,6 +60,15 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- FMCG & Packaged Consumer Goods -->
+  <url>
+    <loc>https://belkern.com/fmcg.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://belkern.com/fmcg.html"/>
+    <lastmod>2026-11-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
   <!-- Product: Cassia Cinnamon -->
   <url>
     <loc>https://belkern.com/product-cinnamon.html</loc>
@@ -143,15 +152,6 @@
     <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-
-  <!-- General Terms & Conditions (AGB) -->
-  <url>
-    <loc>https://belkern.com/agb.html</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://belkern.com/agb.html"/>
-    <lastmod>2026-10-26</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
   </url>
 
   <!-- Imprint (Impressum) -->
