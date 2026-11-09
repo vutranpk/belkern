@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
@@ -70,6 +70,9 @@
 
   <!-- Google Fonts: Inter (High-Legibility Modern European Sans) -->  <link rel="preconnect" href="https://fonts.googleapis.com">  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+    <!-- GSAP & ScrollTrigger for Motion -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
   <!-- Belkern Tailwind Theme Configuration & Global Stylesheet -->
   <script src="js/tailwind-config.js"></script>
   <link rel="stylesheet" href="css/style.css">
@@ -118,7 +121,32 @@
 
         <!-- Center: Desktop Navigation Links (>= 1024px / lg) -->
         <nav class="hidden lg:flex items-center gap-3.5 xl:gap-5 2xl:gap-6 font-medium text-[12.5px] xl:text-[13.5px] 2xl:text-[14.5px] whitespace-nowrap">
-          <a href="about.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors py-2">About Us</a>
+          <div class="relative group py-2">
+            <a href="about.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors inline-flex items-center gap-1.5 group-hover:text-brand-mint" aria-haspopup="true">
+              <span>About Us</span>
+              <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-current group-hover:rotate-180 transition-transform duration-200"></i>
+            </a>
+            <div class="absolute top-full left-0 pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200 pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto z-50">
+              <div class="w-60 bg-white rounded-2xl shadow-xl border border-slate-200/90 p-2 text-left text-slate-800 normal-case tracking-normal">
+                <a href="about.html" class="group/item flex items-center gap-2.5 p-2 rounded-xl hover:bg-slate-50 transition-colors">
+                  <span class="w-8 h-8 rounded-lg bg-brand-green/10 text-brand-green flex items-center justify-center shrink-0"><i data-lucide="building-2" class="w-4 h-4"></i></span>
+                  <span class="text-xs font-bold text-slate-800 group-hover/item:text-brand-green transition-colors">About Us</span>
+                </a>
+                <a href="contact.html" class="group/item flex items-center gap-2.5 p-2 rounded-xl hover:bg-slate-50 transition-colors">
+                  <span class="w-8 h-8 rounded-lg bg-brand-green/10 text-brand-green flex items-center justify-center shrink-0"><i data-lucide="mail" class="w-4 h-4"></i></span>
+                  <span class="text-xs font-bold text-slate-800 group-hover/item:text-brand-green transition-colors">Contact Us</span>
+                </a>
+                <a href="careers.html" class="group/item flex items-center gap-2.5 p-2 rounded-xl hover:bg-slate-50 transition-colors">
+                  <span class="w-8 h-8 rounded-lg bg-brand-green/10 text-brand-green flex items-center justify-center shrink-0"><i data-lucide="briefcase" class="w-4 h-4"></i></span>
+                  <span class="text-xs font-bold text-slate-800 group-hover/item:text-brand-green transition-colors">Careers</span>
+                </a>
+                <a href="imprint.html" class="group/item flex items-center gap-2.5 p-2 rounded-xl hover:bg-slate-50 transition-colors">
+                  <span class="w-8 h-8 rounded-lg bg-brand-green/10 text-brand-green flex items-center justify-center shrink-0"><i data-lucide="scale" class="w-4 h-4"></i></span>
+                  <span class="text-xs font-bold text-slate-800 group-hover/item:text-brand-green transition-colors">Imprint</span>
+                </a>
+              </div>
+            </div>
+          </div>
           <a href="product-arabica.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors py-2">Coffee</a>
           <a href="product-pepper.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors py-2">Pepper</a>
           <a href="product-green-pepper-in-brine.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors py-2">Green Pepper in Brine</a>
@@ -178,9 +206,7 @@
             </div>
           </div>
 
-          <a href="fmcg.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors py-2">FMCG</a>
           <a href="certificates.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors py-2">Certificate</a>
-          <a href="careers.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors py-2">Careers</a>
         </nav>
 
         <!-- Right: Actions (Pinned Right) -->
@@ -247,12 +273,20 @@
             </a>
           </div>
 
-          <!-- Item 1: About Us -->
+          <!-- Item 1: About Us Accordion (About Us Â· Contact Us Â· Careers Â· Imprint) -->
           <div class="border-b border-white/[0.07]">
-            <a href="about.html" class="menu-link w-full py-2.5 sm:py-3 text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-white/95 hover:text-brand-mint transition-colors flex items-center justify-between group">
+            <button type="button" onclick="toggleMenuAccordion('acc-about')" class="w-full flex items-center justify-between py-2.5 sm:py-3 text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-white/95 hover:text-brand-mint transition-colors text-left group cursor-pointer focus:outline-none">
               <span>About Us</span>
-              <i data-lucide="arrow-right" class="w-4 h-4 sm:w-5 sm:h-5 stroke-[1.75] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-brand-mint"></i>
-            </a>
+              <i id="acc-about-icon" data-lucide="chevron-down" class="menu-accordion-icon w-4 h-4 sm:w-5 sm:h-5 stroke-[1.75] text-brand-mint/80 group-hover:text-brand-mint transition-transform duration-300"></i>
+            </button>
+            <div id="acc-about" class="menu-accordion-content max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-in-out pl-4 sm:pl-6 border-l-2 border-brand-mint/40 my-1">
+              <div class="py-2.5 space-y-2 text-xs sm:text-sm text-slate-200">
+                <a href="about.html" class="menu-link hover:text-brand-mint transition-all block py-1 hover:translate-x-1 duration-200">About Us</a>
+                <a href="contact.html" class="menu-link hover:text-brand-mint transition-all block py-1 hover:translate-x-1 duration-200">Contact Us</a>
+                <a href="careers.html" class="menu-link hover:text-brand-mint transition-all block py-1 hover:translate-x-1 duration-200">Careers</a>
+                <a href="imprint.html" class="menu-link hover:text-brand-mint transition-all block py-1 hover:translate-x-1 duration-200">Imprint</a>
+              </div>
+            </div>
           </div>
 
           <!-- Item 2: Coffee -->
@@ -296,26 +330,10 @@
             </div>
           </div>
 
-          <!-- Item 5: FMCG (Value-Added Consumer Goods) -->
-          <div class="border-b border-white/[0.07]">
-            <a href="fmcg.html" class="menu-link w-full py-2.5 sm:py-3 text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-white/95 hover:text-brand-mint transition-colors flex items-center justify-between group">
-              <span>FMCG</span>
-              <i data-lucide="arrow-right" class="w-4 h-4 sm:w-5 sm:h-5 stroke-[1.75] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-brand-mint"></i>
-            </a>
-          </div>
-
           <!-- Item 6: Certificate -->
           <div class="border-b border-white/[0.07]">
             <a href="certificates.html" class="menu-link w-full py-2.5 sm:py-3 text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-white/95 hover:text-brand-mint transition-colors flex items-center justify-between group">
               <span>Certificate</span>
-              <i data-lucide="arrow-right" class="w-4 h-4 sm:w-5 sm:h-5 stroke-[1.75] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-brand-mint"></i>
-            </a>
-          </div>
-
-          <!-- Item 7: Careers -->
-          <div class="border-b border-white/[0.07]">
-            <a href="careers.html" class="menu-link w-full py-2.5 sm:py-3 text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-white/95 hover:text-brand-mint transition-colors flex items-center justify-between group">
-              <span>Careers</span>
               <i data-lucide="arrow-right" class="w-4 h-4 sm:w-5 sm:h-5 stroke-[1.75] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-brand-mint"></i>
             </a>
           </div>
@@ -462,229 +480,210 @@
   </section>
 
   <!-- ========================================================================= -->
-  <!-- 4. MAIN STATUTORY CONTENT STAGE (Hanseatic Commodity House Institutional Structure) -->
-  <!-- Inspired by Hamburg/Frankfurt International Produce Merchants (Jantzen & Deeke)  -->
+  <!-- 4. MAIN STATUTORY CONTENT STAGE (Hanseatic Commodity House Open Editorial) -->
   <!-- ========================================================================= -->
-  <main id="imprintContent" class="bg-white py-12 sm:py-16 lg:py-20 border-b border-slate-200/80">
+  <main id="imprintContent" class="bg-white py-14 sm:py-20 lg:py-24 border-b border-slate-200/80">
     <div class="max-w-5xl mx-auto px-5 sm:px-10 lg:px-12">
 
-      <!-- =================================================================== -->
-      <!-- TOP INSTITUTIONAL FACTSHEET (Primary Corporate Identification)       -->
-      <!-- =================================================================== -->
-      <div class="border border-slate-200/90 rounded-2xl p-6 sm:p-8 lg:p-10 bg-slate-50/60 shadow-xs mb-12 sm:mb-16">
-        
-        <!-- Header Row -->
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-6 mb-8 border-b border-slate-200 gap-4">
-          <div>
-            <span class="text-xs font-bold uppercase tracking-wider text-brand-gold block mb-1">§ 5 DDG · Corporate Identification</span>
-            <h2 class="text-2xl sm:text-3xl font-bold text-brand-dark tracking-tight">Belkern GmbH</h2>
-            <p class="text-xs sm:text-sm text-slate-500 mt-0.5">International Wholesale Agricultural Commodities &amp; Spices</p>
+      <!-- TOP EDITORIAL HEADER (Open Architecture - Zero Card Framing) -->
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-8 border-b border-slate-200/90">
+        <div>
+          <div class="text-xs font-bold uppercase tracking-[0.18em] text-brand-gold mb-2 flex items-center gap-2">
+            <span class="w-1.5 h-1.5 bg-brand-gold rounded-full"></span>
+            <span>&sect; 5 DDG &middot; Corporate Identification</span>
           </div>
-          <div class="inline-flex items-center gap-2 self-start sm:self-auto px-3 py-1.5 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold">
-            <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600"></i>
-            <span>Verified German Commercial Entity</span>
-          </div>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-dark tracking-tight leading-[1.08]">
+            Belkern GmbH
+          </h2>
+          <p class="text-slate-600 text-sm sm:text-base mt-2.5 max-w-2xl leading-relaxed">
+            International Wholesale Agricultural Commodities &amp; Spices &middot; European Commercial Trade Desk Frankfurt am Main
+          </p>
         </div>
 
-        <!-- Structured 2-Column Institutional Factsheet (Jantzen & Deeke style) -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 text-xs sm:text-sm">
+        <div class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold shrink-0 self-start lg:self-auto shadow-2xs">
+          <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600 stroke-[2]"></i>
+          <span>Verified German Commercial Entity</span>
+        </div>
+      </div>
+
+      <!-- OPEN TWO-COLUMN SPECIFICATION GRID (No cards, high-contrast typography, crisp whitespace) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 pt-10 sm:pt-14 text-xs sm:text-sm">
+        
+        <!-- COLUMN 1: Domicile, Contact Desk & Trade Rules (lg:col-span-6) -->
+        <div class="lg:col-span-6 space-y-9 sm:space-y-10">
           
-          <!-- Column 1: Domicile, Contact & Digital Presence -->
-          <div class="space-y-6">
-            
-            <!-- Domicile -->
-            <div>
-              <div class="font-bold text-slate-900 uppercase tracking-wider text-2xs sm:text-xs text-brand-gold mb-1.5 flex items-center gap-1.5">
-                <i data-lucide="map-pin" class="w-3.5 h-3.5 text-brand-gold"></i>
-                <span>Registered Office &amp; Address</span>
+          <!-- Block 1: Domicile -->
+          <div class="group">
+            <div class="font-bold text-slate-900 uppercase tracking-wider text-2xs sm:text-xs text-brand-gold mb-2.5 flex items-center gap-2">
+              <div class="w-6 h-6 rounded-md bg-brand-gold/10 text-brand-gold flex items-center justify-center shrink-0">
+                <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
               </div>
-              <div class="text-slate-700 leading-relaxed font-medium">
-                Belkern GmbH<br>
-                Melsunger Straße 15<br>
-                60389 Frankfurt am Main<br>
-                Federal Republic of Germany
+              <span>Registered Office &amp; Domicile</span>
+            </div>
+            <div class="text-slate-700 leading-relaxed font-medium pl-8 space-y-0.5">
+              <div class="font-bold text-brand-dark text-sm sm:text-base">Belkern GmbH</div>
+              <div>Melsunger Stra&szlig;e 15</div>
+              <div>60389 Frankfurt am Main</div>
+              <div class="text-slate-500 text-xs pt-0.5">Federal Republic of Germany</div>
+            </div>
+          </div>
+
+          <!-- Divider -->
+          <div class="h-px bg-slate-100 w-full"></div>
+
+          <!-- Block 2: Direct Contact Desk -->
+          <div class="group">
+            <div class="font-bold text-slate-900 uppercase tracking-wider text-2xs sm:text-xs text-brand-gold mb-2.5 flex items-center gap-2">
+              <div class="w-6 h-6 rounded-md bg-brand-gold/10 text-brand-gold flex items-center justify-center shrink-0">
+                <i data-lucide="phone-call" class="w-3.5 h-3.5"></i>
+              </div>
+              <span>Direct Commercial Contact Desk</span>
+            </div>
+            <div class="pl-8 space-y-2 text-slate-700">
+              <div class="flex items-center gap-3">
+                <span class="w-20 font-semibold text-slate-400 text-xs uppercase tracking-wider">Telephone</span>
+                <a href="tel:+496997761669" class="font-bold text-brand-dark hover:text-brand-green transition-colors text-sm sm:text-base">+49 69 97 76 16 69</a>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="w-20 font-semibold text-slate-400 text-xs uppercase tracking-wider">Telefax</span>
+                <span class="font-mono text-slate-700 font-medium">+49 (0) 69 260 16 60</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="w-20 font-semibold text-slate-400 text-xs uppercase tracking-wider">E-Mail</span>
+                <a href="mailto:mail@belkern.com" class="font-semibold text-brand-dark hover:text-brand-green transition-colors underline decoration-slate-300 underline-offset-4">mail@belkern.com</a>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="w-20 font-semibold text-slate-400 text-xs uppercase tracking-wider">Web</span>
+                <a href="https://www.belkern.com" class="font-semibold text-brand-dark hover:text-brand-green transition-colors">www.belkern.com</a>
               </div>
             </div>
+          </div>
 
-            <!-- Direct Contact Desk -->
-            <div>
-              <div class="font-bold text-slate-900 uppercase tracking-wider text-2xs sm:text-xs text-brand-gold mb-1.5 flex items-center gap-1.5">
-                <i data-lucide="phone-call" class="w-3.5 h-3.5 text-brand-gold"></i>
-                <span>Direct Contact Desk</span>
+          <!-- Divider -->
+          <div class="h-px bg-slate-100 w-full"></div>
+
+          <!-- Block 3: Trade Rules & Standard Contracts -->
+          <div class="group">
+            <div class="font-bold text-slate-900 uppercase tracking-wider text-2xs sm:text-xs text-brand-gold mb-2.5 flex items-center gap-2">
+              <div class="w-6 h-6 rounded-md bg-brand-gold/10 text-brand-gold flex items-center justify-center shrink-0">
+                <i data-lucide="scale" class="w-3.5 h-3.5"></i>
               </div>
-              <div class="space-y-1 text-slate-700">
-                <div class="flex items-center gap-2">
-                  <span class="w-16 font-semibold text-slate-500">Phone:</span>
-                  <a href="tel:+496997761669" class="font-semibold text-brand-dark hover:text-brand-green transition-colors">+49 69 97 76 16 69</a>
-                </div>
-                <div class="flex items-center gap-2">
-                  <span class="w-16 font-semibold text-slate-500">Fax:</span>
-                  <span class="font-mono text-slate-700">+49 (0) 69 260 16 60</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <span class="w-16 font-semibold text-slate-500">E-Mail:</span>
-                  <a href="mailto:mail@belkern.com" class="font-semibold text-brand-dark hover:text-brand-green transition-colors">mail@belkern.com</a>
-                </div>
-                <div class="flex items-center gap-2">
-                  <span class="w-16 font-semibold text-slate-500">Internet:</span>
-                  <a href="https://www.belkern.com" class="font-semibold text-brand-dark hover:text-brand-green transition-colors">www.belkern.com</a>
-                </div>
-              </div>
+              <span>Trade Rules &amp; Contract Standards</span>
             </div>
-
-            <!-- Trade Affiliations & Standard Contracts -->
-            <div>
-              <div class="font-bold text-slate-900 uppercase tracking-wider text-2xs sm:text-xs text-brand-gold mb-1.5 flex items-center gap-1.5">
-                <i data-lucide="scale" class="w-3.5 h-3.5 text-brand-gold"></i>
-                <span>Trade Rules &amp; Contract Standards</span>
-              </div>
-              <p class="text-slate-600 leading-relaxed text-xs">
-                Member of international commodity trade practices and standards: International General Produce Association (IGPA London), European Coffee Contract (ECC), and International Chamber of Commerce (ICC Incoterms® 2020).
+            <div class="pl-8">
+              <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">
+                Member and adherent of international commodity trade practices and arbitration standards: International General Produce Association (<strong class="font-semibold text-slate-900">IGPA London</strong>), European Coffee Contract (<strong class="font-semibold text-slate-900">ECC</strong>), and International Chamber of Commerce (<strong class="font-semibold text-slate-900">ICC Incoterms&reg; 2020</strong>).
               </p>
             </div>
-
-          </div>
-
-          <!-- Column 2: Legal Form, Directors, Register, Tax & Banking -->
-          <div class="space-y-6">
-            
-            <!-- Management Board -->
-            <div>
-              <div class="font-bold text-slate-900 uppercase tracking-wider text-2xs sm:text-xs text-brand-gold mb-1.5 flex items-center gap-1.5">
-                <i data-lucide="users" class="w-3.5 h-3.5 text-brand-gold"></i>
-                <span>Managing Directors (Geschäftsführung)</span>
-              </div>
-              <div class="text-slate-800 leading-relaxed font-semibold">
-                Pham Thi Tuyet Nhung<br>
-                Phan Minh Thong
-              </div>
-            </div>
-
-            <!-- Commercial Register -->
-            <div>
-              <div class="font-bold text-slate-900 uppercase tracking-wider text-2xs sm:text-xs text-brand-gold mb-1.5 flex items-center gap-1.5">
-                <i data-lucide="landmark" class="w-3.5 h-3.5 text-brand-gold"></i>
-                <span>Registration Office &amp; Number</span>
-              </div>
-              <div class="text-slate-700 leading-relaxed">
-                <div>Registration Court: <span class="font-semibold text-slate-900">Amtsgericht Frankfurt am Main</span></div>
-                <div>Commercial Register No.: <span class="font-mono font-bold text-brand-dark">HRB 99468</span></div>
-                <div>Legal Form: <span class="font-medium text-slate-800">Gesellschaft mit beschränkter Haftung (GmbH)</span></div>
-              </div>
-            </div>
-
-            <!-- VAT Identification -->
-            <div>
-              <div class="font-bold text-slate-900 uppercase tracking-wider text-2xs sm:text-xs text-brand-gold mb-1.5 flex items-center gap-1.5">
-                <i data-lucide="receipt" class="w-3.5 h-3.5 text-brand-gold"></i>
-                <span>Value Added Tax ID (§ 27a UStG)</span>
-              </div>
-              <div class="flex items-center gap-3 pt-0.5">
-                <span class="text-lg font-mono font-bold text-brand-dark">DE 298 174 135</span>
-                <span class="text-2xs px-2 py-0.5 rounded bg-slate-200/80 font-medium text-slate-700">VIES Validated</span>
-              </div>
-            </div>
-
-            <!-- Editorial Responsibility -->
-            <div>
-              <div class="font-bold text-slate-900 uppercase tracking-wider text-2xs sm:text-xs text-brand-gold mb-1.5 flex items-center gap-1.5">
-                <i data-lucide="file-text" class="w-3.5 h-3.5 text-brand-gold"></i>
-                <span>Responsible for Content (§ 18 Abs. 2 MStV)</span>
-              </div>
-              <div class="text-slate-700 text-xs">
-                Pham Thi Tuyet Nhung · Belkern GmbH, Melsunger Str. 15, 60389 Frankfurt am Main, Germany
-              </div>
-            </div>
-
           </div>
 
         </div>
 
-        <!-- Quick Commercial Actions Bar -->
-        <div class="mt-8 pt-6 border-t border-slate-200/90 flex flex-wrap items-center justify-between gap-4">
-          <div class="text-xs text-slate-500 flex items-center gap-2">
-            <i data-lucide="info" class="w-4 h-4 text-slate-400 shrink-0"></i>
-            <span>Commercial trading conducted exclusively under wholesale B2B international commodity terms.</span>
+        <!-- COLUMN 2: Legal Form, Register, VAT & Editorial (lg:col-span-6) -->
+        <div class="lg:col-span-6 space-y-9 sm:space-y-10">
+          
+          <!-- Block 4: Managing Directors -->
+          <div class="group">
+            <div class="font-bold text-slate-900 uppercase tracking-wider text-2xs sm:text-xs text-brand-gold mb-2.5 flex items-center gap-2">
+              <div class="w-6 h-6 rounded-md bg-brand-gold/10 text-brand-gold flex items-center justify-center shrink-0">
+                <i data-lucide="users" class="w-3.5 h-3.5"></i>
+              </div>
+              <span>Managing Directors (Gesch&auml;ftsf&uuml;hrung)</span>
+            </div>
+            <div class="pl-8 text-slate-800 leading-relaxed">
+              <div class="font-bold text-base text-brand-dark">Pham Thi Tuyet Nhung</div>
+              <div class="font-bold text-base text-brand-dark">Phan Minh Thong</div>
+              <div class="text-slate-500 text-xs mt-1">Joint Statutory Corporate Representation</div>
+            </div>
           </div>
-          <div class="flex items-center gap-3">
-            <a href="contact.html" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-brand-green hover:bg-brand-greenDark text-white font-bold text-xs tracking-wide transition-colors">
-              <span>Contact Trading Desk</span>
-              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-            </a>
-            <a href="privacy-policy.html" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-slate-300 hover:border-brand-green bg-white text-slate-700 hover:text-brand-green font-semibold text-xs transition-colors">
-              <span>Privacy Policy</span>
-            </a>
+
+          <!-- Divider -->
+          <div class="h-px bg-slate-100 w-full"></div>
+
+          <!-- Block 5: Commercial Register -->
+          <div class="group">
+            <div class="font-bold text-slate-900 uppercase tracking-wider text-2xs sm:text-xs text-brand-gold mb-2.5 flex items-center gap-2">
+              <div class="w-6 h-6 rounded-md bg-brand-gold/10 text-brand-gold flex items-center justify-center shrink-0">
+                <i data-lucide="landmark" class="w-3.5 h-3.5"></i>
+              </div>
+              <span>Registration Office &amp; Commercial Register</span>
+            </div>
+            <div class="pl-8 space-y-1.5 text-slate-700">
+              <div class="flex items-center gap-2">
+                <span class="text-slate-400 font-medium">Court:</span>
+                <span class="font-bold text-brand-dark">Amtsgericht Frankfurt am Main</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-slate-400 font-medium">Register No.:</span>
+                <span class="font-mono font-bold text-brand-dark px-2 py-0.5 rounded bg-slate-100 border border-slate-200/80 text-xs sm:text-sm">HRB 99468</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-slate-400 font-medium">Legal Form:</span>
+                <span class="font-medium text-slate-800">Gesellschaft mit beschr&auml;nkter Haftung (GmbH)</span>
+              </div>
+            </div>
           </div>
+
+          <!-- Divider -->
+          <div class="h-px bg-slate-100 w-full"></div>
+
+          <!-- Block 6: VAT Identification -->
+          <div class="group">
+            <div class="font-bold text-slate-900 uppercase tracking-wider text-2xs sm:text-xs text-brand-gold mb-2.5 flex items-center gap-2">
+              <div class="w-6 h-6 rounded-md bg-brand-gold/10 text-brand-gold flex items-center justify-center shrink-0">
+                <i data-lucide="receipt" class="w-3.5 h-3.5"></i>
+              </div>
+              <span>Value Added Tax ID (&sect; 27a UStG)</span>
+            </div>
+            <div class="pl-8 flex flex-wrap items-center gap-3">
+              <span class="text-xl sm:text-2xl font-mono font-bold text-brand-dark tracking-tight">DE 298 174 135</span>
+              <span class="text-2xs px-2.5 py-1 rounded-md bg-slate-100 border border-slate-200 font-bold uppercase tracking-wider text-slate-600">VIES Validated</span>
+            </div>
+          </div>
+
+          <!-- Divider -->
+          <div class="h-px bg-slate-100 w-full"></div>
+
+          <!-- Block 7: Editorial Responsibility -->
+          <div class="group">
+            <div class="font-bold text-slate-900 uppercase tracking-wider text-2xs sm:text-xs text-brand-gold mb-2.5 flex items-center gap-2">
+              <div class="w-6 h-6 rounded-md bg-brand-gold/10 text-brand-gold flex items-center justify-center shrink-0">
+                <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+              </div>
+              <span>Responsible for Content (&sect; 18 Abs. 2 MStV)</span>
+            </div>
+            <div class="pl-8 text-slate-700 text-xs sm:text-sm leading-relaxed">
+              <span class="font-semibold text-slate-900">Pham Thi Tuyet Nhung</span><br>
+              Belkern GmbH &middot; Melsunger Stra&szlig;e 15 &middot; 60389 Frankfurt am Main, Germany
+            </div>
+          </div>
+
         </div>
 
       </div>
 
-      <!-- =================================================================== -->
-      <!-- STATUTORY LEGAL DISCLAIMERS (German Legal Standard / DDG & MStV)    -->
-      <!-- =================================================================== -->
-      <article class="space-y-10 sm:space-y-12">
-        
-        <div class="border-b border-slate-200 pb-4">
-          <span class="text-xs font-bold uppercase tracking-wider text-brand-gold block mb-1">Legal Disclaimers &middot; Rechtliche Hinweise</span>
-          <h3 class="text-xl sm:text-2xl font-bold text-brand-dark tracking-tight">Terms of Use &amp; Statutory Legal Notices</h3>
+      <!-- FOOTER STRIP OF IMPRINT (Institutional Bottom Row) -->
+      <div class="mt-12 sm:mt-16 pt-8 border-t border-slate-200 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div class="flex items-center gap-2.5 text-xs text-slate-500">
+          <i data-lucide="info" class="w-4 h-4 text-slate-400 shrink-0"></i>
+          <span>Commercial trading conducted exclusively under wholesale B2B international commodity terms.</span>
         </div>
+        <div class="flex items-center gap-3 shrink-0">
+          <a href="contact.html" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-brand-green hover:bg-brand-greenDark text-white font-bold text-xs tracking-wide transition-all duration-200 shadow-2xs hover:shadow-xs active:scale-95">
+            <span>Contact Trading Desk</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </a>
+          <a href="privacy-policy.html" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-slate-200 hover:border-slate-800 bg-white text-slate-700 hover:text-brand-dark font-semibold text-xs transition-colors">
+            <span>Privacy Policy</span>
+          </a>
+        </div>
+      </div>
 
-        <!-- Section: Dispute Resolution -->
-        <section class="space-y-3">
-          <h4 class="text-base sm:text-lg font-bold text-brand-dark">1. EU Online Dispute Resolution &amp; Consumer Arbitration Notice</h4>
-          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            The European Commission provides a platform for online dispute resolution (ODR): 
-            <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer" class="text-brand-green font-semibold hover:underline inline-flex items-center gap-1">
-              <span>https://ec.europa.eu/consumers/odr/</span>
-              <i data-lucide="external-link" class="w-3 h-3"></i>
-            </a>. 
-            Our official contact email is: <a href="mailto:mail@belkern.com" class="text-brand-dark font-semibold hover:text-brand-green">mail@belkern.com</a>.
-          </p>
-          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            <strong>Consumer Dispute Resolution (§ 36 VSBG):</strong> Belkern GmbH operates exclusively as a B2B wholesale commodity importer and distributor catering to roasters, spice processors, and commercial buyers. We do not enter into contracts with consumers and are neither obliged nor willing to participate in dispute resolution proceedings before a consumer arbitration board (Verbraucherschlichtungsstelle).
-          </p>
-        </section>
-
-        <!-- Section: Liability for Contents -->
-        <section class="space-y-3 border-t border-slate-100 pt-8">
-          <h4 class="text-base sm:text-lg font-bold text-brand-dark">2. Liability for Contents (§ 7 DDG)</h4>
-          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            As a service provider, we are responsible for our own content on these web pages under general statutory legislation pursuant to § 7 paragraph 1 of the German Digital Services Act (DDG). Pursuant to §§ 8 to 10 DDG, however, as a service provider we are not obligated to monitor transmitted or stored third-party information or to investigate circumstances indicating unlawful activity.
-          </p>
-          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            Obligations to remove or block the use of information under general statutory laws remain unaffected thereby. However, liability in this regard is only possible from the moment of knowledge of a concrete infringement. Upon notification of corresponding legal violations, we will remove such content immediately.
-          </p>
-        </section>
-
-        <!-- Section: Liability for Links -->
-        <section class="space-y-3 border-t border-slate-100 pt-8">
-          <h4 class="text-base sm:text-lg font-bold text-brand-dark">3. Liability for Hyperlinks</h4>
-          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            Our online presence contains links to external websites operated by third parties over whose contents we have no control. Therefore, we cannot assume any liability for these external contents. The respective provider or operator of the linked pages is always responsible for their contents.
-          </p>
-          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            The linked pages were reviewed for possible legal violations at the time the links were created. Unlawful contents were not discernible at the time of linking. Continuous inspection of linked pages is not reasonable without concrete evidence of a violation of the law. If we become aware of any infringements, we will remove such external links immediately.
-          </p>
-        </section>
-
-        <!-- Section: Copyright -->
-        <section class="space-y-3 border-t border-slate-100 pt-8">
-          <h4 class="text-base sm:text-lg font-bold text-brand-dark">4. Copyright &amp; Intellectual Property</h4>
-          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            The content, images, technical specifications, and works published on these pages by Belkern GmbH are protected by German copyright law (Urheberrechtsgesetz). Any reproduction, modification, distribution, or commercial exploitation outside the limits of copyright law requires the prior written consent of Belkern GmbH or the respective author.
-          </p>
-          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            Downloads and copies of this site are permitted solely for private, non-commercial use or for wholesale business partners reviewing active trade inquiries. If you notice any copyright infringement, please inform us immediately at <a href="mailto:mail@belkern.com" class="text-brand-green font-semibold hover:underline">mail@belkern.com</a>.
-          </p>
-
-          <!-- Legal Stamp Footer -->
-          <div class="pt-6 mt-8 border-t border-slate-200 flex flex-col sm:flex-row items-start sm:items-center justify-between text-xs text-slate-400 gap-2">
-            <span>Belkern GmbH · Frankfurt am Main, Germany</span>
-            <span>Document ID: IMPRINT-DE-2026-V2 · Status: March 2026</span>
-          </div>
-        </section>
-
-      </article>
+      <!-- Document Version Stamp -->
+      <div class="mt-6 pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between text-2xs text-slate-400 gap-2">
+        <span>Belkern GmbH &middot; Frankfurt am Main, Germany</span>
+        <span>Document ID: IMPRINT-DE-2026-V3 &middot; Status: March 2026</span>
+      </div>
 
     </div>
   </main>
@@ -799,10 +798,8 @@
               <li class="flex items-start gap-2">
                 <span class="w-1.5 h-1.5 bg-brand-gold mt-1.5 shrink-0"></span>
                 <div>
-                  <a href="fmcg.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">FMCG</a>
-                  <span class="text-slate-300 mx-1">&middot;</span>
                   <a href="product-cinnamon.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Cassia</a>
-                  <div class="text-xs text-slate-400">Packaged Consumer Goods &middot; Direct to Shelf</div>
+                  <div class="text-xs text-slate-400">Split &amp; Tube Cassia</div>
                 </div>
               </li>
               <li class="flex items-start gap-2">

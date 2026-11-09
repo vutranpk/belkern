@@ -1371,7 +1371,10 @@
   // 8. MULTI-LAYER INTERACTIVE PARALLAX ENGINE (Mouse Cursor Tracking)
   // ---------------------------------------------------------------------------
   function initHeroParallax() {
-    const hero = document.getElementById('heroSection') || document.getElementById('productHero');
+    const hero = document.getElementById('heroSection') || 
+                 document.getElementById('productHero') || 
+                 document.querySelector('section[id$="Hero"]') ||
+                 document.querySelector('.parallax-layer')?.closest('section, header, div');
     if (!hero) return;
 
     const layers = hero.querySelectorAll('.parallax-layer');
@@ -1999,8 +2002,8 @@
     const images = showcase ? showcase.querySelectorAll('.cert-panorama-img') : [];
     const contents = showcase ? showcase.querySelectorAll('.cert-panorama-content') : [];
 
-    const total = (contents.length > 0) ? contents.length : ((images.length > 0) ? images.length : CERT_STANDARDS.length);
-    certPanoramaCurrent = ((index % total) + total) % total;
+    const total = (contents.length > 1) ? contents.length : ((images.length > 0) ? images.length : ((contents.length > 0) ? 1 : CERT_STANDARDS.length));
+    certPanoramaCurrent = total > 0 ? (((index % total) + total) % total) : 0;
 
     // 1. Update Story Segment Tabs (If present)
     if (tabs.length > 0) {
@@ -2065,19 +2068,24 @@
       });
     }
 
-    // 4. Update Indicators with standard name or image caption
-    if (currentStep) {
+    // 4. Update Indicators with standard name or image caption (supports both mobile & desktop)
+    const currentSteps = showcase ? showcase.querySelectorAll('.cert-current-step, #certCurrentStep') : [];
+    if (currentSteps.length) {
       const activeImg = images[certPanoramaCurrent];
       const imgCaption = activeImg ? activeImg.getAttribute('data-caption') : null;
+      let text = '';
       if (contents.length > 1) {
         const activeContent = contents[certPanoramaCurrent];
         const customTitle = activeContent ? activeContent.getAttribute('data-step-title') : null;
-        currentStep.textContent = customTitle || CERT_STANDARDS[certPanoramaCurrent] || '';
+        text = customTitle || CERT_STANDARDS[certPanoramaCurrent] || '';
       } else if (imgCaption) {
-        currentStep.textContent = imgCaption;
+        text = imgCaption;
       } else {
-        currentStep.textContent = `0${certPanoramaCurrent + 1}`;
+        text = `0${certPanoramaCurrent + 1}`;
       }
+      currentSteps.forEach((el) => {
+        el.textContent = text;
+      });
     }
   }
 
@@ -2345,10 +2353,13 @@
     gsap.registerPlugin(ScrollTrigger);
 
     // 1. Hero Section Cinematic Stagger Entrance (Runs immediately on page load)
-    const heroSection = document.getElementById('heroSection') || document.getElementById('productHero');
+    const heroSection = document.getElementById('heroSection') || 
+                        document.getElementById('productHero') || 
+                        document.querySelector('section[id$="Hero"]') ||
+                        document.querySelector('.parallax-layer')?.closest('section, header, div');
     if (heroSection) {
       const heroBreadcrumb = heroSection.querySelector('nav[aria-label="Breadcrumb"]');
-      const heroKicker = heroSection.querySelector('[class*="tracking-[0.2em]"]');
+      const heroKicker = heroSection.querySelector('[class*="tracking-[0.2em]"], [class*="tracking-[0.18em]"]');
       const heroH1 = heroSection.querySelector('h1');
       const heroDesc = heroSection.querySelector('p');
       // Target exclusively the CTA buttons container in the main hero deck
@@ -2383,7 +2394,11 @@
     }
 
     // 2. Section Headings Stagger Reveal (Commodities, About, Certifications, RFQ & Product Page Sections)
-    const majorSections = ['#commodities', '#about', '#certifications', '#rfq', '#productSpecimen', '#productGrades', '#productTds', '#productPipeline', '#crossCommodities'];
+    const majorSections = [
+      '#commodities', '#about', '#certifications', '#rfq', 
+      '#productSpecimen', '#productGrades', '#productTds', '#productPipeline', '#crossCommodities',
+      '#governance', '#origins', '#standards', '#compliance', '#eudr', '#matrix', '#careersList', '#contactDetails'
+    ];
     majorSections.forEach((sel) => {
       const sec = document.querySelector(sel);
       if (!sec) return;

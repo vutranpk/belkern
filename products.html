@@ -67,6 +67,9 @@
 
   <!-- Google Fonts: Inter (High-Legibility Modern European Sans) -->  <link rel="preconnect" href="https://fonts.googleapis.com">  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+    <!-- GSAP & ScrollTrigger for Motion -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
   <!-- Belkern Tailwind Theme Configuration & Global Stylesheet -->
   <script src="js/tailwind-config.js"></script>
   <link rel="stylesheet" href="css/style.css">
@@ -117,7 +120,32 @@
 
         <!-- Center: Desktop Navigation Links (>= 1024px / lg) -->
         <nav class="hidden lg:flex items-center gap-3.5 xl:gap-5 2xl:gap-6 font-medium text-[12.5px] xl:text-[13.5px] 2xl:text-[14.5px] whitespace-nowrap">
-          <a href="about.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors py-2">About Us</a>
+          <div class="relative group py-2">
+            <a href="about.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors inline-flex items-center gap-1.5 group-hover:text-brand-mint" aria-haspopup="true">
+              <span>About Us</span>
+              <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-current group-hover:rotate-180 transition-transform duration-200"></i>
+            </a>
+            <div class="absolute top-full left-0 pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200 pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto z-50">
+              <div class="w-60 bg-white rounded-2xl shadow-xl border border-slate-200/90 p-2 text-left text-slate-800 normal-case tracking-normal">
+                <a href="about.html" class="group/item flex items-center gap-2.5 p-2 rounded-xl hover:bg-slate-50 transition-colors">
+                  <span class="w-8 h-8 rounded-lg bg-brand-green/10 text-brand-green flex items-center justify-center shrink-0"><i data-lucide="building-2" class="w-4 h-4"></i></span>
+                  <span class="text-xs font-bold text-slate-800 group-hover/item:text-brand-green transition-colors">About Us</span>
+                </a>
+                <a href="contact.html" class="group/item flex items-center gap-2.5 p-2 rounded-xl hover:bg-slate-50 transition-colors">
+                  <span class="w-8 h-8 rounded-lg bg-brand-green/10 text-brand-green flex items-center justify-center shrink-0"><i data-lucide="mail" class="w-4 h-4"></i></span>
+                  <span class="text-xs font-bold text-slate-800 group-hover/item:text-brand-green transition-colors">Contact Us</span>
+                </a>
+                <a href="careers.html" class="group/item flex items-center gap-2.5 p-2 rounded-xl hover:bg-slate-50 transition-colors">
+                  <span class="w-8 h-8 rounded-lg bg-brand-green/10 text-brand-green flex items-center justify-center shrink-0"><i data-lucide="briefcase" class="w-4 h-4"></i></span>
+                  <span class="text-xs font-bold text-slate-800 group-hover/item:text-brand-green transition-colors">Careers</span>
+                </a>
+                <a href="imprint.html" class="group/item flex items-center gap-2.5 p-2 rounded-xl hover:bg-slate-50 transition-colors">
+                  <span class="w-8 h-8 rounded-lg bg-brand-green/10 text-brand-green flex items-center justify-center shrink-0"><i data-lucide="scale" class="w-4 h-4"></i></span>
+                  <span class="text-xs font-bold text-slate-800 group-hover/item:text-brand-green transition-colors">Imprint</span>
+                </a>
+              </div>
+            </div>
+          </div>
           <a href="product-arabica.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors py-2">Coffee</a>
           <a href="product-pepper.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors py-2">Pepper</a>
           <a href="product-green-pepper-in-brine.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors py-2">Green Pepper in Brine</a>
@@ -177,9 +205,7 @@
             </div>
           </div>
 
-          <a href="fmcg.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors py-2">FMCG</a>
           <a href="certificates.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors py-2">Certificate</a>
-          <a href="careers.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors py-2">Careers</a>
         </nav>
 
         <!-- Right: Actions (Pinned Right) -->
@@ -246,12 +272,20 @@
             </a>
           </div>
 
-          <!-- Item 1: About Us -->
+          <!-- Item 1: About Us Accordion (About Us Â· Contact Us Â· Careers Â· Imprint) -->
           <div class="border-b border-white/[0.07]">
-            <a href="about.html" class="menu-link w-full py-2.5 sm:py-3 text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-white/95 hover:text-brand-mint transition-colors flex items-center justify-between group">
+            <button type="button" onclick="toggleMenuAccordion('acc-about')" class="w-full flex items-center justify-between py-2.5 sm:py-3 text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-white/95 hover:text-brand-mint transition-colors text-left group cursor-pointer focus:outline-none">
               <span>About Us</span>
-              <i data-lucide="arrow-right" class="w-4 h-4 sm:w-5 sm:h-5 stroke-[1.75] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-brand-mint"></i>
-            </a>
+              <i id="acc-about-icon" data-lucide="chevron-down" class="menu-accordion-icon w-4 h-4 sm:w-5 sm:h-5 stroke-[1.75] text-brand-mint/80 group-hover:text-brand-mint transition-transform duration-300"></i>
+            </button>
+            <div id="acc-about" class="menu-accordion-content max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-in-out pl-4 sm:pl-6 border-l-2 border-brand-mint/40 my-1">
+              <div class="py-2.5 space-y-2 text-xs sm:text-sm text-slate-200">
+                <a href="about.html" class="menu-link hover:text-brand-mint transition-all block py-1 hover:translate-x-1 duration-200">About Us</a>
+                <a href="contact.html" class="menu-link hover:text-brand-mint transition-all block py-1 hover:translate-x-1 duration-200">Contact Us</a>
+                <a href="careers.html" class="menu-link hover:text-brand-mint transition-all block py-1 hover:translate-x-1 duration-200">Careers</a>
+                <a href="imprint.html" class="menu-link hover:text-brand-mint transition-all block py-1 hover:translate-x-1 duration-200">Imprint</a>
+              </div>
+            </div>
           </div>
 
           <!-- Item 2: Coffee -->
@@ -295,26 +329,10 @@
             </div>
           </div>
 
-          <!-- Item 5: FMCG (Value-Added Consumer Goods) -->
-          <div class="border-b border-white/[0.07]">
-            <a href="fmcg.html" class="menu-link w-full py-2.5 sm:py-3 text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-white/95 hover:text-brand-mint transition-colors flex items-center justify-between group">
-              <span>FMCG</span>
-              <i data-lucide="arrow-right" class="w-4 h-4 sm:w-5 sm:h-5 stroke-[1.75] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-brand-mint"></i>
-            </a>
-          </div>
-
           <!-- Item 6: Certificate -->
           <div class="border-b border-white/[0.07]">
             <a href="certificates.html" class="menu-link w-full py-2.5 sm:py-3 text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-white/95 hover:text-brand-mint transition-colors flex items-center justify-between group">
               <span>Certificate</span>
-              <i data-lucide="arrow-right" class="w-4 h-4 sm:w-5 sm:h-5 stroke-[1.75] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-brand-mint"></i>
-            </a>
-          </div>
-
-          <!-- Item 7: Careers -->
-          <div class="border-b border-white/[0.07]">
-            <a href="careers.html" class="menu-link w-full py-2.5 sm:py-3 text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-white/95 hover:text-brand-mint transition-colors flex items-center justify-between group">
-              <span>Careers</span>
               <i data-lucide="arrow-right" class="w-4 h-4 sm:w-5 sm:h-5 stroke-[1.75] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-brand-mint"></i>
             </a>
           </div>
@@ -589,8 +607,8 @@
         </a>
 
         <!-- ================= CARD 3: GREEN PEPPER IN BRINE ================= -->
-        <a href="product-green-pepper-in-brine.html" data-category="spices" data-keywords="fmcg green pepper in brine fast moving consumer goods peppercorn sauce retail packaging packaged goods" class="commodity-card group relative block rounded-2xl overflow-hidden shadow-xs hover:shadow-2xl transition-all duration-700 ease-out border border-slate-200/90 hover:border-brand-green/70 select-none h-[420px] sm:h-[450px] lg:h-[480px] bg-slate-900 cursor-pointer">
-          <img src="images/about/FMCG.jpg" alt="Green Pepper in Brine - FMCG" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out pointer-events-none select-none" loading="lazy">
+        <a href="product-green-pepper-in-brine.html" data-category="spices" data-keywords="green pepper in brine fast moving consumer goods peppercorn sauce retail packaging packaged goods" class="commodity-card group relative block rounded-2xl overflow-hidden shadow-xs hover:shadow-2xl transition-all duration-700 ease-out border border-slate-200/90 hover:border-brand-green/70 select-none h-[420px] sm:h-[450px] lg:h-[480px] bg-slate-900 cursor-pointer">
+          <img src="images/about/FMCG.jpg" alt="Green Pepper in Brine - Gourmet Packaged" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out pointer-events-none select-none" loading="lazy">
           <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-brand-dark/95 via-brand-dark/50 to-transparent pointer-events-none"></div>
           
           <div class="absolute bottom-0 inset-x-0 p-4 sm:p-5 lg:p-6 z-10 flex flex-col justify-end">
@@ -608,27 +626,6 @@
             </div>
           </div>
         </a>
-        <!-- ================= CARD 4: FMCG ================= -->
-        <a href="fmcg.html" data-category="spices" data-keywords="fmcg fast moving consumer goods k coffee k pepper cascara tea retail consumer packaged goods direct to shelf" class="commodity-card group relative block rounded-2xl overflow-hidden shadow-xs hover:shadow-2xl transition-all duration-700 ease-out border border-slate-200/90 hover:border-brand-green/70 select-none h-[420px] sm:h-[450px] lg:h-[480px] bg-slate-900 cursor-pointer">
-          <img src="images/product/fmcg.jpg" alt="FMCG Fast-Moving Consumer Goods" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out pointer-events-none select-none" loading="lazy">
-          <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-brand-dark/95 via-brand-dark/50 to-transparent pointer-events-none"></div>
-          
-          <div class="absolute bottom-0 inset-x-0 p-4 sm:p-5 lg:p-6 z-10 flex flex-col justify-end">
-            <div class="flex items-end justify-between gap-3">
-              <div class="min-w-0 group/title block cursor-pointer">
-                <h3 class="text-base sm:text-xl font-bold text-white group-hover:text-brand-mint transition-colors duration-200 tracking-tight leading-snug drop-shadow-md">
-                  FMCG
-                </h3>
-              </div>
-              <div class="flex items-center gap-1.5 shrink-0">
-                <span class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white/15 group-hover:bg-brand-green border border-white/20 group-hover:border-brand-green text-white flex items-center justify-center transition-all group-hover:translate-x-0.5 shadow-sm active:scale-95" title="View FMCG Product Page">
-                  <i data-lucide="arrow-right" class="w-4 h-4 stroke-[1.75]"></i>
-                </span>
-              </div>
-            </div>
-          </div>
-        </a>
-
         <!-- ================= CARD 4: CASSIA ================= -->
         <a href="product-cinnamon.html" data-category="spices" data-keywords="cassia cinnamon split tube cigarette volatile oil 3.5% b2b spices" class="commodity-card group relative block rounded-2xl overflow-hidden shadow-xs hover:shadow-2xl transition-all duration-700 ease-out border border-slate-200/90 hover:border-brand-green/70 select-none h-[420px] sm:h-[450px] lg:h-[480px] bg-slate-900 cursor-pointer">
           <img src="images/product/cassia-cinnamon.jpg" alt="High Oil Split and Tube Cassia" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out pointer-events-none select-none" loading="lazy">
@@ -798,7 +795,7 @@
                     <option value="" disabled selected>Select Commodity Cargo *</option>
                     <option value="Coffee Beans">Coffee Beans</option>
                     <option value="Peppercorns">Peppercorns</option>
-                    <option value="Green Pepper in Brine">Green Pepper in Brine (FMCG)</option>
+                    <option value="Green Pepper in Brine">Green Pepper in Brine (Gourmet Packaged)</option>
                     <option value="Cassia">Cassia</option>
                     <option value="Star Anise">Star Anise</option>
                     <option value="Cashew Kernels">Cashew Kernels</option>
@@ -850,10 +847,10 @@
                         </div>
                         <i data-lucide="check" class="w-4 h-4 text-brand-green hidden custom-option-check shrink-0"></i>
                       </div>
-                      <div class="custom-dropdown-option px-3.5 py-2.5 flex items-center justify-between hover:bg-brand-green/10 cursor-pointer transition-colors text-xs text-slate-700 hover:text-brand-dark" data-value="Green Pepper in Brine" data-label="Green Pepper in Brine (FMCG Packaged Goods)">
+                      <div class="custom-dropdown-option px-3.5 py-2.5 flex items-center justify-between hover:bg-brand-green/10 cursor-pointer transition-colors text-xs text-slate-700 hover:text-brand-dark" data-value="Green Pepper in Brine" data-label="Green Pepper in Brine (Gourmet Packaged Goods)">
                         <div>
                           <div class="font-bold text-slate-900">Green Pepper in Brine</div>
-                          <div class="text-xs text-slate-500 font-normal">FMCG Retail Packaging &middot; Gourmet Green Pepper in Brine</div>
+                          <div class="text-xs text-slate-500 font-normal">Gourmet Retail Packaging &middot; Green Pepper in Brine</div>
                         </div>
                         <i data-lucide="check" class="w-4 h-4 text-brand-green hidden custom-option-check shrink-0"></i>
                       </div>
@@ -1320,10 +1317,8 @@
               <li class="flex items-start gap-2">
                 <span class="w-1.5 h-1.5 bg-brand-gold mt-1.5 shrink-0"></span>
                 <div>
-                  <a href="fmcg.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">FMCG</a>
-                  <span class="text-slate-300 mx-1">&middot;</span>
                   <a href="product-cinnamon.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Cassia</a>
-                  <div class="text-xs text-slate-400">Packaged Consumer Goods &middot; Direct to Shelf</div>
+                  <div class="text-xs text-slate-400">Split &amp; Tube Cassia</div>
                 </div>
               </li>
               <li class="flex items-start gap-2">

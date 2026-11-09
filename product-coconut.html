@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
@@ -132,7 +132,32 @@
 
         <!-- Center: Desktop Navigation Links (>= 1024px / lg) -->
         <nav class="hidden lg:flex items-center gap-3.5 xl:gap-5 2xl:gap-6 font-medium text-[12.5px] xl:text-[13.5px] 2xl:text-[14.5px] whitespace-nowrap">
-          <a href="about.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors py-2">About Us</a>
+          <div class="relative group py-2">
+            <a href="about.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors inline-flex items-center gap-1.5 group-hover:text-brand-mint" aria-haspopup="true">
+              <span>About Us</span>
+              <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-current group-hover:rotate-180 transition-transform duration-200"></i>
+            </a>
+            <div class="absolute top-full left-0 pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200 pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto z-50">
+              <div class="w-60 bg-white rounded-2xl shadow-xl border border-slate-200/90 p-2 text-left text-slate-800 normal-case tracking-normal">
+                <a href="about.html" class="group/item flex items-center gap-2.5 p-2 rounded-xl hover:bg-slate-50 transition-colors">
+                  <span class="w-8 h-8 rounded-lg bg-brand-green/10 text-brand-green flex items-center justify-center shrink-0"><i data-lucide="building-2" class="w-4 h-4"></i></span>
+                  <span class="text-xs font-bold text-slate-800 group-hover/item:text-brand-green transition-colors">About Us</span>
+                </a>
+                <a href="contact.html" class="group/item flex items-center gap-2.5 p-2 rounded-xl hover:bg-slate-50 transition-colors">
+                  <span class="w-8 h-8 rounded-lg bg-brand-green/10 text-brand-green flex items-center justify-center shrink-0"><i data-lucide="mail" class="w-4 h-4"></i></span>
+                  <span class="text-xs font-bold text-slate-800 group-hover/item:text-brand-green transition-colors">Contact Us</span>
+                </a>
+                <a href="careers.html" class="group/item flex items-center gap-2.5 p-2 rounded-xl hover:bg-slate-50 transition-colors">
+                  <span class="w-8 h-8 rounded-lg bg-brand-green/10 text-brand-green flex items-center justify-center shrink-0"><i data-lucide="briefcase" class="w-4 h-4"></i></span>
+                  <span class="text-xs font-bold text-slate-800 group-hover/item:text-brand-green transition-colors">Careers</span>
+                </a>
+                <a href="imprint.html" class="group/item flex items-center gap-2.5 p-2 rounded-xl hover:bg-slate-50 transition-colors">
+                  <span class="w-8 h-8 rounded-lg bg-brand-green/10 text-brand-green flex items-center justify-center shrink-0"><i data-lucide="scale" class="w-4 h-4"></i></span>
+                  <span class="text-xs font-bold text-slate-800 group-hover/item:text-brand-green transition-colors">Imprint</span>
+                </a>
+              </div>
+            </div>
+          </div>
           <a href="product-arabica.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors py-2">Coffee</a>
           <a href="product-pepper.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors py-2">Pepper</a>
           <a href="product-green-pepper-in-brine.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors py-2">Green Pepper in Brine</a>
@@ -192,9 +217,7 @@
             </div>
           </div>
 
-          <a href="fmcg.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors py-2">FMCG</a>
           <a href="certificates.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors py-2">Certificate</a>
-          <a href="careers.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors py-2">Careers</a>
         </nav>
 
         <!-- Right: Actions (Pinned Right) -->
@@ -262,12 +285,20 @@
             </a>
           </div>
 
-          <!-- Item 1: About Us -->
+          <!-- Item 1: About Us Accordion (About Us Â· Contact Us Â· Careers Â· Imprint) -->
           <div class="border-b border-white/[0.07]">
-            <a href="about.html" class="menu-link w-full py-2.5 sm:py-3 text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-white/95 hover:text-brand-mint transition-colors flex items-center justify-between group">
+            <button type="button" onclick="toggleMenuAccordion('acc-about')" class="w-full flex items-center justify-between py-2.5 sm:py-3 text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-white/95 hover:text-brand-mint transition-colors text-left group cursor-pointer focus:outline-none">
               <span>About Us</span>
-              <i data-lucide="arrow-right" class="w-4 h-4 sm:w-5 sm:h-5 stroke-[1.75] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-brand-mint"></i>
-            </a>
+              <i id="acc-about-icon" data-lucide="chevron-down" class="menu-accordion-icon w-4 h-4 sm:w-5 sm:h-5 stroke-[1.75] text-brand-mint/80 group-hover:text-brand-mint transition-transform duration-300"></i>
+            </button>
+            <div id="acc-about" class="menu-accordion-content max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-in-out pl-4 sm:pl-6 border-l-2 border-brand-mint/40 my-1">
+              <div class="py-2.5 space-y-2 text-xs sm:text-sm text-slate-200">
+                <a href="about.html" class="menu-link hover:text-brand-mint transition-all block py-1 hover:translate-x-1 duration-200">About Us</a>
+                <a href="contact.html" class="menu-link hover:text-brand-mint transition-all block py-1 hover:translate-x-1 duration-200">Contact Us</a>
+                <a href="careers.html" class="menu-link hover:text-brand-mint transition-all block py-1 hover:translate-x-1 duration-200">Careers</a>
+                <a href="imprint.html" class="menu-link hover:text-brand-mint transition-all block py-1 hover:translate-x-1 duration-200">Imprint</a>
+              </div>
+            </div>
           </div>
 
           <!-- Item 2: Coffee -->
@@ -311,26 +342,10 @@
             </div>
           </div>
 
-          <!-- Item 5: FMCG (Value-Added Consumer Goods) -->
-          <div class="border-b border-white/[0.07]">
-            <a href="fmcg.html" class="menu-link w-full py-2.5 sm:py-3 text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-white/95 hover:text-brand-mint transition-colors flex items-center justify-between group">
-              <span>FMCG</span>
-              <i data-lucide="arrow-right" class="w-4 h-4 sm:w-5 sm:h-5 stroke-[1.75] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-brand-mint"></i>
-            </a>
-          </div>
-
           <!-- Item 6: Certificate -->
           <div class="border-b border-white/[0.07]">
             <a href="certificates.html" class="menu-link w-full py-2.5 sm:py-3 text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-white/95 hover:text-brand-mint transition-colors flex items-center justify-between group">
               <span>Certificate</span>
-              <i data-lucide="arrow-right" class="w-4 h-4 sm:w-5 sm:h-5 stroke-[1.75] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-brand-mint"></i>
-            </a>
-          </div>
-
-          <!-- Item 7: Careers -->
-          <div class="border-b border-white/[0.07]">
-            <a href="careers.html" class="menu-link w-full py-2.5 sm:py-3 text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-white/95 hover:text-brand-mint transition-colors flex items-center justify-between group">
-              <span>Careers</span>
               <i data-lucide="arrow-right" class="w-4 h-4 sm:w-5 sm:h-5 stroke-[1.75] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-brand-mint"></i>
             </a>
           </div>
@@ -529,13 +544,6 @@
             </div>
             <span class="text-xs sm:text-[13px] font-bold text-slate-700 group-hover:text-brand-dark transition-colors leading-tight">Green Pepper in Brine</span>
           </a>
-          <!-- 4. FMCG -->
-          <a href="fmcg.html" class="shrink-0 flex flex-col items-center text-center group cursor-pointer">
-            <div class="relative mb-2">
-              <img src="images/product/fmcg.jpg" alt="FMCG" class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl object-cover border border-slate-200 shadow-2xs group-hover:scale-105 group-hover:border-brand-green/60 transition-all duration-200">
-            </div>
-            <span class="text-xs sm:text-[13px] font-bold text-slate-700 group-hover:text-brand-dark transition-colors leading-tight">FMCG</span>
-          </a>
           <!-- 5. Cassia -->
           <a href="product-cinnamon.html" class="shrink-0 flex flex-col items-center text-center group cursor-pointer">
             <div class="relative mb-2">
@@ -627,20 +635,80 @@
       <!-- MAIN SPLIT STAGE: Left (Full Bleed Image Gallery) &middot; Right (Contract-Tailored Procurement Showcase) -->
       <div class="grid grid-cols-1 lg:grid-cols-12 w-full">
         
-                <!-- LEFT: Edge-to-Edge Full Bleed Photography Showcase (Clean & Unobstructed) -->
-        <div class="lg:col-span-6 xl:col-span-6 relative overflow-hidden h-64 sm:h-80 lg:h-auto min-h-[280px] sm:min-h-[340px] lg:min-h-[520px] bg-slate-100 select-none">
-          <img 
-            src="images/product/desiccated-coconut.jpg" 
-            alt="Desiccated Coconut Lot Specimen" 
-            class="w-full h-full object-cover object-center pointer-events-none select-none"
-            loading="lazy"
-          >
+        <!-- LEFT: Edge-to-Edge Full Bleed Photography Showcase + Mobile Gallery Controls -->
+        <div class="lg:col-span-6 xl:col-span-6 flex flex-col justify-between bg-slate-900 select-none">
+          
+          <!-- Image Stage (4 Active Specimen Cross-Fade Slides) -->
+          <div class="relative overflow-hidden h-64 sm:h-80 lg:h-full min-h-[280px] sm:min-h-[340px] lg:min-h-[520px] select-none flex-1">
+            <!-- Slide 01 -->
+            <div class="cert-panorama-img absolute inset-0 transition-opacity duration-500 ease-out opacity-100" data-img-index="0" data-caption="01 Desiccated Coconut Fine & Medium">
+            <img 
+              src="images/product/desiccated-coconut.jpg" 
+              alt="High-Fat Desiccated Coconut Specimen" 
+              class="w-full h-full object-cover object-center pointer-events-none select-none"
+            >
+          </div>
+            <!-- Slide 02 -->
+            <div class="cert-panorama-img absolute inset-0 transition-opacity duration-500 ease-out opacity-0 pointer-events-none" data-img-index="1" data-caption="02 Fresh Coconut Kernel Processing">
+            <img 
+              src="images/DesiccatedCoconut_01.jpg" 
+              alt="Fresh Coconut Meat Shredding and Pasteurization" 
+              class="w-full h-full object-cover object-center pointer-events-none select-none"
+              loading="lazy"
+            >
+          </div>
+            <!-- Slide 03 -->
+            <div class="cert-panorama-img absolute inset-0 transition-opacity duration-500 ease-out opacity-0 pointer-events-none" data-img-index="2" data-caption="03 Salmonella-Free Microbiological Lab">
+            <img 
+              src="images/about/Slide-03.jpg" 
+              alt="Pathogen Screen and Free Fatty Acid Testing" 
+              class="w-full h-full object-cover object-center pointer-events-none select-none"
+              loading="lazy"
+            >
+          </div>
+            <!-- Slide 04 -->
+            <div class="cert-panorama-img absolute inset-0 transition-opacity duration-500 ease-out opacity-0 pointer-events-none" data-img-index="3" data-caption="04 Multi-Ply Kraft Poly-Lined Sacks">
+            <img 
+              src="images/about/Slide-04.jpg" 
+              alt="Multi-Ply Kraft Paper Bags with Polyethylene Liner" 
+              class="w-full h-full object-cover object-center pointer-events-none select-none"
+              loading="lazy"
+            >
+          </div>
+          </div>
+
+          <!-- Mobile Direct Gallery Controls (Directly under image on mobile <1024px, hidden on desktop, zero border) -->
+          <div class="lg:hidden px-4 sm:px-6 py-3 flex items-center justify-between shrink-0 bg-white">
+            <div class="flex items-center gap-1.5 text-xs sm:text-sm font-sans min-w-0 pr-2">
+              <span class="cert-current-step font-bold text-brand-dark tracking-tight truncate">01 Desiccated Coconut Fine & Medium</span>
+              <span class="font-bold text-slate-400 shrink-0">/ 04</span>
+            </div>
+            <div class="flex items-center gap-1.5 shrink-0">
+              <button 
+                type="button" 
+                onclick="stepCertPanorama(-1)" 
+                aria-label="Previous specimen image"
+                class="w-10 h-10 rounded-xl border border-slate-200 hover:border-brand-green bg-white hover:bg-brand-green hover:text-white text-slate-700 flex items-center justify-center transition-all duration-200 active:scale-95 cursor-pointer shadow-2xs"
+              >
+                <i data-lucide="chevron-left" class="w-4 h-4 stroke-[1.75]"></i>
+              </button>
+              <button 
+                type="button" 
+                onclick="stepCertPanorama(1)" 
+                aria-label="Next specimen image"
+                class="w-10 h-10 rounded-xl border border-slate-200 hover:border-brand-green bg-white hover:bg-brand-green hover:text-white text-slate-700 flex items-center justify-center transition-all duration-200 active:scale-95 cursor-pointer shadow-2xs"
+              >
+                <i data-lucide="chevron-right" class="w-4 h-4 stroke-[1.75]"></i>
+              </button>
+            </div>
+          </div>
+
         </div>
 
         <!-- RIGHT: Single Authoritative Contract Declaration (100% Stable &middot; Zero Layout Shift) -->
         <div class="lg:col-span-6 xl:col-span-6 px-5 sm:px-10 lg:px-14 xl:px-16 py-6 sm:py-10 lg:py-12 flex flex-col justify-between bg-white relative">
           
-          <!-- Single Editorial Block (class="cert-panorama-content" so contents.length === 1 in main.js) -->
+          <!-- Single Editorial Block -->
           <div class="cert-panorama-content w-full" data-content-index="0" data-step-title="01 Specimen Overview">
             
             <div class="text-brand-gold text-xs sm:text-sm font-bold uppercase tracking-[0.18em] mb-2 sm:mb-2.5">
@@ -656,7 +724,7 @@
               Belkern GmbH sources agricultural commodities directly from established farming cooperatives and processing partners across Vietnam, Brazil, Indonesia, India, and Africa. We do not enforce fixed in-house parameters; every lot is tailored, graded, and certified strictly in accordance with your commercial purchase order and import destination regulations.
             </p>
 
-            <!-- 3 Commercial Value Pillars (Pure Description & Handling) -->
+            <!-- 3 Commercial Value Pillars -->
             <div class="space-y-3 sm:space-y-3.5 my-5 sm:my-6 pt-4 sm:pt-5 border-t border-slate-100">
               
               <!-- Pillar 1 -->
@@ -697,15 +765,14 @@
                   </p>
                 </div>
               </div>
-
-            </div>
-
           </div>
 
-          <!-- Bottom Navigation Counter & Arrows (Controls Image Gallery on Left) -->
-          <div class="mt-4 sm:mt-5 pt-3 sm:pt-4 border-t border-slate-100 flex items-center justify-between">
+        </div>
+
+        <!-- Desktop Bottom Navigation Counter & Arrows (Hidden on mobile, original position on desktop >= 1024px) -->
+          <div class="hidden lg:flex mt-4 sm:mt-5 pt-3 sm:pt-4 border-t border-slate-100 items-center justify-between">
             <div class="flex items-center gap-1.5 text-xs sm:text-sm font-sans">
-              <span id="certCurrentStep" class="font-bold text-brand-dark tracking-tight">01 Specimen Overview</span>
+              <span id="certCurrentStep" class="cert-current-step font-bold text-brand-dark tracking-tight">01 Desiccated Coconut Fine & Medium</span>
               <span class="font-bold text-slate-400">/ 04</span>
             </div>
             <div class="flex items-center gap-1.5">
@@ -800,7 +867,7 @@
                     <option value="" disabled selected>Select Commodity Cargo *</option>
                     <option value="Coffee Beans">Coffee Beans</option>
                     <option value="Peppercorns">Peppercorns</option>
-                    <option value="Green Pepper in Brine">Green Pepper in Brine (FMCG)</option>
+                    <option value="Green Pepper in Brine">Green Pepper in Brine (Gourmet Packaged)</option>
                     <option value="Cassia">Cassia</option>
                     <option value="Star Anise">Star Anise</option>
                     <option value="Cashew Kernels">Cashew Kernels</option>
@@ -852,10 +919,10 @@
                         </div>
                         <i data-lucide="check" class="w-4 h-4 text-brand-green hidden custom-option-check shrink-0"></i>
                       </div>
-                      <div class="custom-dropdown-option px-3.5 py-2.5 flex items-center justify-between hover:bg-brand-green/10 cursor-pointer transition-colors text-xs text-slate-700 hover:text-brand-dark" data-value="Green Pepper in Brine" data-label="Green Pepper in Brine (FMCG Packaged Goods)">
+                      <div class="custom-dropdown-option px-3.5 py-2.5 flex items-center justify-between hover:bg-brand-green/10 cursor-pointer transition-colors text-xs text-slate-700 hover:text-brand-dark" data-value="Green Pepper in Brine" data-label="Green Pepper in Brine (Gourmet Packaged Goods)">
                         <div>
                           <div class="font-bold text-slate-900">Green Pepper in Brine</div>
-                          <div class="text-xs text-slate-500 font-normal">FMCG Retail Packaging &middot; Gourmet Green Pepper in Brine</div>
+                          <div class="text-xs text-slate-500 font-normal">Gourmet Retail Packaging &middot; Green Pepper in Brine</div>
                         </div>
                         <i data-lucide="check" class="w-4 h-4 text-brand-green hidden custom-option-check shrink-0"></i>
                       </div>
@@ -1322,10 +1389,8 @@
               <li class="flex items-start gap-2">
                 <span class="w-1.5 h-1.5 bg-brand-gold mt-1.5 shrink-0"></span>
                 <div>
-                  <a href="fmcg.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">FMCG</a>
-                  <span class="text-slate-300 mx-1">&middot;</span>
                   <a href="product-cinnamon.html" class="font-semibold text-slate-800 hover:text-brand-gold transition-colors">Cassia</a>
-                  <div class="text-xs text-slate-400">Packaged Consumer Goods &middot; Direct to Shelf</div>
+                  <div class="text-xs text-slate-400">Split &amp; Tube Cassia</div>
                 </div>
               </li>
               <li class="flex items-start gap-2">
