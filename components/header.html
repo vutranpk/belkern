@@ -1,0 +1,474 @@
+﻿<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Belkern GmbH — Header Navigation Component (Design System Specs)</title>
+  
+  <!-- Tailwind CSS & Lucide Icons -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Belkern Tailwind Theme Configuration & Global Stylesheet -->
+  <script src="../js/tailwind-config.js"></script>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased selection:bg-brand-green/20 selection:text-brand-dark">
+
+  <!-- ========================================================================= -->
+  <!-- 1. HEADER COMPONENT (Belkern Comaxx System)                               -->
+  <!-- Transparent at top over Hero, transforms to compact white sticky on scroll-->
+  <!-- ========================================================================= -->
+  <header id="mainHeader" class="fixed top-0 left-0 right-0 z-40 bg-transparent border-b border-transparent transition-all duration-500 ease-out will-change-transform">
+    <!-- Ambient Daylight Header Scrim Overlay (Preserves Nav Contrast Over Bright Hero Photography) -->
+    <div id="headerScrim" class="absolute top-0 left-0 right-0 h-48 lg:h-60 -z-10 bg-gradient-to-b from-black/75 via-black/45 to-transparent transition-opacity duration-500 pointer-events-none"></div>
+    <div class="w-full px-6 sm:px-10 lg:px-14 xl:px-20">
+
+      <!-- Tier 1: Utility Bar (Full-Width, Collapses smoothly on scroll, Desktop >= 1024px Only) -->
+      <div id="headerTopBar" class="hidden lg:flex justify-end items-center text-xs text-white font-medium transition-all duration-300 overflow-hidden max-h-12 py-2.5 border-b border-white/15">
+
+        <!-- Contact & Language Switcher -->
+        <div class="flex items-center gap-6">
+          <a href="mailto:mail@belkern.com" class="inline-flex items-center gap-1.5 hover:text-brand-mint text-white transition-colors group">
+            <i data-lucide="mail" class="w-3.5 h-3.5 text-white/90 group-hover:text-brand-mint transition-colors"></i>
+            <span>mail@belkern.com</span>
+          </a>
+          <a href="tel:+496997761669" class="inline-flex items-center gap-1.5 hover:text-brand-mint text-white transition-colors group">
+            <i data-lucide="phone" class="w-3.5 h-3.5 text-white/90 group-hover:text-brand-mint transition-colors"></i>
+            <span>+49 69 97 76 16 69</span>
+          </a>
+
+          <!-- Static Language Switcher: EN (active) | DE -->
+          <div class="inline-flex items-center bg-white/10 backdrop-blur-xs border border-white/20 rounded-md p-0.5 text-[11px] font-bold">
+            <span class="px-2 py-0.5 rounded bg-brand-green text-white shadow-xs cursor-default">EN</span>
+            <span class="px-2 py-0.5 rounded text-white/70 hover:text-white transition cursor-pointer" title="German version available on launch">DE</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tier 2: Main Navigation Bar (Full-Width, Compacts to h-16 when scrolled) -->
+      <div id="mainNavBar" class="h-20 flex items-center justify-between gap-4 transition-all duration-300">
+
+        <!-- Left: Brand Logo (Dynamic Dark Mode over Hero / Light Mode on Scroll) -->
+        <a href="../index.html" class="flex items-center group shrink-0 py-1" aria-label="Belkern GmbH Home">
+          <!-- Dark Mode Logo: Used for dark hero background at page summit -->
+          <img id="headerLogoDark" src="../images/DM-Belkern-2.png" alt="Belkern GmbH - Coffee & Spice World" class="h-[3.4rem] w-auto object-contain transition-all duration-300 block">
+          <!-- Light Mode Logo: Used when scrolled down over solid light navigation -->
+          <img id="headerLogoLight" src="../images/LM-Belkern-1.png" alt="Belkern GmbH - Coffee & Spice World" class="h-8 sm:h-9 lg:h-10 w-auto object-contain transition-all duration-300 hidden">
+        </a>
+
+        <!-- Center: Desktop Navigation Links (>= 1024px / lg) -->
+                <!-- Center: Desktop Navigation Links (>= 1024px / lg) -->
+        <nav class="hidden lg:flex items-center gap-3.5 xl:gap-5 2xl:gap-6 font-medium text-[12.5px] xl:text-[13.5px] 2xl:text-[14.5px] whitespace-nowrap">
+          <a href="about.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors py-2">About Us</a>
+          <a href="product-arabica.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors py-2">Coffee</a>
+          <a href="product-pepper.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors py-2">Pepper</a>
+          <a href="product-green-pepper-in-brine.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors py-2">Green Pepper in Brine</a>
+          
+          <!-- Spices & Other Commodities with Rich Hover Dropdown Menu -->
+          <div class="relative group py-2">
+            <a href="products.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs group-hover:text-brand-mint hover:text-brand-mint transition-colors inline-flex items-center gap-1.5">
+              <span>Spices &amp; Commodities</span>
+              <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-current group-hover:rotate-180 transition-transform duration-200"></i>
+            </a>
+
+            <!-- Floating Mega Dropdown Panel -->
+            <div class="absolute top-full left-1/2 -translate-x-1/2 pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none group-hover:pointer-events-auto z-50">
+              <div class="w-[480px] bg-white rounded-2xl shadow-xl border border-slate-200/90 p-5 text-left text-slate-800">
+                <div class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3 px-1">
+                  Cashew &middot; Spices &middot; Origin Commodities
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                  <div>
+                    <a href="product-cashews.html" class="group/item flex items-center gap-2.5 p-2 rounded-xl hover:bg-slate-50 transition-colors">
+                      <div class="w-8 h-8 rounded-lg bg-brand-green/10 text-brand-green flex items-center justify-center shrink-0">
+                        <i data-lucide="package" class="w-4 h-4"></i>
+                      </div>
+                      <span class="text-xs font-bold text-slate-800 group-hover/item:text-brand-green transition-colors">Cashew Kernels</span>
+                    </a>
+                    <a href="product-cinnamon.html" class="group/item flex items-center gap-2.5 p-2 rounded-xl hover:bg-slate-50 transition-colors mt-1">
+                      <div class="w-8 h-8 rounded-lg bg-brand-green/10 text-brand-green flex items-center justify-center shrink-0">
+                        <i data-lucide="sparkles" class="w-4 h-4"></i>
+                      </div>
+                      <span class="text-xs font-bold text-slate-800 group-hover/item:text-brand-green transition-colors">Cassia</span>
+                    </a>
+                  </div>
+                  <div>
+                    <a href="product-star-anise.html" class="group/item flex items-center gap-2.5 p-2 rounded-xl hover:bg-slate-50 transition-colors">
+                      <div class="w-8 h-8 rounded-lg bg-brand-green/10 text-brand-green flex items-center justify-center shrink-0">
+                        <i data-lucide="sparkles" class="w-4 h-4"></i>
+                      </div>
+                      <span class="text-xs font-bold text-slate-800 group-hover/item:text-brand-green transition-colors">Star Anise</span>
+                    </a>
+                    <a href="product-coconut.html" class="group/item flex items-center gap-2.5 p-2 rounded-xl hover:bg-slate-50 transition-colors mt-1">
+                      <div class="w-8 h-8 rounded-lg bg-brand-green/10 text-brand-green flex items-center justify-center shrink-0">
+                        <i data-lucide="package" class="w-4 h-4"></i>
+                      </div>
+                      <span class="text-xs font-bold text-slate-800 group-hover/item:text-brand-green transition-colors">Desiccated Coconut</span>
+                    </a>
+                  </div>
+                </div>
+
+                <!-- Footer row in Dropdown -->
+                <div class="mt-3 pt-3 border-t border-slate-100 flex items-center justify-end text-xs">
+                  <a href="products.html" class="font-semibold text-brand-green hover:text-brand-greenDark inline-flex items-center gap-1 transition-colors">
+                    <span>View All Commodities Portfolio</span>
+                    <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <a href="fmcg.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors py-2">FMCG</a>
+          <a href="certificates.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors py-2">Certificate</a>
+          <a href="careers.html" class="header-nav-link uppercase tracking-wider font-medium text-white drop-shadow-xs hover:text-brand-mint transition-colors py-2">Careers</a>
+        </nav>
+
+        <!-- Right: Actions (Pinned Right) -->
+        <div class="flex items-center gap-3 sm:gap-4 shrink-0">
+          
+          <!-- Standardized rounded-xl Contact Button (Hidden on Mobile/Tablet < 1024px) -->
+          <a href="../contact.html" class="hidden lg:inline-flex items-center gap-2.5 pl-4 sm:pl-5 pr-1.5 py-1.5 rounded-xl bg-brand-green hover:bg-brand-greenDark text-white font-bold text-xs sm:text-sm tracking-wide shadow-xs hover:shadow-md transition-all duration-200 group active:scale-[0.99]">
+            <span>Contact</span>
+            <span class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-white/20 text-white flex items-center justify-center transition-transform duration-200 group-hover:translate-x-0.5">
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5 stroke-[1.75]"></i>
+            </span>
+          </a>
+
+          <!-- Hamburger Toggle Icon -->
+          <button id="navigationToggle" onclick="toggleFullScreenMenu(true)" class="lg:hidden p-2 sm:p-2.5 rounded-xl hover:bg-white/10 transition-colors min-h-[44px] min-w-[44px] flex flex-col justify-center items-center gap-1.5 group focus:outline-none cursor-pointer" aria-label="Open full-screen navigation menu">
+            <span class="header-hbg-bar w-6 h-0.5 bg-white group-hover:bg-brand-green transition-colors rounded-full"></span>
+            <span class="header-hbg-bar w-6 h-0.5 bg-white group-hover:bg-brand-green transition-colors rounded-full"></span>
+            <span class="header-hbg-bar w-6 h-0.5 bg-white group-hover:bg-brand-green transition-colors rounded-full"></span>
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- ========================================================================= -->
+  <!-- 2. FULL-SCREEN OVERLAY MENU (Pure English · Comaxx Reference Architecture) -->
+  <!-- ========================================================================= -->
+  <div id="fullScreenMenu" class="fixed inset-0 z-50 bg-[#0A1D14] text-white opacity-0 pointer-events-none transition-opacity duration-300 ease-out overflow-y-auto no-scrollbar">
+    
+    <!-- Subtle Ambient Atmospheric Glow (No watermark symbol, clean luxury depth) -->
+    <div class="absolute right-0 top-0 bottom-0 w-full lg:w-1/2 pointer-events-none overflow-hidden flex items-center justify-end z-0">
+      <div class="absolute -right-24 top-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-gradient-to-br from-brand-gold/[0.05] via-brand-green/[0.08] to-transparent blur-3xl pointer-events-none"></div>
+    </div>
+
+    <!-- Inner Content Wrapper with Cinematic Fade & Rise Animation -->
+    <div id="fullScreenMenuContent" class="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 py-5 sm:py-7 lg:py-8 min-h-screen flex flex-col justify-between transform transition-all duration-300 ease-out translate-y-4 scale-[0.98] opacity-0">
+      
+      <!-- Top Bar: Logo on Left, Close (X) on Right -->
+      <div class="flex items-center justify-between pb-4 sm:pb-5 border-b border-white/[0.08] shrink-0">
+        <a href="../index.html" class="flex items-center group py-1" aria-label="Belkern GmbH Home">
+          <img src="../images/DM-Belkern-2.png" alt="Belkern GmbH - Coffee & Spice World" class="h-8 sm:h-9 lg:h-10 w-auto object-contain">
+        </a>
+
+        <!-- Big Close Button (X) -->
+        <button id="closeFullScreenBtn" onclick="toggleFullScreenMenu(false)" class="p-2 sm:p-2.5 text-white/70 hover:text-white hover:bg-white/[0.08] rounded-xl transition-all cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center group focus:outline-none" aria-label="Close navigation menu">
+          <i data-lucide="x" class="w-5 h-5 sm:w-6 sm:h-6 stroke-[1.75] group-hover:rotate-90 transition-transform duration-300"></i>
+        </button>
+      </div>
+
+      <!-- Main Body: 2 Columns (Left: Clean Editorial Navigation Tree, Right: Corporate Info & Pill CTA) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 py-6 lg:py-8 items-start">
+        
+        <!-- Left Column: Editorial Multi-Level Navigation Tree (col-span-7) -->
+        <div class="lg:col-span-7 space-y-3 sm:space-y-4">
+
+          <!-- 1. Home -->
+          <div class="border-b border-white/10 pb-3">
+            <a href="../index.html" class="menu-link inline-block text-xl sm:text-3xl lg:text-4xl font-bold text-white hover:text-brand-mint transition-colors tracking-tight">
+              Home
+            </a>
+          </div>
+
+          <!-- 2. About Us (Collapsible Accordion) -->
+          <div class="menu-accordion-item border-b border-white/10 pb-3">
+            <button onclick="toggleMenuAccordion('acc-about')" class="w-full flex items-center justify-between text-left text-xl sm:text-3xl lg:text-4xl font-bold text-white hover:text-brand-mint transition-colors tracking-tight py-1 group focus:outline-none cursor-pointer">
+              <span>About Us</span>
+              <i data-lucide="chevron-down" id="acc-about-icon" class="menu-accordion-icon w-6 h-6 text-brand-gold transition-transform duration-300"></i>
+            </button>
+            <div id="acc-about" class="menu-accordion-content max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-in-out pl-4 sm:pl-6 space-y-2 text-sm sm:text-base text-slate-300 border-l border-white/15 ml-2 mt-2">
+              <a href="../about.html#company" class="menu-link block hover:text-brand-mint transition-colors py-1">About Belkern</a>
+              <a href="../about.html#network" class="menu-link block hover:text-brand-mint transition-colors py-1">International Commodity Trade Network</a>
+              <a href="../about.html#governance" class="menu-link block hover:text-brand-mint transition-colors py-1">Legal &amp; Corporate Governance</a>
+            </div>
+          </div>
+
+          <!-- 3. Products (Clean Sub-hierarchy without card boxes) -->
+          <div class="menu-accordion-item border-b border-white/10 pb-3">
+            <button onclick="toggleMenuAccordion('acc-products')" class="w-full flex items-center justify-between text-left text-xl sm:text-3xl lg:text-4xl font-bold text-white hover:text-brand-mint transition-colors tracking-tight py-1 group focus:outline-none cursor-pointer">
+              <span>Products</span>
+              <i data-lucide="chevron-down" id="acc-products-icon" class="menu-accordion-icon w-6 h-6 text-brand-gold transition-transform duration-300"></i>
+            </button>
+            <div id="acc-products" class="menu-accordion-content max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-in-out pl-4 sm:pl-6 space-y-3.5 text-sm sm:text-base border-l border-white/15 ml-2 mt-2">
+              
+              <!-- Coffee Beans Branch -->
+              <div>
+                <span class="text-xs font-mono font-bold uppercase tracking-wider text-brand-gold/80 block mb-1">Coffee Beans</span>
+                <div class="space-y-1 pl-2 text-slate-300 text-sm">
+                  <a href="../product-arabica.html" class="menu-link block hover:text-brand-mint transition-colors">Arabica Coffee</a>
+                </div>
+              </div>
+
+              <!-- Spices & Sauces Branch -->
+              <div>
+                <span class="text-xs font-mono font-bold uppercase tracking-wider text-brand-gold/80 block mb-1">Spices &amp; Sauces</span>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-1 pl-2 text-slate-300 text-sm">
+                  <a href="../product-pepper.html" class="menu-link block hover:text-brand-mint transition-colors">Black Pepper</a>
+                  <a href="../product-pepper-sauce.html" class="menu-link block hover:text-brand-mint transition-colors">Peppercorn Sauce</a>
+                  <a href="../product-cinnamon.html" class="menu-link block hover:text-brand-mint transition-colors">Cassia Cinnamon</a>
+                  <a href="../product-star-anise.html" class="menu-link block hover:text-brand-mint transition-colors">Star Anise</a>
+                </div>
+              </div>
+
+              <!-- Agricultural Commodities Branch -->
+              <div>
+                <span class="text-xs font-mono font-bold uppercase tracking-wider text-brand-gold/80 block mb-1">Agricultural Commodities</span>
+                <div class="space-y-1 pl-2 text-slate-300 text-sm">
+                  <a href="../product-cashews.html" class="menu-link block hover:text-brand-mint transition-colors">Cashew Kernels</a>
+                  <a href="../product-coconut.html" class="menu-link block hover:text-brand-mint transition-colors">Desiccated Coconut</a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- 4. Sustainability & ESG (Collapsible Accordion) -->
+          <div class="menu-accordion-item border-b border-white/10 pb-3">
+            <button onclick="toggleMenuAccordion('acc-esg')" class="w-full flex items-center justify-between text-left text-xl sm:text-3xl lg:text-4xl font-bold text-white hover:text-brand-mint transition-colors tracking-tight py-1 group focus:outline-none cursor-pointer">
+              <span>Sustainability & ESG</span>
+              <i data-lucide="chevron-down" id="acc-esg-icon" class="menu-accordion-icon w-6 h-6 text-brand-gold transition-transform duration-300"></i>
+            </button>
+            <div id="acc-esg" class="menu-accordion-content max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-in-out pl-4 sm:pl-6 space-y-2 text-sm sm:text-base text-slate-300 border-l border-white/15 ml-2 mt-2">
+              <a href="../sustainability.html#project" class="menu-link block hover:text-brand-mint transition-colors py-1">Sustainable Pepper Project (Rainforest Alliance)</a>
+              <a href="../sustainability.html#commitments" class="menu-link block hover:text-brand-mint transition-colors py-1">ESG Commitments & Carbon Footprint Reduction</a>
+              <a href="../sustainability.html#supply-chain" class="menu-link block hover:text-brand-mint transition-colors py-1">Ethical Supply Chain & Social Responsibility</a>
+            </div>
+          </div>
+
+          <!-- 5. Certificates (Collapsible Accordion) -->
+          <div class="menu-accordion-item border-b border-white/10 pb-3">
+            <button onclick="toggleMenuAccordion('acc-certs')" class="w-full flex items-center justify-between text-left text-xl sm:text-3xl lg:text-4xl font-bold text-white hover:text-brand-mint transition-colors tracking-tight py-1 group focus:outline-none cursor-pointer">
+              <span>Certificates</span>
+              <i data-lucide="chevron-down" id="acc-certs-icon" class="menu-accordion-icon w-6 h-6 text-brand-gold transition-transform duration-300"></i>
+            </button>
+            <div id="acc-certs" class="menu-accordion-content max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-in-out pl-4 sm:pl-6 space-y-2 text-sm sm:text-base text-slate-300 border-l border-white/15 ml-2 mt-2">
+              <a href="../certificates.html" class="menu-link block hover:text-brand-mint transition-colors py-1">International Standards & Accreditations (ISO, Halal, Kosher)</a>
+            </div>
+          </div>
+
+          <!-- 6. Careers -->
+          <div class="border-b border-white/10 pb-3">
+            <a href="../careers.html" class="menu-link inline-block text-xl sm:text-3xl lg:text-4xl font-bold text-white hover:text-brand-mint transition-colors tracking-tight">
+              Careers
+            </a>
+          </div>
+
+          <!-- 7. Contact -->
+          <div>
+            <a href="../contact.html" class="menu-link inline-block text-xl sm:text-3xl lg:text-4xl font-bold text-brand-gold hover:text-white transition-colors tracking-tight">
+              Contact
+            </a>
+          </div>
+
+        </div>
+
+
+        <!-- Right Column: Corporate Headquarters, Trade Details & Primary Pill CTA (col-span-5) -->
+        <div class="lg:col-span-5 space-y-6 lg:pl-10 lg:border-l lg:border-white/10">
+          
+          <!-- Corporate Coordinates -->
+          <div>
+            <h3 class="text-xs font-mono font-bold uppercase tracking-widest text-brand-gold mb-2">European Headquarters</h3>
+            <div class="text-slate-300 text-sm leading-relaxed space-y-1">
+              <p class="font-bold text-white text-base">Belkern GmbH</p>
+              <p>Melsunger Straße 15</p>
+              <p>60389 Frankfurt am Main, Germany</p>
+              <p class="text-xs text-slate-400 pt-0.5">Handelsregister: HRB 99468 Frankfurt · USt-IdNr.: DE 298 174 135</p>
+            </div>
+          </div>
+
+          <!-- Direct Inquiries & Incoterms -->
+          <div class="space-y-2.5 text-sm">
+            <a href="tel:+496997761669" class="flex items-center gap-3 text-white hover:text-brand-mint transition-colors group">
+              <div class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-brand-green/20">
+                <i data-lucide="phone" class="w-4 h-4 text-brand-gold"></i>
+              </div>
+              <span class="font-bold">+49 69 97 76 16 69</span>
+            </a>
+            <a href="mailto:mail@belkern.com" class="flex items-center gap-3 text-white hover:text-brand-mint transition-colors group">
+              <div class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-brand-green/20">
+                <i data-lucide="mail" class="w-4 h-4 text-brand-gold"></i>
+              </div>
+              <span class="font-bold">mail@belkern.com</span>
+            </a>
+            <div class="flex items-center gap-3 text-slate-300">
+              <div class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
+                <i data-lucide="anchor" class="w-4 h-4 text-brand-green"></i>
+              </div>
+              <span class="text-xs font-medium">Incoterms 2020: FOB • CIF • CFR</span>
+            </div>
+          </div>
+
+          <!-- Standardized rounded-xl Button -->
+          <div class="pt-1">
+            <a href="../contact.html" class="menu-link inline-flex items-center gap-3 pl-6 pr-2 py-2 rounded-xl bg-brand-green hover:bg-brand-greenDark text-white font-bold text-sm sm:text-base tracking-wide shadow-lg hover:shadow-xl transition-all duration-200 group active:scale-[0.99]">
+              <span>Request FCL Quote</span>
+              <span class="w-8 h-8 rounded-lg bg-white/20 text-white flex items-center justify-center transition-transform duration-200 group-hover:translate-x-1 shadow-xs">
+                <i data-lucide="arrow-right" class="w-4 h-4 stroke-[1.75]"></i>
+              </span>
+            </a>
+          </div>
+
+          <!-- Language Selector -->
+          <div class="pt-4 border-t border-white/10 flex items-center gap-3 text-xs text-slate-400">
+            <span>Language:</span>
+            <div class="inline-flex items-center bg-white/10 border border-white/20 rounded-lg p-0.5 font-bold">
+              <span class="px-3 py-1 rounded bg-brand-green text-white shadow-xs">EN</span>
+              <span class="px-3 py-1 text-slate-400 hover:text-white cursor-pointer transition">DE</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar: Legal Links & Copyright -->
+      <div class="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400 shrink-0">
+        <div>© 2026 Belkern GmbH. All rights reserved. Direct Vietnam Origin.</div>
+        <div class="flex items-center gap-6 font-medium">
+          <a href="../imprint.html" class="menu-link hover:text-white transition">Imprint (Impressum)</a>
+          <a href="../privacy-policy.html" class="menu-link hover:text-white transition">Privacy Policy (Datenschutz)</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ========================================================================= -->
+  <!-- 3. SIMULATED PAGE CONTENT (For Visual Testing & Scroll Demonstration)     -->
+  <!-- ========================================================================= -->
+  <main>
+    <!-- Simulated Dark Hero Area (Shows transparent header state) -->
+    <section class="h-screen flex flex-col justify-center items-center text-center px-6 bg-gradient-to-b from-[#0A1D14] via-slate-900 to-slate-950 relative overflow-hidden">
+      
+      <!-- Ambient Radial Glow -->
+      <div class="absolute w-[600px] h-[600px] rounded-full bg-brand-green/10 blur-3xl pointer-events-none"></div>
+
+      <!-- Component Badge -->
+      <div class="relative z-10 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-white/10 border border-white/20 text-white/90 text-xs font-semibold mb-6 shadow-sm">
+        <span class="w-2 h-2 bg-emerald-400 animate-pulse"></span>
+        <span>Component Interactive Showcase · components/header.html</span>
+      </div>
+
+      <h1 class="relative z-10 text-4xl sm:text-6xl lg:text-7xl font-bold text-white tracking-tight mb-4 max-w-4xl leading-[1.08]">
+        Belkern Comaxx Header System
+      </h1>
+      
+      <p class="relative z-10 text-slate-300 text-sm sm:text-base max-w-2xl mb-8 leading-relaxed">
+        Sits transparently with Dark Mode logo (<code class="text-xs bg-white/10 px-1.5 py-0.5 rounded text-emerald-300 font-mono">DM-Belkern-2.png</code>) at the summit. Scroll down to test the compact solid white sticky navigation (<code class="text-xs bg-white/10 px-1.5 py-0.5 rounded text-emerald-300 font-mono">LM-Belkern-1.png</code>).
+      </p>
+
+      <!-- Quick Action Buttons -->
+      <div class="relative z-10 flex flex-wrap items-center justify-center gap-4 mb-12">
+        <button onclick="toggleFullScreenMenu(true)" class="inline-flex items-center gap-2.5 px-6 py-3 rounded-xl bg-brand-green hover:bg-brand-greenDark text-white font-bold text-sm shadow-lg hover:shadow-xl transition-all cursor-pointer">
+          <i data-lucide="menu" class="w-4 h-4"></i>
+          <span>Open Full-Screen Overlay Menu</span>
+        </button>
+        <a href="buttons.html" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-white/20 hover:border-white/50 bg-white/5 hover:bg-white/10 text-white font-semibold text-sm transition-all">
+          <span>Inspect Button System →</span>
+        </a>
+      </div>
+
+      <!-- Animated Scroll Hint -->
+      <div class="relative z-10 animate-bounce text-slate-400 text-xs flex flex-col items-center gap-2">
+        <span>Scroll down to test sticky transformation</span>
+        <i data-lucide="arrow-down" class="w-4 h-4 text-brand-mint"></i>
+      </div>
+    </section>
+
+    <!-- Simulated Light Content Area (Shows solid white header state) -->
+    <section class="min-h-screen bg-slate-50 text-slate-800 p-8 sm:p-14 lg:p-20">
+      <div class="max-w-4xl mx-auto space-y-8">
+        
+        <div class="border-b border-slate-200 pb-6">
+          <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-mono font-bold uppercase mb-2">
+            Sticky State Active (scrollY > 25px)
+          </div>
+          <h2 class="text-3xl font-bold text-brand-dark">Sticky Header Inspection Area</h2>
+          <p class="text-slate-600 leading-relaxed mt-2 text-sm sm:text-base">
+            Notice how the header collapsed its top utility bar, reduced height to 64px (<code class="bg-slate-200 px-2 py-0.5 rounded text-xs font-mono">h-16</code>), applied <code class="bg-slate-200 px-2 py-0.5 rounded text-xs font-mono">bg-white/95 backdrop-blur-md</code>, and seamlessly swapped the brand logo to <code class="bg-slate-200 px-2 py-0.5 rounded text-xs font-mono">LM-Belkern-1.png</code> with dark typography for optimal contrast.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md transition-shadow">
+            <div class="w-9 h-9 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center mb-3">
+              <i data-lucide="sparkles" class="w-5 h-5 text-brand-green"></i>
+            </div>
+            <h3 class="font-bold text-slate-900 mb-1.5 text-base">1. Transparent Summit</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">White typography over dark hero media with full utility bar showing Incoterms & Frankfurt hub.</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md transition-shadow">
+            <div class="w-9 h-9 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center mb-3">
+              <i data-lucide="shield-check" class="w-5 h-5 text-emerald-700"></i>
+            </div>
+            <h3 class="font-bold text-slate-900 mb-1.5 text-base">2. Zero-Flicker Logo Swap</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">Both logos preloaded in DOM. Instant switch between Dark Mode and Light Mode logo without layout shift.</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md transition-shadow">
+            <div class="w-9 h-9 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center mb-3">
+              <i data-lucide="layers" class="w-5 h-5 text-blue-700"></i>
+            </div>
+            <h3 class="font-bold text-slate-900 mb-1.5 text-base">3. Full-Screen Overlay</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">Cinematic Comaxx-style takeover featuring the official Belkern brand hallmark watermark.</p>
+          </div>
+        </div>
+
+        <!-- How to Include Documentation Box -->
+        <div class="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs space-y-4">
+          <h4 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+            <i data-lucide="code" class="w-4 h-4 text-brand-gold"></i>
+            How to Include Header in Project Pages
+          </h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Ensure your page has Tailwind, Lucide, and links to <code class="font-mono bg-slate-100 px-1 py-0.5 rounded">js/tailwind-config.js</code>, <code class="font-mono bg-slate-100 px-1 py-0.5 rounded">css/style.css</code>, and <code class="font-mono bg-slate-100 px-1 py-0.5 rounded">js/main.js</code>. The header will automatically initialize scroll listener, logo swapping, and accordion behavior.
+          </p>
+          <div class="flex items-center gap-4 pt-2">
+            <a href="../index.html" class="inline-flex items-center gap-2 text-xs font-bold text-brand-green hover:underline">
+              <i data-lucide="external-link" class="w-3.5 h-3.5"></i> View Homepage (index.html)
+            </a>
+            <a href="buttons.html" class="inline-flex items-center gap-2 text-xs font-bold text-brand-gold hover:underline">
+              <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i> View Buttons Component
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+
+  <!-- ========================================================================= -->
+  <!-- 4. COMPONENT JAVASCRIPT LOGIC (Shared Project Script)                     -->
+  <!-- ========================================================================= -->
+  <script src="../js/main.js"></script>
+
+</body>
+</html>
