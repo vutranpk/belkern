@@ -313,7 +313,7 @@ To ensure strict DRY and high maintainability, all `<style>` and `<script>` bloc
   * **Left Half (Col 6 / 12):** Panoramic full-bleed photography stage with smooth cross-fade across 4 authentic photos from `images/about/`:
     - Slide 01: `images/about/Slide-01.jpg` (Multi-Origin Sourcing & EUDR Geolocation)
     - Slide 02: `images/about/Slide-02.jpg` (Industrial Processing & Contract Specifications)
-    - Slide 03: `images/about/Slide-03.jpg` (Independent Pre-Shipment Testing & COA)
+    - Slide 03: `images/about/DSC_2911_compressed.webp` (Independent Pre-Shipment Testing & COA)
     - Slide 04: `images/about/Slide-04.jpg` (Sustainable Agriculture & Responsible Supply Chain)
   * **Right Half (Col 6 / 12):** Expansive editorial canvas with headline, streamlined narrative aligned with multi-origin independent trading house model, and distinct contextual proof chips:
     - *Standard 01 (Origin Traceability):* Focus on multi-origin sourcing (Vietnam, Brazil, Indonesia, India, Africa) and EUDR geolocation compliance for customs clearance.
@@ -619,7 +619,7 @@ To ensure strict DRY and high maintainability, all `<style>` and `<script>` bloc
 * **Photography & Visual Attribution:**
   * *Card 1 (Commercial Desk):* `images/about/frankfurt-am-main.jpg` — Bright, active European commercial trading office in Frankfurt am Main.
   * *Card 2 (Ocean Logistics):* `images/about/Slide-04.jpg` — International deep-sea container terminal with thousands of shipping containers in golden sunlight.
-  * *Card 3 (Quality & EUDR):* `images/about/Accredited-Testing-Laboratories.jpg` — Analytical testing laboratory and specialist conducting quality control for coffee & spices.
+  * *Card 3 (Quality & EUDR):* `images/about/DSC_2911_compressed.webp` — Analytical testing laboratory and specialist conducting quality control for coffee & spices.
 * **Streamlined Card Anatomy (Zero Clutter & Maximum Scannability):**
   * *Aspect-[16/10] Image Banner:* Smooth zoom effect (`group-hover:scale-105 duration-500`) with subtle gradient scrim.
   * *Floating Badges:* Distinct department pill (`Commercial Desk` emerald, `Ocean Logistics` blue, `Quality & EUDR` teal) + Ref code pill.
