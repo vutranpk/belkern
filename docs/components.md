@@ -75,7 +75,7 @@ To ensure strict DRY and high maintainability, all `<style>` and `<script>` bloc
       1. `Home`
       2. `About Us` (About Belkern, International Commodity Trade Network, Legal & Corporate Governance)
       3. `Products` (The 7 Commodities in exact canonical sequence:
-         - *Coffee Beans:* Arabica Coffee Beans (`product-arabica.html`)
+         - *Coffee Beans:* Green Coffee Beans — Arabica & Robusta (`product-coffee.html`)
          - *Spices & Sauces:* Black Pepper (`product-pepper.html`), Black Pepper Sauce (`product-pepper-sauce.html`), Cassia Cinnamon (`product-cinnamon.html`), Star Anise (`product-star-anise.html`)
          - *Commodities:* Cashew Kernels (`product-cashews.html`), Desiccated Coconut (`product-coconut.html`)).
       4. `Sustainability & ESG` (Sustainable Pepper Project, ESG Commitments & Carbon Reduction, Ethical Supply Chain)

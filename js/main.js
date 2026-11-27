@@ -1,4 +1,4 @@
-/**
+﻿/**
  * =============================================================================
  * BELKERN GMBH — CORE APPLICATION JAVASCRIPT (js/main.js)
  * Vanilla JavaScript (100% dependency-free beyond Lucide Icons)
@@ -355,7 +355,7 @@
   // ---------------------------------------------------------------------------
   const COMMODITY_SPECS = {
     arabica: {
-      title: 'Arabica Coffee (Coffee Beans)',
+      title: 'Coffee Beans (Arabica & Robusta)',
       botanical: 'Coffea Arabica (Catimor, Typica, Bourbon)',
       origin: 'Highland Cooperatives (1,450m–1,650m MSL)',
       grade: 'Grade 1 · Specialty & Commercial (Screen 18/16)',
@@ -363,7 +363,7 @@
       eudr: '100% Polygon Mapped & Traceable',
       packing: '60kg GrainPro hermetic bag inside jute bag · 20ft FCL = 19.2 MT palletized',
       terms: 'FOB Origin Port, CIF European Ports (Hamburg, Rotterdam, Antwerp, Genoa)',
-      dropdownValue: 'Arabica Coffee',
+      dropdownValue: 'Coffee Beans',
       table: [
         { param: 'Moisture Content', standard: 'Max. 12.0%', test: 'ISO 6673 / Farmex Lab' },
         { param: 'Screen Size', standard: 'Screen 18/16 (Min. 90% on screen)', test: 'ISO 4150' },
