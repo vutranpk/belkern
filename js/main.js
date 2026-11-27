@@ -574,7 +574,7 @@
             <p class="font-black text-slate-950 text-[11.5px] tracking-tight uppercase">Belkern GmbH</p>
             <p class="font-medium text-slate-900">Melsunger Straße 15 · 60389 Frankfurt am Main, Germany</p>
             <p class="font-medium text-slate-900">Amtsgericht Frankfurt am Main: <strong class="text-slate-950 font-black">HRB 99468</strong> · USt-IdNr.: <strong class="text-slate-950 font-black">DE 298 174 135</strong></p>
-            <p class="text-slate-800 font-bold">mail@belkern.com · +49 69 97 76 16 69 · www.belkern.com</p>
+            <p class="text-slate-800 font-bold">mail@belkern.com · +49 69 97 76 16 68 / +49 69 97 76 16 69 · www.belkern.com</p>
           </div>
         </div>
 
