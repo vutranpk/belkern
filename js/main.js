@@ -1,4 +1,4 @@
-﻿/**
+/**
  * =============================================================================
  * BELKERN GMBH — CORE APPLICATION JAVASCRIPT (js/main.js)
  * Vanilla JavaScript (100% dependency-free beyond Lucide Icons)
@@ -2068,21 +2068,10 @@
       });
     }
 
-    // 4. Update Indicators with standard name or image caption (supports both mobile & desktop)
+    // 4. Update Indicators to numeric-only counter format (e.g., 01 / 04, 02 / 04)
     const currentSteps = showcase ? showcase.querySelectorAll('.cert-current-step, #certCurrentStep') : [];
     if (currentSteps.length) {
-      const activeImg = images[certPanoramaCurrent];
-      const imgCaption = activeImg ? activeImg.getAttribute('data-caption') : null;
-      let text = '';
-      if (contents.length > 1) {
-        const activeContent = contents[certPanoramaCurrent];
-        const customTitle = activeContent ? activeContent.getAttribute('data-step-title') : null;
-        text = customTitle || CERT_STANDARDS[certPanoramaCurrent] || '';
-      } else if (imgCaption) {
-        text = imgCaption;
-      } else {
-        text = `0${certPanoramaCurrent + 1}`;
-      }
+      const text = String(certPanoramaCurrent + 1).padStart(2, '0');
       currentSteps.forEach((el) => {
         el.textContent = text;
       });
